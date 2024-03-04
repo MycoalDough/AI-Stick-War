@@ -1,0 +1,368 @@
+fileFormatVersion: 2
+guid: c561f4d22c4bb20449e79f8c9268b771
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4148344856995203754
+    second: SwordswrathSpriteSheet_0
+  - first:
+      213: -1175497745698555053
+    second: SwordswrathSpriteSheet_2
+  - first:
+      213: -2482056328823534397
+    second: SwordswrathSpriteSheet_3
+  - first:
+      213: -155716789058905544
+    second: SwordswrathSpriteSheet_4
+  - first:
+      213: 7317893377808314280
+    second: SwordswrathSpriteSheet_5
+  - first:
+      213: 6440899871092174617
+    second: SwordswrathSpriteSheet_6
+  - first:
+      213: -4567776290313611793
+    second: SwordswrathSpriteSheet_7
+  - first:
+      213: -1507441825275899480
+    second: SwordswrathSpriteSheet_8
+  - first:
+      213: -9166843779971536970
+    second: SwordswrathSpriteSheet_9
+  - first:
+      213: -51650358444176151
+    second: SwordswrathSpriteSheet_10
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: SwordswrathSpriteSheet_0
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 884
+        width: 320
+        height: 412
+      alignment: 9
+      pivot: {x: 0.26062453, y: 0.64764404}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6557bf8d45e1e66c0800000000000000
+      internalID: -4148344856995203754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SwordswrathSpriteSheet_2
+      rect:
+        serializedVersion: 2
+        x: 806
+        y: 800
+        width: 454
+        height: 305
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35b7d51470bcfafe0800000000000000
+      internalID: -1175497745698555053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SwordswrathSpriteSheet_3
+      rect:
+        serializedVersion: 2
+        x: 1404
+        y: 783
+        width: 537
+        height: 492
+      alignment: 9
+      pivot: {x: 0.4168576, y: 0.47731316}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3cc86ff5be6fd8dd0800000000000000
+      internalID: -2482056328823534397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SwordswrathSpriteSheet_4
+      rect:
+        serializedVersion: 2
+        x: 2052
+        y: 779
+        width: 502
+        height: 492
+      alignment: 9
+      pivot: {x: 0.19760752, y: 0.47277585}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83a5496c768c6ddf0800000000000000
+      internalID: -155716789058905544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SwordswrathSpriteSheet_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 21
+        width: 404
+        height: 517
+      alignment: 9
+      pivot: {x: 0.28251278, y: 0.5174308}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8afa27851416e8560800000000000000
+      internalID: 7317893377808314280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SwordswrathSpriteSheet_6
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 40
+        width: 404
+        height: 517
+      alignment: 9
+      pivot: {x: 0.29924238, y: 0.49999988}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91fee42be4ca26950800000000000000
+      internalID: 6440899871092174617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SwordswrathSpriteSheet_7
+      rect:
+        serializedVersion: 2
+        x: 836
+        y: 39
+        width: 404
+        height: 517
+      alignment: 9
+      pivot: {x: 0.47211692, y: 0.49999994}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe5d7624aaffb90c0800000000000000
+      internalID: -4567776290313611793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SwordswrathSpriteSheet_8
+      rect:
+        serializedVersion: 2
+        x: 1286
+        y: 47
+        width: 404
+        height: 517
+      alignment: 9
+      pivot: {x: 0.3103955, y: 0.50435764}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a11ddc85ad741be0800000000000000
+      internalID: -1507441825275899480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SwordswrathSpriteSheet_9
+      rect:
+        serializedVersion: 2
+        x: 1702
+        y: 54
+        width: 404
+        height: 517
+      alignment: 9
+      pivot: {x: 0.32712486, y: 0.48256904}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b72c4f6624d8c080800000000000000
+      internalID: -9166843779971536970
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SwordswrathSpriteSheet_10
+      rect:
+        serializedVersion: 2
+        x: 2135
+        y: 49
+        width: 404
+        height: 517
+      alignment: 9
+      pivot: {x: 0.3327014, y: 0.49564207}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ecc96cc540884ff0800000000000000
+      internalID: -51650358444176151
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
