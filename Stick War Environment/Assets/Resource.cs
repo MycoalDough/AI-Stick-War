@@ -12,11 +12,6 @@ public class Resource : MonoBehaviour
     public Transform minerSpot1;
     public Transform minerSpot2;
 
-    public void mine()
-    {
-
-    }
-
     public Vector3 minerSpot() //return miner spot
     {
         if(queue.Count == 2)

@@ -93,7 +93,7 @@ public class Miner : MonoBehaviour
 
     public void Mine()
     {
-        if(Vector2.Distance(transform.position, toMove) < 0.1f && (toMove != (Vector2)gv.garrison1.transform.position && toMove != (Vector2)gv.miner1pos.transform.position))
+        if(Vector2.Distance(transform.position, toMove) < 0.07f && (toMove != (Vector2)gv.garrison1.transform.position && toMove != (Vector2)gv.miner1pos.transform.position))
         {
             if (!isMining)
             {
@@ -115,6 +115,7 @@ public class Miner : MonoBehaviour
         }
         else if(maxStorage < 4)
         {
+            StopCoroutine(MineAnimation());
             findMine();
             isMining = false;
             anim.Play("MinerWalk");
@@ -126,8 +127,15 @@ public class Miner : MonoBehaviour
         anim.Play("MinerMine");
         isMining = true;
         yield return new WaitForSeconds(2);
+        if(myMine) myMine.GetComponent<Resource>().durability--;
+
         isMining = false;
         Debug.Log("+whatever");
+        if(myMine && myMine.GetComponent<Resource>().durability <= 0)
+        {
+            Destroy(myMine);
+            findMine();
+        }
         maxStorage++;
     }
 

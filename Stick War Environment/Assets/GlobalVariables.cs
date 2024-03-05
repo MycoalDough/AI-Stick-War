@@ -24,4 +24,53 @@ public class GlobalVariables : MonoBehaviour
     public Transform miner1pos;
     public Transform miner2pos;
 
+    public List<GameObject> team1units;
+    public List<GameObject> team2units;
+
+    public Transform centerPoint1;
+
+    public float rowSpacing = 1f; // Spacing between rows
+    public float columnSpacing = 1f; // Spacing between columns
+    public int maxStickmenPerRow = 5; // Maximum stickmen per row
+
+    private void Update()
+    {
+        if(team1 == 2)
+        {
+            ArrangeStickmen();
+        }
+    }
+    void ArrangeStickmen()
+    {
+        int currentRow = 0;
+        int currentColumn = 0;
+        int stickmenCount = 0;
+
+        foreach (GameObject stickman in team1units)
+        {
+            if (stickman.GetComponent<Swordswrath>())
+            {
+                stickman.GetComponent<Swordswrath>().toMove = centerPoint1.position + new Vector3(currentColumn * columnSpacing, currentRow * rowSpacing, 0);
+                stickmenCount++;
+            }
+            //else if (stickman.GetComponent<Archidon>())
+            //{
+                // Place in the back row
+            //    stickman.transform.position = new Vector3(currentColumn * columnSpacing, 0, 0);
+            //}
+            
+
+            if (stickmenCount >= maxStickmenPerRow)
+            {
+                currentColumn++;
+                currentRow = 0;
+                stickmenCount = 0;
+            }
+            else
+            {
+                currentRow++;
+            }
+        }
+    }
+
 }
