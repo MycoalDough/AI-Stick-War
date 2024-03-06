@@ -27,6 +27,11 @@ public class Miner : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if(gameObject.GetComponentInChildren<HPSystem>() && gameObject.GetComponentInChildren<HPSystem>().dazed)
+        {
+            anim.Play("MinerIdle");
+            return;
+        }
         if (Vector2.Distance(transform.position, toMove) < 0.05f)
         {
             return;
@@ -47,6 +52,12 @@ public class Miner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (gameObject.GetComponentInChildren<HPSystem>() && gameObject.GetComponentInChildren<HPSystem>().dazed)
+        {
+            anim.Play("MinerIdle");
+            return;
+        }
+
         AI();
         if (Vector2.Distance(transform.position, gv.miner1pos.position) < 0.1f)
         {

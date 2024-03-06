@@ -21,6 +21,11 @@ public class Swordswrath : MonoBehaviour
 
     public float moveSpeed;
 
+    public EnemyDetector left;
+    public EnemyDetector right;
+
+    public bool jumpAttacking;
+    public bool canJumpAttack;
     // Start is called before the first frame update
     void Start()
     {
@@ -48,12 +53,20 @@ public class Swordswrath : MonoBehaviour
         else
         {
             isAttacking = false;
-            anim.Play("SwordswrathWalk");
         }
 
-        if (Vector2.Distance(transform.position, toMove) < 0.2f && toMove != (Vector2)gv.centerPoint1.position && toMove != (Vector2)gv.garrison1.position)
+        if (Vector2.Distance(transform.position, toMove) < 5.5f && Vector2.Distance(transform.position, toMove) > 5f && toMove != (Vector2)gv.centerPoint1.position && toMove != (Vector2)gv.garrison1.position)
         {
-            if (!isAttacking)
+            if (!jumpAttacking && canJumpAttack)
+            {
+                StartCoroutine(JumpAttack());
+            }
+        }
+
+
+        if (Vector2.Distance(transform.position, toMove) < 0.4f && toMove != (Vector2)gv.centerPoint1.position && toMove != (Vector2)gv.garrison1.position)
+        {
+            if (!isAttacking && !jumpAttacking)
             {
                 StartCoroutine(AttackAnimation());
                 return;
@@ -64,6 +77,7 @@ public class Swordswrath : MonoBehaviour
             }
         }
 
+        if (!jumpAttacking) anim.Play("SwordswrathWalk");
         Vector2 moveDirection = (toMove - (Vector2)transform.position).normalized;
         rb.MovePosition(rb.position + moveDirection * moveSpeed * Time.fixedDeltaTime);
 
@@ -82,9 +96,23 @@ public class Swordswrath : MonoBehaviour
     {
         isAttacking = true;
         anim.Play("SwordswrathAttack");
-        yield return new WaitForSeconds(2/3f);
-
+        yield return new WaitForSeconds(.5f);
+        Attack(damage);
+        yield return new WaitForSeconds(1f);
         isAttacking = false;
+    }
+
+    IEnumerator JumpAttack()
+    {
+        jumpAttacking = true;
+        canJumpAttack = false;
+        anim.Play("SwordswrathJumpAttack");
+        yield return new WaitForSeconds(1f);
+        if(Attack(damage * 2)) enemy.Daze();
+        yield return new WaitForSeconds(0.7f);
+        jumpAttacking = false;
+        yield return new WaitForSeconds(5f);
+        canJumpAttack = true;
     }
 
     // Update is called once per frame
@@ -105,9 +133,21 @@ public class Swordswrath : MonoBehaviour
         }
     }
 
-    public void Attack()
+    public bool Attack(float dmg)
     {
+        if (!enemy) return false;
         //check if sword is touching an enemy or something man idk 
+        if (GetComponent<SpriteRenderer>().flipX && left.IsTargetWithinRange(enemy.gameObject))
+        {
+            enemy.Damage(dmg);
+            return true;
+        }
+        else if (!GetComponent<SpriteRenderer>().flipX && right.IsTargetWithinRange(enemy.gameObject))
+        {
+            enemy.Damage(dmg);
+            return true;
+        }
+        return false;
     }
 
     public void findEnemy()
@@ -131,7 +171,7 @@ public class Swordswrath : MonoBehaviour
         }
         if (saved != new Vector2(-100, -100))
         {
-            toMove = saved;
+            if(!jumpAttacking) toMove = saved;
             enemy = hp;
         }
     }
