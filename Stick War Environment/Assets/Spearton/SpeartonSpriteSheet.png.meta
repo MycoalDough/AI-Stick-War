@@ -1,0 +1,344 @@
+fileFormatVersion: 2
+guid: 90ce5638fba69ad488ba9ad5b2580e20
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1054028532488624010
+    second: SpeartonSpriteSheet_0
+  - first:
+      213: 7759529376875327834
+    second: SpeartonSpriteSheet_1
+  - first:
+      213: 304651203834836039
+    second: SpeartonSpriteSheet_2
+  - first:
+      213: 8100385407412314222
+    second: SpeartonSpriteSheet_3
+  - first:
+      213: 7763837518330982787
+    second: SpeartonSpriteSheet_4
+  - first:
+      213: 5484427341541018752
+    second: SpeartonSpriteSheet_5
+  - first:
+      213: 4267976198092729325
+    second: SpeartonSpriteSheet_6
+  - first:
+      213: 841439038452377402
+    second: SpeartonSpriteSheet_7
+  - first:
+      213: 157674472203635726
+    second: SpeartonSpriteSheet_8
+  - first:
+      213: -8807631101273119522
+    second: SpeartonSpriteSheet_9
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: SpeartonSpriteSheet_0
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 2430
+        width: 618
+        height: 525
+      alignment: 9
+      pivot: {x: 0.42245936, y: 0.6434347}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a875c16ad59a0ae00800000000000000
+      internalID: 1054028532488624010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpeartonSpriteSheet_1
+      rect:
+        serializedVersion: 2
+        x: 817
+        y: 2414
+        width: 626
+        height: 456
+      alignment: 9
+      pivot: {x: 0.56014633, y: 0.62760687}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a51bcd44bd26fab60800000000000000
+      internalID: 7759529376875327834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpeartonSpriteSheet_2
+      rect:
+        serializedVersion: 2
+        x: 1624
+        y: 2422
+        width: 624
+        height: 454
+      alignment: 9
+      pivot: {x: 0.6481047, y: 0.62062967}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74478f0e7a65a3400800000000000000
+      internalID: 304651203834836039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpeartonSpriteSheet_3
+      rect:
+        serializedVersion: 2
+        x: 2473
+        y: 2411
+        width: 624
+        height: 462
+      alignment: 9
+      pivot: {x: 0.36835146, y: 0.6259496}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e60a1904c995a6070800000000000000
+      internalID: 8100385407412314222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpeartonSpriteSheet_4
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 1722
+        width: 291
+        height: 627
+      alignment: 9
+      pivot: {x: 0.5000002, y: 0.60918224}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 381f7fd9611bebb60800000000000000
+      internalID: 7763837518330982787
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpeartonSpriteSheet_5
+      rect:
+        serializedVersion: 2
+        x: 1164
+        y: 1827
+        width: 618
+        height: 183
+      alignment: 9
+      pivot: {x: 0.62184966, y: 0.53740954}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08c0ef00c999c1c40800000000000000
+      internalID: 5484427341541018752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpeartonSpriteSheet_6
+      rect:
+        serializedVersion: 2
+        x: 1912
+        y: 1576
+        width: 242
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: deba32d4db5ea3b30800000000000000
+      internalID: 4267976198092729325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpeartonSpriteSheet_7
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 887
+        width: 507
+        height: 570
+      alignment: 9
+      pivot: {x: 0.39198065, y: 0.68015075}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a37a91be8546dab00800000000000000
+      internalID: 841439038452377402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpeartonSpriteSheet_8
+      rect:
+        serializedVersion: 2
+        x: 769
+        y: 890
+        width: 502
+        height: 550
+      alignment: 9
+      pivot: {x: 0.28862783, y: 0.705372}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0c48d9d81c203200800000000000000
+      internalID: 157674472203635726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpeartonSpriteSheet_9
+      rect:
+        serializedVersion: 2
+        x: 1381
+        y: 876
+        width: 601
+        height: 556
+      alignment: 9
+      pivot: {x: 0.3576181, y: 0.70315576}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed4eeef9d2205c580800000000000000
+      internalID: -8807631101273119522
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

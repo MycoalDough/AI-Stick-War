@@ -6,27 +6,35 @@ using static UnityEngine.GraphicsBuffer;
 
 public class EnemyDetector : MonoBehaviour
 {
-    public float detectionRange;
+    public float detectionWidth;
+    public float detectionHeight;
 
     private void OnDrawGizmos()
     {
-        // Draw a visual representation of the detection range
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, detectionRange);
-    }
 
+        Vector3 center = transform.position;
+        Vector3 size = new Vector3(detectionWidth, detectionHeight, 0f);
+
+        Matrix4x4 rotationMatrix = Matrix4x4.TRS(center, transform.rotation, Vector3.one);
+        Gizmos.matrix = rotationMatrix;
+
+        Gizmos.DrawWireCube(Vector3.zero, size);
+    }
     public bool IsTargetWithinRange(GameObject enemy)
     {
         if (enemy == null)
             return false;
 
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, enemy.transform.position - transform.position, detectionRange);
-        if (hit.collider != null && hit.collider.gameObject.GetComponentInChildren<HPSystem>().gameObject == enemy)
+        Collider2D[] colliders = Physics2D.OverlapBoxAll(transform.position, new Vector2(detectionWidth, detectionHeight), transform.rotation.eulerAngles.z);
+        foreach (var collider in colliders)
         {
-            return true;
-
+            if (collider.gameObject.GetComponentInChildren<HPSystem>().gameObject == enemy)
+                return true;
         }
+
         return false;
+
     }
 
 

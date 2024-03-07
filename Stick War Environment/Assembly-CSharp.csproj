@@ -58,11 +58,13 @@
   <ItemGroup>
     <Compile Include="Assets\CameraMovement.cs" />
     <Compile Include="Assets\EnemyDetector.cs" />
+    <Compile Include="Assets\Giant.cs" />
     <Compile Include="Assets\GlobalVariables.cs" />
     <Compile Include="Assets\HPSystem.cs" />
     <Compile Include="Assets\Miner.cs" />
     <Compile Include="Assets\Resource.cs" />
     <Compile Include="Assets\Scripts\Parallax.cs" />
+    <Compile Include="Assets\Spearton.cs" />
     <Compile Include="Assets\Swordswrath.cs" />
   </ItemGroup>
   <ItemGroup>

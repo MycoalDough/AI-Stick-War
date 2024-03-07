@@ -14,7 +14,6 @@ public class Swordswrath : MonoBehaviour
 
     public bool isAttacking;
 
-    public float attackRange;
     public LayerMask enemyLayerMask;
     public string target;
     public float damage;
@@ -55,7 +54,7 @@ public class Swordswrath : MonoBehaviour
             isAttacking = false;
         }
 
-        if (Vector2.Distance(transform.position, toMove) < 5.5f && Vector2.Distance(transform.position, toMove) > 5f && toMove != (Vector2)gv.centerPoint1.position && toMove != (Vector2)gv.garrison1.position)
+        if (Vector2.Distance(transform.position, toMove) < 5.8f && Vector2.Distance(transform.position, toMove) > 5.3f && toMove != (Vector2)gv.centerPoint1.position && toMove != (Vector2)gv.garrison1.position)
         {
             if (!jumpAttacking && canJumpAttack)
             {
@@ -64,7 +63,7 @@ public class Swordswrath : MonoBehaviour
         }
 
 
-        if (Vector2.Distance(transform.position, toMove) < 0.4f && toMove != (Vector2)gv.centerPoint1.position && toMove != (Vector2)gv.garrison1.position)
+        if (Vector2.Distance(transform.position, toMove) < .7f && toMove != (Vector2)gv.centerPoint1.position && toMove != (Vector2)gv.garrison1.position)
         {
             if (!isAttacking && !jumpAttacking)
             {
