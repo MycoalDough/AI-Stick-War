@@ -76,29 +76,59 @@ public class Miner : MonoBehaviour
 
     public void AI()
     {
-        if(gv.team1miners == 1)
+        if(tag == "Team1")
         {
-            isMining = false;
-            toMove = gv.garrison1.transform.position;
-            if (myMine)
+            if (gv.team1miners == 1)
             {
-                myMine.queue.Remove(this);
-                myMine = null;
+                isMining = false;
+                toMove = gv.garrison1.transform.position;
+                if (myMine)
+                {
+                    myMine.queue.Remove(this);
+                    myMine = null;
+                }
             }
-        }
-        else if(gv.team1miners == 2)
-        {
-            Mine();
+            else if (gv.team1miners == 2)
+            {
+                Mine();
+            }
+            else
+            {
+                isMining = false;
+                if (myMine)
+                {
+                    myMine.queue.Remove(this);
+                    myMine = null;
+                }
+                //attack
+            }
         }
         else
         {
-            isMining = false;
-            if (myMine)
+            if (gv.team2miners == 1)
             {
-                myMine.queue.Remove(this);
-                myMine = null;
+                isMining = false;
+                toMove = gv.garrison2.transform.position;
+                if (myMine)
+                {
+                    myMine.queue.Remove(this);
+                    myMine = null;
+                }
             }
-            //attack
+            else if (gv.team2miners == 2)
+            {
+                Mine();
+            }
+            else
+            {
+                isMining = false;
+                if (myMine)
+                {
+                    myMine.queue.Remove(this);
+                    myMine = null;
+                }
+                //attack
+            }
         }
     }
 
@@ -121,7 +151,7 @@ public class Miner : MonoBehaviour
                     myMine = null;
                 }
 
-                toMove = gv.miner1pos.transform.position;
+                toMove = (tag == "Team1") ? gv.miner1pos.transform.position : gv.miner2pos.transform.position;
             }
         }
         else if(maxStorage < 4)
@@ -141,7 +171,6 @@ public class Miner : MonoBehaviour
         if(myMine) myMine.GetComponent<Resource>().durability--;
 
         isMining = false;
-        Debug.Log("+whatever");
         if(myMine && myMine.GetComponent<Resource>().durability <= 0)
         {
             Destroy(myMine);

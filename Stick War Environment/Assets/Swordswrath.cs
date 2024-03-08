@@ -33,11 +33,42 @@ public class Swordswrath : MonoBehaviour
         gv = GameObject.FindObjectOfType<GlobalVariables>().GetComponent<GlobalVariables>();
     }
 
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        anim.Play("ArchidonWalk");
+        gv = GameObject.FindObjectOfType<GlobalVariables>().GetComponent<GlobalVariables>();
+
+        target = (gameObject.tag == "Team1") ? "Team2" : "Team1";
+
+        if (tag == "Team1")
+        {
+            gv.team1units.Add(gameObject);
+        }
+        else
+        {
+            gv.team2units.Add(gameObject);
+        }
+    }
+
     private void FixedUpdate()
     {
+        target = (gameObject.tag == "Team1") ? "Team2" : "Team1";
+
+        if (gameObject.GetComponentInChildren<HPSystem>() && gameObject.GetComponentInChildren<HPSystem>().dazed)
+        {
+            anim.Play("SwordswrathIdle");
+            StopAllCoroutines();
+            GetComponent<SpriteRenderer>().flipX = false;
+
+            isAttacking = false;
+            jumpAttacking = false;
+            canJumpAttack = false;
+            return;
+        }
         if (Vector2.Distance(transform.position, toMove) < 0.05f)
         {
-            if(toMove == (Vector2)gv.centerPoint1.position || toMove == (Vector2)gv.garrison1.position)
+            if(((target == "Team2") && (toMove == (Vector2)gv.garrison1.position || gv.team1 == 2)) || ((target == "Team1") && (toMove == (Vector2)gv.garrison2.position || gv.team2 == 2)))
             {
                 isAttacking = false;
                 anim.Play("SwordswrathIdle");
@@ -54,7 +85,7 @@ public class Swordswrath : MonoBehaviour
             isAttacking = false;
         }
 
-        if (Vector2.Distance(transform.position, toMove) < 5.8f && Vector2.Distance(transform.position, toMove) > 5.3f && toMove != (Vector2)gv.centerPoint1.position && toMove != (Vector2)gv.garrison1.position)
+        if (Vector2.Distance(transform.position, toMove) < 5.8f && Vector2.Distance(transform.position, toMove) > 5.3f && (((target == "Team2") && (toMove != (Vector2)gv.garrison1.position && gv.team1 != 2)) || ((target == "Team1") && (toMove != (Vector2)gv.garrison2.position && gv.team2 != 2))))
         {
             if (!jumpAttacking && canJumpAttack)
             {
@@ -63,7 +94,7 @@ public class Swordswrath : MonoBehaviour
         }
 
 
-        if (Vector2.Distance(transform.position, toMove) < .7f && toMove != (Vector2)gv.centerPoint1.position && toMove != (Vector2)gv.garrison1.position)
+        if (Vector2.Distance(transform.position, toMove) < .7f && (((target == "Team2") && (toMove != (Vector2)gv.garrison1.position && gv.team1 != 2)) || ((target == "Team1") && (toMove != (Vector2)gv.garrison2.position && gv.team2 != 2))))
         {
             if (!isAttacking && !jumpAttacking)
             {
@@ -122,11 +153,16 @@ public class Swordswrath : MonoBehaviour
 
     public void AI()
     {
-        if (gv.team1 == 1)
+        if ((gv.team1 == 1 && (target == "Team2")))
         {
             toMove = gv.garrison1.transform.position;
+            //move to formation
         }
-        else if(gv.team1 == 3)
+        else if ((gv.team2 == 1 && (target == "Team1")))
+        {
+            toMove = gv.garrison2.transform.position;
+        }
+        else if ((gv.team1 == 3 && target == "Team2") || (gv.team2 == 3 && target == "Team1"))
         {
             findEnemy();
         }
@@ -155,16 +191,35 @@ public class Swordswrath : MonoBehaviour
         int index = -1;
         HPSystem hp = null;
         Vector2 saved = new Vector2(-100, -100);
-        for (int i = 0; i < gv.team1units.Count; i++)
+        if(target == "Team1")
         {
-            if (gv.team1units[i].gameObject.tag == target)
+            for (int i = 0; i < gv.team1units.Count; i++)
             {
-                if (closestDistance > Mathf.Abs(Vector2.Distance(gameObject.transform.position, gv.team1units[i].transform.position)))
+                if (gv.team1units[i].gameObject.tag == target)
                 {
-                    closestDistance = Mathf.Abs(Vector2.Distance(gameObject.transform.position, gv.team1units[i].transform.position));
-                    saved = gv.team1units[i].transform.position;
-                    hp = gv.team1units[i].gameObject.GetComponentInChildren<HPSystem>();
-                    index = i;
+                    if (closestDistance > Mathf.Abs(Vector2.Distance(gameObject.transform.position, gv.team1units[i].transform.position)))
+                    {
+                        closestDistance = Mathf.Abs(Vector2.Distance(gameObject.transform.position, gv.team1units[i].transform.position));
+                        saved = gv.team1units[i].transform.position;
+                        hp = gv.team1units[i].gameObject.GetComponentInChildren<HPSystem>();
+                        index = i;
+                    }
+                }
+            }
+        }
+        else
+        {
+            for (int i = 0; i < gv.team2units.Count; i++)
+            {
+                if (gv.team2units[i].gameObject.tag == target)
+                {
+                    if (closestDistance > Mathf.Abs(Vector2.Distance(gameObject.transform.position, gv.team2units[i].transform.position)))
+                    {
+                        closestDistance = Mathf.Abs(Vector2.Distance(gameObject.transform.position, gv.team2units[i].transform.position));
+                        saved = gv.team2units[i].transform.position;
+                        hp = gv.team2units[i].gameObject.GetComponentInChildren<HPSystem>();
+                        index = i;
+                    }
                 }
             }
         }

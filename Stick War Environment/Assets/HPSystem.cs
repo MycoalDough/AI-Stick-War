@@ -37,8 +37,9 @@ public class HPSystem : MonoBehaviour
             spriteRenderer.sprite = deathSprite;
 
             gv.team1units.Remove(spriteRenderer.gameObject);
+            spriteRenderer.gameObject.tag = "Untagged";
 
-            foreach(Component sp in spriteRenderer.gameObject.GetComponents(typeof(Component)))
+            foreach (Component sp in spriteRenderer.gameObject.GetComponents(typeof(Component)))
             {
                 if(sp.GetType() != typeof(SpriteRenderer) && sp.GetType() != typeof(Transform))
                 {
@@ -71,7 +72,7 @@ public class HPSystem : MonoBehaviour
             {
                 daze.sprite = dazeEffects[1];
             }
-            yield return new WaitForSeconds(0.25f);
+            yield return new WaitForSeconds(0.15f);
         }
         daze.gameObject.SetActive(false);
         dazed = false;

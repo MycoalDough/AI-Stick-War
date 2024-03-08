@@ -11,7 +11,6 @@ public class GlobalVariables : MonoBehaviour
 
     public Resource[] mines;
 
-
     public int team1; //garrison all units = 1, defend = 2, defend tower = 3, attack = 4
     public int team1miners; //garrison all miners = 1, mine = 2, attack = 3
 
@@ -28,6 +27,7 @@ public class GlobalVariables : MonoBehaviour
     public List<GameObject> team2units;
 
     public Transform centerPoint1;
+    public Transform centerPoint2;
 
     public float rowSpacing = 1f; // Spacing between rows
     public float columnSpacing = 1f; // Spacing between columns
@@ -35,42 +35,145 @@ public class GlobalVariables : MonoBehaviour
 
     private void Update()
     {
-        if(team1 == 2)
+        if (team1 == 2)
         {
-            ArrangeStickmen();
+            ArrangeStickmenTeam1();
+        }
+
+        if (team2 == 2)
+        {
+            ArrangeStickmenTeam2();
         }
     }
-    void ArrangeStickmen()
+    void ArrangeStickmenTeam1()
     {
-        int currentRow = 0;
-        int currentColumn = 0;
-        int stickmenCount = 0;
+        Dictionary<string, int> stickmenCounts = new Dictionary<string, int>(); // Dictionary to store counts of each stickman type
+        Dictionary<string, int> stickmenColumns = new Dictionary<string, int>(); // Dictionary to store current column index for each stickman type
 
         foreach (GameObject stickman in team1units)
         {
+            string stickmanType = ""; // Determine stickman type
+            float xOffset = 0f; // Offset for each stickman type
             if (stickman.GetComponent<Swordswrath>())
             {
-                stickman.GetComponent<Swordswrath>().toMove = centerPoint1.position + new Vector3(currentColumn * columnSpacing, currentRow * rowSpacing, 0);
-                stickmenCount++;
+                stickmanType = "Swordswrath";
+                xOffset = -1f; // Example offset for Swordswrath
             }
-            //else if (stickman.GetComponent<Archidon>())
-            //{
-                // Place in the back row
-            //    stickman.transform.position = new Vector3(currentColumn * columnSpacing, 0, 0);
-            //}
-            
+            else if (stickman.GetComponent<Archidon>())
+            {
+                stickmanType = "Archidon";
+                xOffset = -5f; // Example offset for Archidon
+            }
+            else if (stickman.GetComponent<Magikill>())
+            {
+                stickmanType = "Magikill";
+                xOffset = -4f; // Example offset for Archidon
+            }
+            else if (stickman.GetComponent<Spearton>())
+            {
+                stickmanType = "Spearton";
+                xOffset = 0f; // Example offset for Spearton
+            }
+            else if (stickman.GetComponent<Giant>())
+            {
+                stickmanType = "Giant";
+                xOffset = 3f; // Example offset for Giant
+            }
 
-            if (stickmenCount >= maxStickmenPerRow)
+            // If stickman type is not registered, initialize count and column index
+            if (!stickmenCounts.ContainsKey(stickmanType))
             {
-                currentColumn++;
-                currentRow = 0;
-                stickmenCount = 0;
+                stickmenCounts[stickmanType] = 0;
+                stickmenColumns[stickmanType] = 0;
             }
-            else
+
+            // Calculate position based on type, current column index, and offset
+            Vector3 position = centerPoint1.position + new Vector3((stickmenColumns[stickmanType] * columnSpacing) + xOffset, stickmenCounts[stickmanType] * rowSpacing, 0);
+
+            // Update stickman position
+            if (stickman.GetComponent<Swordswrath>())
+                stickman.GetComponent<Swordswrath>().toMove = position;
+            else if (stickman.GetComponent<Archidon>())
+                stickman.GetComponent<Archidon>().toMove = position;
+            else if (stickman.GetComponent<Spearton>())
+                stickman.GetComponent<Spearton>().toMove = position;
+            else if (stickman.GetComponent<Giant>())
+                stickman.GetComponent<Giant>().toMove = position;
+            else if (stickman.GetComponent<Magikill>())
+                stickman.GetComponent<Magikill>().toMove = position;
+
+            // Increment counts and update column index
+            stickmenCounts[stickmanType]++;
+            if (stickmenCounts[stickmanType] >= maxStickmenPerRow)
             {
-                currentRow++;
+                stickmenColumns[stickmanType]++;
+                stickmenCounts[stickmanType] = 0;
             }
         }
     }
+
+    void ArrangeStickmenTeam2()
+    {
+        Dictionary<string, int> stickmenCounts = new Dictionary<string, int>(); // Dictionary to store counts of each stickman type
+        Dictionary<string, int> stickmenColumns = new Dictionary<string, int>(); // Dictionary to store current column index for each stickman type
+
+        foreach (GameObject stickman in team2units)
+        {
+            string stickmanType = ""; // Determine stickman type
+            float xOffset = 0f; // Offset for each stickman type
+            if (stickman.GetComponent<Swordswrath>())
+            {
+                stickmanType = "Swordswrath";
+                xOffset = 1f; // Example offset for Swordswrath
+            }
+            else if (stickman.GetComponent<Archidon>())
+            {
+                stickmanType = "Archidon";
+                xOffset = 5f; // Example offset for Archidon
+            }
+            else if (stickman.GetComponent<Magikill>())
+            {
+                stickmanType = "Magikill";
+                xOffset = 4f; // Example offset for Archidon
+            }
+            else if (stickman.GetComponent<Spearton>())
+            {
+                stickmanType = "Spearton";
+                xOffset = 0f;
+            }
+            else if (stickman.GetComponent<Giant>())
+            {
+                stickmanType = "Giant";
+                xOffset = -3f; 
+            }
+
+            if (!stickmenCounts.ContainsKey(stickmanType))
+            {
+                stickmenCounts[stickmanType] = 0;
+                stickmenColumns[stickmanType] = 0;
+            }
+
+            Vector3 position = centerPoint2.position + new Vector3((stickmenColumns[stickmanType] * columnSpacing) + xOffset, stickmenCounts[stickmanType] * rowSpacing, 0);
+
+            if (stickman.GetComponent<Swordswrath>())
+                stickman.GetComponent<Swordswrath>().toMove = position;
+            else if (stickman.GetComponent<Archidon>())
+                stickman.GetComponent<Archidon>().toMove = position;
+            else if (stickman.GetComponent<Spearton>())
+                stickman.GetComponent<Spearton>().toMove = position;
+            else if (stickman.GetComponent<Giant>())
+                stickman.GetComponent<Giant>().toMove = position;
+            else if (stickman.GetComponent<Magikill>())
+                stickman.GetComponent<Magikill>().toMove = position;
+
+            stickmenCounts[stickmanType]++;
+            if (stickmenCounts[stickmanType] >= maxStickmenPerRow)
+            {
+                stickmenColumns[stickmanType]++;
+                stickmenCounts[stickmanType] = 0;
+            }
+        }
+    }
+
 
 }

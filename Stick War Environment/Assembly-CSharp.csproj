@@ -56,12 +56,18 @@
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Archidon.cs" />
+    <Compile Include="Assets\ArchidonArrow.cs" />
+    <Compile Include="Assets\Bow.cs" />
     <Compile Include="Assets\CameraMovement.cs" />
     <Compile Include="Assets\EnemyDetector.cs" />
     <Compile Include="Assets\Giant.cs" />
     <Compile Include="Assets\GlobalVariables.cs" />
     <Compile Include="Assets\HPSystem.cs" />
+    <Compile Include="Assets\Magikill.cs" />
+    <Compile Include="Assets\MagikillSpell.cs" />
     <Compile Include="Assets\Miner.cs" />
+    <Compile Include="Assets\Remove.cs" />
     <Compile Include="Assets\Resource.cs" />
     <Compile Include="Assets\Scripts\Parallax.cs" />
     <Compile Include="Assets\Spearton.cs" />

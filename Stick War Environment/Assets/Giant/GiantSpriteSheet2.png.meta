@@ -1,0 +1,368 @@
+fileFormatVersion: 2
+guid: dfb9677070cd6cb4e9b775d51a25a726
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3417166739793341281
+    second: GiantSpriteSheet2_0
+  - first:
+      213: -5070969000062178447
+    second: GiantSpriteSheet2_1
+  - first:
+      213: 423386467241917699
+    second: GiantSpriteSheet2_2
+  - first:
+      213: -415048702102803519
+    second: GiantSpriteSheet2_3
+  - first:
+      213: -8109846290658569291
+    second: GiantSpriteSheet2_4
+  - first:
+      213: 5588422010203542156
+    second: GiantSpriteSheet2_5
+  - first:
+      213: 5892217621446854560
+    second: GiantSpriteSheet2_6
+  - first:
+      213: -4842419826606630695
+    second: GiantSpriteSheet2_7
+  - first:
+      213: -1937851946916864996
+    second: GiantSpriteSheet2_8
+  - first:
+      213: 7506537495572914102
+    second: GiantSpriteSheet2_9
+  - first:
+      213: -4111181335604752550
+    second: GiantSpriteSheet2_10
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: GiantSpriteSheet2_0
+      rect:
+        serializedVersion: 2
+        x: 117
+        y: 3410
+        width: 1174
+        height: 1123
+      alignment: 9
+      pivot: {x: 0.6333913, y: 0.36820036}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f94965084f8c390d0800000000000000
+      internalID: -3417166739793341281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GiantSpriteSheet2_1
+      rect:
+        serializedVersion: 2
+        x: 1585
+        y: 3389
+        width: 1174
+        height: 1127
+      alignment: 9
+      pivot: {x: 0.64531714, y: 0.36696783}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17ba644cf8c40a9b0800000000000000
+      internalID: -5070969000062178447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GiantSpriteSheet2_2
+      rect:
+        serializedVersion: 2
+        x: 3057
+        y: 3372
+        width: 1174
+        height: 1123
+      alignment: 9
+      pivot: {x: 0.64965695, y: 0.38604808}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30d79aeafbb20e500800000000000000
+      internalID: 423386467241917699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GiantSpriteSheet2_3
+      rect:
+        serializedVersion: 2
+        x: 4674
+        y: 3350
+        width: 1174
+        height: 1124
+      alignment: 9
+      pivot: {x: 0.64095813, y: 0.3785368}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1cbecaa87637d3af0800000000000000
+      internalID: -415048702102803519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GiantSpriteSheet2_4
+      rect:
+        serializedVersion: 2
+        x: 6270
+        y: 3380
+        width: 1178
+        height: 1145
+      alignment: 9
+      pivot: {x: 0.60184765, y: 0.37353793}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b3d64634c9047f80800000000000000
+      internalID: -8109846290658569291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GiantSpriteSheet2_5
+      rect:
+        serializedVersion: 2
+        x: 7516
+        y: 3325
+        width: 1175
+        height: 1149
+      alignment: 9
+      pivot: {x: 0.503521, y: 0.38478008}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c821825a5301e8d40800000000000000
+      internalID: 5588422010203542156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GiantSpriteSheet2_6
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 2070
+        width: 1174
+        height: 1157
+      alignment: 9
+      pivot: {x: 0.61170024, y: 0.4136084}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a703a955bc55c150800000000000000
+      internalID: 5892217621446854560
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GiantSpriteSheet2_7
+      rect:
+        serializedVersion: 2
+        x: 1555
+        y: 2044
+        width: 1174
+        height: 1162
+      alignment: 9
+      pivot: {x: 0.6160404, y: 0.4153479}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d89dcde2d44cccb0800000000000000
+      internalID: -4842419826606630695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GiantSpriteSheet2_8
+      rect:
+        serializedVersion: 2
+        x: 2870
+        y: 2015
+        width: 1174
+        height: 1161
+      alignment: 9
+      pivot: {x: 0.6317592, y: 0.4075952}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1c98b4ebed5b15e0800000000000000
+      internalID: -1937851946916864996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GiantSpriteSheet2_9
+      rect:
+        serializedVersion: 2
+        x: 4125
+        y: 2002
+        width: 1174
+        height: 1165
+      alignment: 9
+      pivot: {x: 0.64748675, y: 0.3901562}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6bf16c4b4149c2860800000000000000
+      internalID: 7506537495572914102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GiantSpriteSheet2_10
+      rect:
+        serializedVersion: 2
+        x: 6945
+        y: 62
+        width: 1660
+        height: 1026
+      alignment: 9
+      pivot: {x: 0.39895254, y: 0.38397714}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5f00147b5622f6c0800000000000000
+      internalID: -4111181335604752550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

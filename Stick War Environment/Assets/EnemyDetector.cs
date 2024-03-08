@@ -37,5 +37,18 @@ public class EnemyDetector : MonoBehaviour
 
     }
 
+    public GameObject IsTagWithinRange(String tag)
+    {
+        Collider2D[] colliders = Physics2D.OverlapBoxAll(transform.position, new Vector2(detectionWidth, detectionHeight), transform.rotation.eulerAngles.z);
+        foreach (var collider in colliders)
+        {
+            if (collider.gameObject.tag == tag)
+                return collider.gameObject.GetComponentInChildren<HPSystem>().gameObject;
+        }
+
+        return null;
+
+    }
+
 
 }
