@@ -33,11 +33,24 @@ public class Giant : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        anim.Play("ArchidonWalk");
+        anim.Play("GiantWalk");
         gv = GameObject.FindObjectOfType<GlobalVariables>().GetComponent<GlobalVariables>();
 
-        target = (gameObject.tag == "Team1") ? "Team2" : "Team1";
 
+        StartCoroutine(teamAdd());
+        fluctuation();
+    }
+
+    public void fluctuation()
+    {
+        float fluc = UnityEngine.Random.Range(-0.05f, 0.05f);
+        transform.localScale = new Vector2(transform.localScale.x + fluc, transform.localScale.y + fluc);
+        moveSpeed = moveSpeed + UnityEngine.Random.Range(-0.1f, 0.1f);
+    }
+
+    IEnumerator teamAdd()
+    {
+        yield return new WaitForEndOfFrame();
         if (tag == "Team1")
         {
             gv.team1units.Add(gameObject);
@@ -46,6 +59,7 @@ public class Giant : MonoBehaviour
         {
             gv.team2units.Add(gameObject);
         }
+        target = (tag == "Team1") ? "Team2" : "Team1";
     }
 
     private void FixedUpdate()
@@ -57,7 +71,6 @@ public class Giant : MonoBehaviour
             {
                 isAttacking = false;
                 anim.Play("GiantIdle");
-                GetComponent<SpriteRenderer>().flipX = false;
                 return;
             }
 

@@ -38,6 +38,7 @@ public class HPSystem : MonoBehaviour
 
             gv.team1units.Remove(spriteRenderer.gameObject);
             spriteRenderer.gameObject.tag = "Untagged";
+            spriteRenderer.sortingOrder = -19;
 
             foreach (Component sp in spriteRenderer.gameObject.GetComponents(typeof(Component)))
             {

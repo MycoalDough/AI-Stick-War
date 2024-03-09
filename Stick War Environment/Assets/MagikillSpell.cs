@@ -19,7 +19,6 @@ public class MagikillSpell : MonoBehaviour
         if (!detector) return;
 
         GameObject hit = detector.IsTagWithinRange(Etag);
-        Debug.Log(Etag);
         if (hit != null)
         {
             hit.GetComponentInChildren<HPSystem>().Damage(damage);

@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 1222847833464008066}
   - component: {fileID: 2965063117129023100}
   - component: {fileID: 6543879326930200374}
-  - component: {fileID: 4009584960141493585}
   - component: {fileID: 6037488042258674170}
-  - component: {fileID: 8725625802304577650}
+  - component: {fileID: 5557915870325777337}
+  - component: {fileID: 1925185687752071741}
   m_Layer: 0
   m_Name: Minion
   m_TagString: Team1
@@ -130,35 +130,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &4009584960141493585
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1947004083613824922}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da6366ab6af88144983af9e3c1e178ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gv: {fileID: 0}
-  toMove: {x: 0, y: 0}
-  rb: {fileID: 2965063117129023100}
-  anim: {fileID: 6543879326930200374}
-  team: 1
-  enemy: {fileID: 0}
-  isAttacking: 0
-  enemyLayerMask:
-    serializedVersion: 2
-    m_Bits: 0
-  target: Team2
-  damage: 5
-  moveSpeed: 3.5
-  left: {fileID: 3624569349722912925}
-  right: {fileID: 1652271947235426119}
-  jumpAttacking: 0
-  canJumpAttack: 1
 --- !u!61 &6037488042258674170
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -185,7 +156,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.7636571, y: 4.12}
   m_EdgeRadius: 0
---- !u!114 &8725625802304577650
+--- !u!114 &5557915870325777337
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -194,9 +165,39 @@ MonoBehaviour:
   m_GameObject: {fileID: 1947004083613824922}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aaf598bd15dfbb949859f13e6c19bb7f, type: 3}
+  m_Script: {fileID: 11500000, guid: f9969cfdabaea1147ae919a7638acae5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gv: {fileID: 0}
+  toMove: {x: 0, y: 0}
+  rb: {fileID: 2965063117129023100}
+  anim: {fileID: 6543879326930200374}
+  team: 0
+  enemy: {fileID: 0}
+  isAttacking: 0
+  enemyLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  target: 
+  damage: 5
+  moveSpeed: 2
+  left: {fileID: 3624569349722912925}
+  right: {fileID: 1652271947235426119}
+  ready: 0
+--- !u!114 &1925185687752071741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1947004083613824922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f638acfbe9474ce4bb0b1a5efb15ccf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  middle: -8.37
+  change: 50
 --- !u!1 &6830796685031509439
 GameObject:
   m_ObjectHideFlags: 0

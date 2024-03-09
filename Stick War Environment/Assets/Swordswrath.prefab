@@ -104,6 +104,7 @@ GameObject:
   - component: {fileID: 4932366756427872769}
   - component: {fileID: 4932366756427872770}
   - component: {fileID: 4932366756427872771}
+  - component: {fileID: 7284183810963827985}
   m_Layer: 0
   m_Name: Swordswrath
   m_TagString: Team1
@@ -274,6 +275,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.7636571, y: 4.12}
   m_EdgeRadius: 0
+--- !u!114 &7284183810963827985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4932366756427872773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f638acfbe9474ce4bb0b1a5efb15ccf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  middle: -8.37
+  change: 50
 --- !u!1001 &3590580710051054144
 PrefabInstance:
   m_ObjectHideFlags: 0

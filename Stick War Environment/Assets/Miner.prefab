@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3049998048079118126}
   - component: {fileID: 3049998048079118122}
   - component: {fileID: 3049998048079118121}
+  - component: {fileID: -5120431073007384479}
   m_Layer: 0
   m_Name: Miner
   m_TagString: Team1
@@ -104,6 +105,7 @@ MonoBehaviour:
   toMove: {x: 0, y: 0}
   myMine: {fileID: 0}
   rb: {fileID: 0}
+  flip: 0
   isMining: 0
   anim: {fileID: 3049998048079118126}
   team: 1
@@ -175,6 +177,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.8180099, y: 4.08}
   m_EdgeRadius: 0
+--- !u!114 &-5120431073007384479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3049998048079118127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f638acfbe9474ce4bb0b1a5efb15ccf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  middle: -8.37
+  change: 50
 --- !u!1001 &3797766163869859660
 PrefabInstance:
   m_ObjectHideFlags: 0

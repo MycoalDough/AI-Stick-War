@@ -34,11 +34,22 @@ public class Spearton : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        anim.Play("ArchidonWalk");
+        anim.Play("SpeartonWalk");
         gv = GameObject.FindObjectOfType<GlobalVariables>().GetComponent<GlobalVariables>();
 
-        target = (gameObject.tag == "Team1") ? "Team2" : "Team1";
+        StartCoroutine(teamAdd());
+        fluctuation();
+    }
 
+    public void fluctuation()
+    {
+        float fluc = UnityEngine.Random.Range(-0.05f, 0.05f);
+        transform.localScale = new Vector2(transform.localScale.x + fluc, transform.localScale.y + fluc);
+        moveSpeed = moveSpeed + UnityEngine.Random.Range(-0.1f, 0.1f);
+    }
+    IEnumerator teamAdd()
+    {
+        yield return new WaitForEndOfFrame();
         if (tag == "Team1")
         {
             gv.team1units.Add(gameObject);
@@ -47,6 +58,7 @@ public class Spearton : MonoBehaviour
         {
             gv.team2units.Add(gameObject);
         }
+        target = (tag == "Team1") ? "Team2" : "Team1";
     }
 
     private void FixedUpdate()
@@ -69,7 +81,6 @@ public class Spearton : MonoBehaviour
             {
                 isAttacking = false;
                 anim.Play("SpeartonIdle");
-                GetComponent<SpriteRenderer>().flipX = false;
 
                 return;
             }
@@ -109,7 +120,7 @@ public class Spearton : MonoBehaviour
 
         if (!defence) anim.Play("SpeartonWalk");
         Vector2 moveDirection = (toMove - (Vector2)transform.position).normalized;
-
+        moveDirection.y *= UnityEngine.Random.Range(0.2f, 0.7f);
         float curSpeed = !defence ? moveSpeed : moveSpeed / 2;
 
         rb.MovePosition(rb.position + moveDirection * curSpeed * Time.fixedDeltaTime);

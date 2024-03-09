@@ -23,4 +23,16 @@ public class Resource : MonoBehaviour
             return minerSpot1.position;
         }
     }
+
+    public bool flip(string team)
+    {
+        if (queue.Count == 2)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }

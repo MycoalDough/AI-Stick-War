@@ -42,13 +42,25 @@ public class Magikill : MonoBehaviour
 
     private void Awake()
     {
+        StartCoroutine(ReloadSummon());
         rb = GetComponent<Rigidbody2D>();
-        anim.Play("ArchidonWalk");
+        anim.Play("MagikillWalk");
         gv = GameObject.FindObjectOfType<GlobalVariables>().GetComponent<GlobalVariables>();
 
-        Etag = (gameObject.tag == "Team1") ? "Team2" : "Team1";
-        target = (gameObject.tag == "Team1") ? "Team2" : "Team1";
 
+        StartCoroutine(teamAdd());
+        fluctuation();
+    }
+
+    public void fluctuation()
+    {
+        float fluc = UnityEngine.Random.Range(-0.05f, 0.05f);
+        transform.localScale = new Vector2(transform.localScale.x + fluc, transform.localScale.y + fluc);
+        moveSpeed = moveSpeed + UnityEngine.Random.Range(-0.1f, 0.1f);
+    }
+    IEnumerator teamAdd()
+    {
+        yield return new WaitForEndOfFrame();
         if (tag == "Team1")
         {
             gv.team1units.Add(gameObject);
@@ -57,6 +69,9 @@ public class Magikill : MonoBehaviour
         {
             gv.team2units.Add(gameObject);
         }
+        target = (tag == "Team1") ? "Team2" : "Team1";
+        Etag = (gameObject.tag == "Team1") ? "Team2" : "Team1";
+        target = (gameObject.tag == "Team1") ? "Team2" : "Team1";
     }
 
     private void FixedUpdate()
@@ -108,7 +123,7 @@ public class Magikill : MonoBehaviour
         }
 
 
-        if (Vector2.Distance(transform.position, toMove) < 4f && ((target == "Team2" && (gv.team1 != 2 || toMove != (Vector2)gv.garrison1.position)) || (target == "Team1" && (gv.team2 != 2 || toMove != (Vector2)gv.garrison2.position))))
+        if (Vector2.Distance(transform.position, toMove) < 4f && (((gv.team1 != 2 && gv.team1 != 1 && target == "Team2") || (gv.team2 != 2 && gv.team2 != 1 && target == "Team1"))))
         {
             if (!isAttacking && !isAttackingReloading)
             {
@@ -122,7 +137,7 @@ public class Magikill : MonoBehaviour
         }
 
         if (!isAttacking && !isSummoning) anim.Play("MagikillWalk");
-        if (Vector2.Distance(transform.position, toMove) < 4f && ((target == "Team2" && (gv.team1 != 2 && toMove != (Vector2)gv.garrison1.position)) || (target == "Team1" && (gv.team2 != 2 && toMove != (Vector2)gv.garrison2.position))))
+        if (Vector2.Distance(transform.position, toMove) < 4f && (((gv.team1 != 2 && gv.team1 != 1 && target == "Team2") || (gv.team2 != 2 && gv.team2 != 1 && target == "Team1"))))
         {
             return;
         }
@@ -166,17 +181,11 @@ public class Magikill : MonoBehaviour
         yield return new WaitForSeconds(1);
         string facing = GetComponent<SpriteRenderer>().flipX ? "left" : "right";
         GameObject newMinion = Instantiate(minions, transform.position, Quaternion.identity);
+        newMinion.SetActive(false);
         minionsList.Add(newMinion);
-        if(tag == "Team1")
-        {
-            newMinion.tag = "Team1";
-            gv.team1units.Add(newMinion);
-        }
-        else
-        {
-            newMinion.tag = "Team2";
-            gv.team2units.Add(newMinion);
-        }
+        newMinion.tag = tag;
+        newMinion.SetActive(true);
+        newMinion.GetComponent<Minion>().SetAbilities();
         yield return new WaitForSeconds(1f);
         isSummoning = false;
         StartCoroutine(ReloadSummon());

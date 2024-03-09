@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class Miner : MonoBehaviour
 {
@@ -10,6 +12,7 @@ public class Miner : MonoBehaviour
     public Resource myMine;
     public Rigidbody2D rb;
 
+    public bool flip;
     public bool isMining;
     public Animator anim;
     public int team;
@@ -18,13 +21,73 @@ public class Miner : MonoBehaviour
 
     public int maxStorage;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         anim.Play("MinerWalk");
         gv = GameObject.FindObjectOfType<GlobalVariables>().GetComponent<GlobalVariables>();
+        StartCoroutine(teamAdd());
+        fluctuation();
     }
 
+    public void fluctuation()
+    {
+        float fluc = UnityEngine.Random.Range(-0.05f, 0.05f);
+        transform.localScale = new Vector2(transform.localScale.x + fluc, transform.localScale.y + fluc);
+        moveSpeed = moveSpeed + UnityEngine.Random.Range(-0.1f, 0.1f);
+    }
+    IEnumerator teamAdd()
+    {
+        yield return new WaitForEndOfFrame();
+        if (tag == "Team1")
+        {
+            gv.team1units.Add(gameObject);
+            type = "gold";
+            int goldCount = 0;
+
+            for (int i = 0; i < gv.team1units.Count; i++)
+            {
+                if (gv.team1units[i].GetComponent<Miner>() && gv.team1units[i].GetComponent<Miner>().type == "gold")
+                {
+                    goldCount++;
+                }
+                else if (gv.team1units[i].GetComponent<Miner>() && gv.team1units[i].GetComponent<Miner>().type == "crystal")
+                {
+                    goldCount -= 2;
+                }
+
+            }
+
+            if(goldCount > 0)
+            {
+                type = "crystal";
+            }
+        }
+        else
+        {
+            gv.team2units.Add(gameObject);
+            type = "gold";
+            int goldCount = 0;
+
+            for (int i = 0; i < gv.team2units.Count; i++)
+            {
+                if (gv.team2units[i].GetComponent<Miner>() && gv.team2units[i].GetComponent<Miner>().type == "gold")
+                {
+                    goldCount++;
+                }
+                else if (gv.team2units[i].GetComponent<Miner>() && gv.team2units[i].GetComponent<Miner>().type == "crystal")
+                {
+                    goldCount -= 2;
+                }
+
+            }
+
+            if (goldCount > 0)
+            {
+                type = "crystal";
+            }
+        }
+    }
     private void FixedUpdate()
     {
         if(gameObject.GetComponentInChildren<HPSystem>() && gameObject.GetComponentInChildren<HPSystem>().dazed)
@@ -34,6 +97,7 @@ public class Miner : MonoBehaviour
         }
         if (Vector2.Distance(transform.position, toMove) < 0.05f)
         {
+            GetComponent<SpriteRenderer>().flipX = flip;
             return;
         }
         Vector2 moveDirection = (toMove - (Vector2)transform.position).normalized;
@@ -59,17 +123,36 @@ public class Miner : MonoBehaviour
         }
 
         AI();
-        if (Vector2.Distance(transform.position, gv.miner1pos.position) < 0.1f)
+        if(tag == "Team1")
         {
-            if(type == "crystal")
+            if (Vector2.Distance(transform.position, gv.miner1pos.position) < 0.1f)
             {
-                gv.crystal1 += maxStorage * 10;
-                maxStorage = 0;
+                if (type == "crystal")
+                {
+                    gv.crystal1 += maxStorage * 10;
+                    maxStorage = 0;
+                }
+                else
+                {
+                    gv.gold1 += maxStorage * 20;
+                    maxStorage = 0;
+                }
             }
-            else
+        }
+        else
+        {
+            if (Vector2.Distance(transform.position, gv.miner2pos.position) < 0.1f)
             {
-                gv.gold1 += maxStorage * 20;
-                maxStorage = 0;
+                if (type == "crystal")
+                {
+                    gv.crystal2 += maxStorage * 10;
+                    maxStorage = 0;
+                }
+                else
+                {
+                    gv.gold2 += maxStorage * 20;
+                    maxStorage = 0;
+                }
             }
         }
     }
@@ -173,6 +256,7 @@ public class Miner : MonoBehaviour
         isMining = false;
         if(myMine && myMine.GetComponent<Resource>().durability <= 0)
         {
+            gv.mines.Remove(myMine);
             Destroy(myMine);
             findMine();
         }
@@ -188,7 +272,7 @@ public class Miner : MonoBehaviour
         Resource closest = null;
         float closestDistance = Mathf.Infinity;
         int index = -1;
-        for(int i = 0; i < gv.mines.Length; i++)
+        for(int i = 0; i < gv.mines.Count; i++)
         {
             if (gv.mines[i].type == type && gv.mines[i].queue.Count < 2)
             {
@@ -207,6 +291,8 @@ public class Miner : MonoBehaviour
         {
             gv.mines[index].queue.Add(GetComponent<Miner>());
             toMove = gv.mines[index].minerSpot();
+            flip = gv.mines[index].flip(tag);
+            
         }
         anim.Play("MinerWalk");
     }

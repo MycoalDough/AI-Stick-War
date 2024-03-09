@@ -1,0 +1,464 @@
+fileFormatVersion: 2
+guid: 7dbcc97bb42c02949a536e19b1674e8e
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8380292459412716913
+    second: ShadowrathSpritesheet_0
+  - first:
+      213: -7610722429251321384
+    second: ShadowrathSpritesheet_1
+  - first:
+      213: -7909808158321841249
+    second: ShadowrathSpritesheet_2
+  - first:
+      213: -6569576313591462148
+    second: ShadowrathSpritesheet_3
+  - first:
+      213: 326318138478907771
+    second: ShadowrathSpritesheet_4
+  - first:
+      213: 2394508673205791968
+    second: ShadowrathSpritesheet_5
+  - first:
+      213: 4671126780175957628
+    second: ShadowrathSpritesheet_6
+  - first:
+      213: -9046848620057159390
+    second: ShadowrathSpritesheet_7
+  - first:
+      213: -1226074855168274929
+    second: ShadowrathSpritesheet_8
+  - first:
+      213: -5071919898537932023
+    second: ShadowrathSpritesheet_9
+  - first:
+      213: -4949642855317228509
+    second: ShadowrathSpritesheet_10
+  - first:
+      213: -8678037656046908609
+    second: ShadowrathSpritesheet_11
+  - first:
+      213: 6787319439780695529
+    second: ShadowrathSpritesheet_12
+  - first:
+      213: 5652998743736166619
+    second: ShadowrathSpritesheet_13
+  - first:
+      213: 854438387028520477
+    second: ShadowrathSpritesheet_14
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ShadowrathSpritesheet_0
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 2580
+        width: 485
+        height: 347
+      alignment: 9
+      pivot: {x: 0.47462726, y: 0.49113494}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17dfd255797cc4470800000000000000
+      internalID: 8380292459412716913
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowrathSpritesheet_1
+      rect:
+        serializedVersion: 2
+        x: 811
+        y: 2558
+        width: 460
+        height: 352
+      alignment: 9
+      pivot: {x: 0.44984052, y: 0.47378123}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d180602648416690800000000000000
+      internalID: -7610722429251321384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowrathSpritesheet_2
+      rect:
+        serializedVersion: 2
+        x: 1455
+        y: 2538
+        width: 459
+        height: 397
+      alignment: 9
+      pivot: {x: 0.45308244, y: 0.5426213}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9b6db15367ba3290800000000000000
+      internalID: -7909808158321841249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowrathSpritesheet_3
+      rect:
+        serializedVersion: 2
+        x: 2039
+        y: 2557
+        width: 459
+        height: 381
+      alignment: 9
+      pivot: {x: 0.43297514, y: 0.49596304}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf68f8f562d24d4a0800000000000000
+      internalID: -6569576313591462148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowrathSpritesheet_4
+      rect:
+        serializedVersion: 2
+        x: 2679
+        y: 2546
+        width: 457
+        height: 367
+      alignment: 9
+      pivot: {x: 0.45287764, y: 0.50419164}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b715dc73e90578400800000000000000
+      internalID: 326318138478907771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowrathSpritesheet_5
+      rect:
+        serializedVersion: 2
+        x: 3331
+        y: 2518
+        width: 457
+        height: 381
+      alignment: 9
+      pivot: {x: 0.4394136, y: 0.5161498}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ece50e93f00b3120800000000000000
+      internalID: 2394508673205791968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowrathSpritesheet_6
+      rect:
+        serializedVersion: 2
+        x: 3946
+        y: 2460
+        width: 457
+        height: 406
+      alignment: 9
+      pivot: {x: 0.43941465, y: 0.56062025}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7eb331de0d23d040800000000000000
+      internalID: 4671126780175957628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowrathSpritesheet_7
+      rect:
+        serializedVersion: 2
+        x: 4667
+        y: 2474
+        width: 467
+        height: 410
+      alignment: 9
+      pivot: {x: 0.45059264, y: 0.53751785}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22992c0cc13237280800000000000000
+      internalID: -9046848620057159390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowrathSpritesheet_8
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 1959
+        width: 372
+        height: 390
+      alignment: 9
+      pivot: {x: 0.48112735, y: 0.40399137}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0e08ad4a6b1cfee0800000000000000
+      internalID: -1226074855168274929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowrathSpritesheet_9
+      rect:
+        serializedVersion: 2
+        x: 1173
+        y: 1901
+        width: 375
+        height: 388
+      alignment: 9
+      pivot: {x: 0.4687972, y: 0.3854024}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90b496679bbec99b0800000000000000
+      internalID: -5071919898537932023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowrathSpritesheet_10
+      rect:
+        serializedVersion: 2
+        x: 1706
+        y: 1880
+        width: 513
+        height: 296
+      alignment: 9
+      pivot: {x: 0.4726289, y: 0.5632481}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32434c32c065f4bb0800000000000000
+      internalID: -4949642855317228509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowrathSpritesheet_11
+      rect:
+        serializedVersion: 2
+        x: 2417
+        y: 1880
+        width: 400
+        height: 457
+      alignment: 9
+      pivot: {x: 0.31863463, y: 0.33613464}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3b4cd3eaba619780800000000000000
+      internalID: -8678037656046908609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowrathSpritesheet_12
+      rect:
+        serializedVersion: 2
+        x: 3160
+        y: 1875
+        width: 428
+        height: 480
+      alignment: 9
+      pivot: {x: 0.27582186, y: 0.33911106}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ed4b39d117613e50800000000000000
+      internalID: 6787319439780695529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowrathSpritesheet_13
+      rect:
+        serializedVersion: 2
+        x: 3856
+        y: 1863
+        width: 621
+        height: 297
+      alignment: 9
+      pivot: {x: 0.21359907, y: 0.53939664}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd8af14186c737e40800000000000000
+      internalID: 5652998743736166619
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowrathSpritesheet_14
+      rect:
+        serializedVersion: 2
+        x: 1675
+        y: 916
+        width: 510
+        height: 163
+      alignment: 9
+      pivot: {x: 0.39920798, y: 0.48686022}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1eea4d9f239bdb00800000000000000
+      internalID: 854438387028520477
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
