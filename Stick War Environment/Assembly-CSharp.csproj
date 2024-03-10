@@ -69,12 +69,14 @@
     <Compile Include="Assets\MagikillSpell.cs" />
     <Compile Include="Assets\Miner.cs" />
     <Compile Include="Assets\Minion.cs" />
+    <Compile Include="Assets\RLConnection.cs" />
     <Compile Include="Assets\Remove.cs" />
     <Compile Include="Assets\Resource.cs" />
     <Compile Include="Assets\Scripts\Parallax.cs" />
     <Compile Include="Assets\Shadowrath.cs" />
     <Compile Include="Assets\Spearton.cs" />
     <Compile Include="Assets\Swordswrath.cs" />
+    <Compile Include="Assets\UnityMainThreadDispatcher.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -688,6 +690,18 @@
     </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.EditorCoroutines.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.EditorCoroutines.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.MemoryProfiler">
+      <HintPath>Library\ScriptAssemblies\Unity.MemoryProfiler.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.MemoryProfiler.Editor.MemoryProfilerModule">
+      <HintPath>Library\ScriptAssemblies\Unity.MemoryProfiler.Editor.MemoryProfilerModule.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.MemoryProfiler.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.MemoryProfiler.Editor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

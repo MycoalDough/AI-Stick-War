@@ -128,7 +128,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   queue: []
   type: crystal
-  durability: 30
+  durability: 100
   team: 1
   minerSpot1: {fileID: 7736649505173436747}
   minerSpot2: {fileID: 7736649507244076935}

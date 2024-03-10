@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,6 +9,8 @@ public class GlobalVariables : MonoBehaviour
     public int crystal1;
     public int gold2;
     public int crystal2;
+    public int population1;
+    public int population2;
 
     public List<Resource> mines = new List<Resource>();
 
@@ -44,8 +47,14 @@ public class GlobalVariables : MonoBehaviour
     public GameObject giant;
     public GameObject shadowrath;
 
+    public HPSystem statue1;
+    public HPSystem statue2;
+
     private void Update()
     {
+        population2 = team2units.Count;
+        population1 = team1units.Count;
+
         if (team1 == 2)
         {
             ArrangeStickmenTeam1();
@@ -56,6 +65,42 @@ public class GlobalVariables : MonoBehaviour
             ArrangeStickmenTeam2();
         }
         detection();
+    }
+    public void ResetLevel()
+    {
+        Debug.Log("reset");
+        if (team1units.Count > 1)
+        {
+            for (int i = team1units.Count - 1; i > 0; i--)
+            {
+                Destroy(team1units[i]);
+                team1units.RemoveAt(i);
+            }
+        }
+
+        if (team2units.Count > 1)
+        {
+            for (int i = team2units.Count - 1; i > 0; i--)
+            {
+                Destroy(team2units[i]);
+                team2units.RemoveAt(i);
+            }
+        }
+
+        statue1.currentHP = statue1.maxHP;
+        statue2.currentHP = statue2.maxHP;
+        team1 = 2;
+        team1miners = 2;
+        team2 = 2;
+        team2miners = 2;
+        GameObject one = Instantiate(miner, garrison1.transform.position, Quaternion.identity);
+        one.tag = "Team1";
+        GameObject two = Instantiate(miner, garrison1.transform.position, Quaternion.identity);
+        two.tag = "Team1";
+        GameObject three = Instantiate(miner, garrison2.transform.position, Quaternion.identity);
+        three.tag = "Team2";
+        GameObject four = Instantiate(miner, garrison2.transform.position, Quaternion.identity);
+        four.tag = "Team2";
     }
 
     void detection()
@@ -77,6 +122,15 @@ public class GlobalVariables : MonoBehaviour
     public void setTeam2(int to)
     {
         team2 = to;
+    }
+
+    public void setTeam1Miners(int to)
+    {
+        team1miners  = to;
+    }
+    public void setTeam2Miners(int to)
+    {
+        team1miners = to;
     }
 
     void ArrangeStickmenTeam1()
@@ -236,8 +290,252 @@ public class GlobalVariables : MonoBehaviour
         }
     }
 
+    public float playAction(int action, int team) 
+    {
+        int reward = 0;
+        //0) ⬇️
+        //1) garrison troops
+        //2) defend
+        //3) attack
+        //4) miners garrison
+        //5) miners mine
+
+        //6) sword
+        //7) archidon
+        //8) spearton
+        //9) magikill
+        //10) giant
+        //11) shadow
+
+        if(team % 2 != 0)
+        {
+            if(action == 0)
+            {
+                setTeam1(1);
+            }
+            if (action == 1)
+            {
+                setTeam1(2);
+            }
+            if (action == 2)
+            {
+                setTeam1(3);
+            }
+            if (action == 3)
+            {
+                setTeam1Miners(1);
+            }
+            if (action == 4)
+            {
+                setTeam1Miners(2);
+            }
+            if (action == 5)
+            {
+                if(gold1 >= 150)
+                {
+                    gold1 -= 150;
+                    summonTroop1("M");
+                }
+                else
+                {
+                    reward -= 10;
+                }
+            }
+            if (action == 6)
+            {
+                if (gold1 >= 125)
+                {
+                    gold1 -= 125;
+                    summonTroop1("SWORD");
+                }
+                else
+                {
+                    reward -= 10;
+                }
+            }
+            if (action == 7)
+            {
+                if (gold1 >= 300)
+                {
+                    gold1 -= 300;
+                    summonTroop1("A");
+                }
+                else
+                {
+                    reward -= 10;
+                }
+            }
+            if (action == 8)
+            {
+                if (gold1 >= 300 && crystal1 >= 100)
+                {
+                    gold1 -= 300;
+                    crystal1 -= 100;
+                    summonTroop1("S");
+                }
+                else
+                {
+                    reward -= 10;
+                }
+            }
+            if (action == 9)
+            {
+                if (gold1 >= 300 && crystal1 >= 300)
+                {
+                    gold1 -= 300;
+                    crystal1 -= 300;
+                    summonTroop1("MK");
+                }
+                else
+                {
+                    reward -= 10;
+                }
+            }
+            if (action == 10)
+            {
+                if (gold1 >= 1500)
+                {
+                    gold1 -= 1500;
+                    summonTroop1("G");
+                }
+                else
+                {
+                    reward -= 10;
+                }
+            }
+            if (action == 11)
+            {
+                if (gold1 >= 450 && crystal1 >= 150)
+                {
+                    gold1 -= 450;
+                    crystal1 -= 150;
+                    summonTroop1("SHADOW");
+                }
+                else
+                {
+                    reward -= 10;
+                }
+            }
+        }
+        else
+        {
+            if (action == 0)
+            {
+                setTeam1(1);
+            }
+            if (action == 1)
+            {
+                setTeam2(2);
+            }
+            if (action == 2)
+            {
+                setTeam2(3);
+            }
+            if (action == 3)
+            {
+                setTeam2Miners(1);
+            }
+            if (action == 4)
+            {
+                setTeam2Miners(2);
+            }
+            if (action == 5)
+            {
+                if (gold2 >= 150)
+                {
+                    gold2 -= 150;
+                    summonTroop2("M");
+                }
+                else
+                {
+                    reward -= 10;
+                }
+            }
+            if (action == 6)
+            {
+                if (gold2 >= 125)
+                {
+                    gold2 -= 125;
+                    summonTroop2("SWORD");
+                }
+                else
+                {
+                    reward -= 10;
+                }
+            }
+            if (action == 7)
+            {
+                if (gold2 >= 300)
+                {
+                    gold2 -= 300;
+                    summonTroop2("A");
+                }
+                else
+                {
+                    reward -= 10;
+                }
+            }
+            if (action == 8)
+            {
+                if (gold2 >= 300 && crystal2 >= 100)
+                {
+                    gold2 -= 300;
+                    crystal2 -= 100;
+                    summonTroop2("S");
+                }
+                else
+                {
+                    reward -= 10;
+                }
+            }
+            if (action == 9)
+            {
+                if (gold2 >= 300 && crystal2 >= 300)
+                {
+                    gold2 -= 300;
+                    crystal2 -= 300;
+                    summonTroop2("MK");
+                }
+                else
+                {
+                    reward -= 10;
+                }
+            }
+            if (action == 10)
+            {
+                if (gold2 >= 1500)
+                {
+                    gold2 -= 1500;
+                    summonTroop2("G");
+                }
+                else
+                {
+                    reward -= 10;
+                }
+            }
+            if (action == 11)
+            {
+                if (gold2 >= 450 && crystal2 >= 150)
+                {
+                    gold2 -= 450;
+                    crystal2 -= 150;
+                    summonTroop2("SHADOW");
+                }
+                else
+                {
+                    reward -= 10;
+                }
+            }
+        }
+
+
+        return reward;
+    }
+
     public void summonTroop1(string team1)
     {
+        population1 = team1units.Count;
+        if (population1 > 30) return;
         GameObject inst = null;
         if(team1 == "M")
         {
@@ -269,11 +567,14 @@ public class GlobalVariables : MonoBehaviour
         }
 
         inst.tag = "Team1";
+        //team1units.Add(inst);
         
     }
 
     public void summonTroop2(string team1)
     {
+        population2 = team2units.Count;
+        if (population2 > 30) return;
         GameObject inst = null;
         if (team1 == "M")
         {
@@ -305,6 +606,7 @@ public class GlobalVariables : MonoBehaviour
         }
 
         inst.tag = "Team2";
+       // team2units.Add(inst);
 
     }
 

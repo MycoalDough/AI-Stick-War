@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class Remove : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public int removeAfter = 10;
+
+    private void Awake()
     {
-        
+        StartCoroutine(remove());
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator remove()
     {
-        
+        yield return new WaitForSeconds(removeAfter);
+        Destroy(gameObject);
     }
 }

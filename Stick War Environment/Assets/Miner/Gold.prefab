@@ -128,7 +128,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   queue: []
   type: gold
-  durability: 30
+  durability: 100
   team: 1
   minerSpot1: {fileID: 3725855986374267136}
   minerSpot2: {fileID: 3725855984450684876}

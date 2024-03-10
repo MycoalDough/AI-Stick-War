@@ -78,7 +78,7 @@ public class Magikill : MonoBehaviour
     {
         for (int i = 0; i < minionsList.Count; i++)
         {
-            if (minionsList[i].GetComponentInChildren<HPSystem>() == null || minionsList[i].GetComponentInChildren<HPSystem>().currentHP <= 0)
+            if (minionsList[i] && minionsList[i].GetComponentInChildren<HPSystem>() == null || minionsList[i].GetComponentInChildren<HPSystem>().currentHP <= 0)
             {
                 minionsList.Remove(minionsList[i]);
             }
@@ -258,7 +258,7 @@ public class Magikill : MonoBehaviour
         {
             for (int i = 0; i < gv.team2units.Count; i++)
             {
-                if (gv.team2units[i].gameObject.tag == target)
+                if (gv.team2units[i] && gv.team2units[i].gameObject.tag == target)
                 {
                     if (closestDistance > Mathf.Abs(Vector2.Distance(gameObject.transform.position, gv.team2units[i].transform.position)))
                     {

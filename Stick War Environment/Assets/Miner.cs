@@ -217,14 +217,37 @@ public class Miner : MonoBehaviour
 
     public void Mine()
     {
-        if(Vector2.Distance(transform.position, toMove) < 0.07f && (toMove != (Vector2)gv.garrison1.transform.position && toMove != (Vector2)gv.miner1pos.transform.position))
+        if(tag == "Team1" && gv.team1miners == 2)
         {
-            if (!isMining)
+            if (Vector2.Distance(transform.position, toMove) < 0.07f && (toMove != (Vector2)gv.garrison1.transform.position && toMove != (Vector2)gv.miner1pos.transform.position))
             {
-                StartCoroutine(MineAnimation());
+                if (!isMining)
+                {
+                    StartCoroutine(MineAnimation());
+                }
+
+                if (maxStorage >= 4)
+                {
+                    anim.Play("MinerWalk");
+                    isMining = false;
+                    if (myMine != null)
+                    {
+                        myMine.queue.Remove(this);
+                        myMine = null;
+                    }
+
+                    toMove = (tag == "Team1") ? gv.miner1pos.transform.position : gv.miner2pos.transform.position;
+                }
+            }
+            else if (maxStorage < 4)
+            {
+                StopCoroutine(MineAnimation());
+                findMine();
+                isMining = false;
+                anim.Play("MinerWalk");
             }
 
-            if(maxStorage == 4)
+            if (maxStorage >= 4)
             {
                 anim.Play("MinerWalk");
                 isMining = false;
@@ -237,12 +260,47 @@ public class Miner : MonoBehaviour
                 toMove = (tag == "Team1") ? gv.miner1pos.transform.position : gv.miner2pos.transform.position;
             }
         }
-        else if(maxStorage < 4)
+        else if(tag == "Team2" && gv.team2miners == 2)
         {
-            StopCoroutine(MineAnimation());
-            findMine();
-            isMining = false;
-            anim.Play("MinerWalk");
+            if (Vector2.Distance(transform.position, toMove) < 0.07f && (toMove != (Vector2)gv.garrison2.transform.position && toMove != (Vector2)gv.miner2pos.transform.position))
+            {
+                if (!isMining)
+                {
+                    StartCoroutine(MineAnimation());
+                }
+
+                if (maxStorage >= 4)
+                {
+                    anim.Play("MinerWalk");
+                    isMining = false;
+                    if (myMine != null)
+                    {
+                        myMine.queue.Remove(this);
+                        myMine = null;
+                    }
+
+                    toMove = (tag == "Team1") ? gv.miner1pos.transform.position : gv.miner2pos.transform.position;
+                }
+            }
+            else if (maxStorage < 4)
+            {
+                StopCoroutine(MineAnimation());
+                findMine();
+                isMining = false;
+                anim.Play("MinerWalk");
+            }
+            if (maxStorage >= 4)
+            {
+                anim.Play("MinerWalk");
+                isMining = false;
+                if (myMine != null)
+                {
+                    myMine.queue.Remove(this);
+                    myMine = null;
+                }
+
+                toMove = (tag == "Team1") ? gv.miner1pos.transform.position : gv.miner2pos.transform.position;
+            }
         }
     }
 
@@ -256,8 +314,6 @@ public class Miner : MonoBehaviour
         isMining = false;
         if(myMine && myMine.GetComponent<Resource>().durability <= 0)
         {
-            gv.mines.Remove(myMine);
-            Destroy(myMine);
             findMine();
         }
         maxStorage++;
@@ -274,7 +330,7 @@ public class Miner : MonoBehaviour
         int index = -1;
         for(int i = 0; i < gv.mines.Count; i++)
         {
-            if (gv.mines[i].type == type && gv.mines[i].queue.Count < 2)
+            if (gv.mines[i].durability > 0 && gv.mines[i].type == type && gv.mines[i].queue.Count < 2)
             {
                 if(closestDistance > Mathf.Abs(Vector2.Distance(gameObject.transform.position, gv.mines[i].transform.position)))
                 {

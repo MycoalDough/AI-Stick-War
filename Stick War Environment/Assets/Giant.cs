@@ -100,6 +100,7 @@ public class Giant : MonoBehaviour
 
         anim.Play("GiantWalk");
         Vector2 moveDirection = (toMove - (Vector2)transform.position).normalized;
+        moveDirection.y *= UnityEngine.Random.Range(0.1f, 0.3f);
         rb.MovePosition(rb.position + moveDirection * moveSpeed * Time.fixedDeltaTime);
 
         if (moveDirection.x > 0)

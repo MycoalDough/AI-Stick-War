@@ -47,6 +47,7 @@ public class HPSystem : MonoBehaviour
                     Destroy(sp);
                 }
             }
+            spriteRenderer.gameObject.AddComponent<Remove>();
             Destroy(gameObject);
 
         }

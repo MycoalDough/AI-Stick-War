@@ -120,7 +120,7 @@ public class Spearton : MonoBehaviour
 
         if (!defence) anim.Play("SpeartonWalk");
         Vector2 moveDirection = (toMove - (Vector2)transform.position).normalized;
-        moveDirection.y *= UnityEngine.Random.Range(0.2f, 0.7f);
+        moveDirection.y *= UnityEngine.Random.Range(0.1f, 0.3f);
         float curSpeed = !defence ? moveSpeed : moveSpeed / 2;
 
         rb.MovePosition(rb.position + moveDirection * curSpeed * Time.fixedDeltaTime);

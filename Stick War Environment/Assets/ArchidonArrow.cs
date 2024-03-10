@@ -18,6 +18,7 @@ public class ArchidonArrow : MonoBehaviour
     {
         if(Mathf.Abs(transform.position.y - yValue) < 0.1f)
         {
+            gameObject.AddComponent<Remove>();
             Destroy(rb);
             Destroy(this);
         }
