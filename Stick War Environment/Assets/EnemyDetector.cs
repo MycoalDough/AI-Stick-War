@@ -29,7 +29,8 @@ public class EnemyDetector : MonoBehaviour
         Collider2D[] colliders = Physics2D.OverlapBoxAll(transform.position, new Vector2(detectionWidth, detectionHeight), transform.rotation.eulerAngles.z);
         foreach (var collider in colliders)
         {
-            if (collider.gameObject.GetComponentInChildren<HPSystem>().gameObject == enemy)
+            if(colliders.Length == 0) { return false; }
+            if (collider && collider.gameObject && collider.gameObject.GetComponentInChildren<HPSystem>().gameObject == enemy)
                 return true;
         }
 
@@ -42,7 +43,7 @@ public class EnemyDetector : MonoBehaviour
         Collider2D[] colliders = Physics2D.OverlapBoxAll(transform.position, new Vector2(detectionWidth, detectionHeight), transform.rotation.eulerAngles.z);
         foreach (var collider in colliders)
         {
-            if (collider.gameObject.tag == tag)
+            if (collider.gameObject.tag == tag && collider.gameObject.GetComponentInChildren<HPSystem>())
                 return collider.gameObject.GetComponentInChildren<HPSystem>().gameObject;
         }
 

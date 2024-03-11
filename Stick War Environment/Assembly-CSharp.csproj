@@ -58,8 +58,10 @@
   <ItemGroup>
     <Compile Include="Assets\Archidon.cs" />
     <Compile Include="Assets\ArchidonArrow.cs" />
+    <Compile Include="Assets\ArchidonArrowFix.cs" />
     <Compile Include="Assets\Bow.cs" />
     <Compile Include="Assets\CameraMovement.cs" />
+    <Compile Include="Assets\CastleArchidon.cs" />
     <Compile Include="Assets\ChangeSize.cs" />
     <Compile Include="Assets\EnemyDetector.cs" />
     <Compile Include="Assets\Giant.cs" />
@@ -690,18 +692,6 @@
     </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.EditorCoroutines.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.EditorCoroutines.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.MemoryProfiler">
-      <HintPath>Library\ScriptAssemblies\Unity.MemoryProfiler.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.MemoryProfiler.Editor.MemoryProfilerModule">
-      <HintPath>Library\ScriptAssemblies\Unity.MemoryProfiler.Editor.MemoryProfilerModule.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.MemoryProfiler.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.MemoryProfiler.Editor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

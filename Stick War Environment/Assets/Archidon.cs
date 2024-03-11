@@ -108,6 +108,15 @@ public class Archidon : MonoBehaviour
 
         if (Vector2.Distance(transform.position, toMove) < 10f && (((gv.team1 != 2 && gv.team1 != 1 && target == "Team2") || (gv.team2 != 2 && gv.team2 != 1 && target == "Team1"))))
         {
+            if (transform.position.x - toMove.x < 0)
+            {
+                gameObject.GetComponent<SpriteRenderer>().flipX = false;
+            }
+            else
+            {
+                gameObject.GetComponent<SpriteRenderer>().flipX = true;
+            }
+
             if (!isAttacking && !isReloading)
             {
                 StartCoroutine(AttackAnimation());
@@ -201,7 +210,7 @@ public class Archidon : MonoBehaviour
         {
             for (int i = 0; i < gv.team1units.Count; i++)
             {
-                if (gv.team1units[i].gameObject.tag == target)
+                if (gv.team1units[i] && gv.team1units[i].gameObject.tag == target && !gv.garrisonDetector1.IsTargetWithinRange(gv.team1units[i].GetComponentInChildren<HPSystem>().gameObject))
                 {
                     if (closestDistance > Mathf.Abs(Vector2.Distance(gameObject.transform.position, gv.team1units[i].transform.position)))
                     {
@@ -217,7 +226,7 @@ public class Archidon : MonoBehaviour
         {
             for (int i = 0; i < gv.team2units.Count; i++)
             {
-                if (gv.team2units[i] && gv.team2units[i].gameObject.tag == target)
+                if (gv.team2units[i] && gv.team2units[i].gameObject.tag == target && !gv.garrisonDetector2.IsTargetWithinRange(gv.team2units[i].GetComponentInChildren<HPSystem>().gameObject))
                 {
                     if (closestDistance > Mathf.Abs(Vector2.Distance(gameObject.transform.position, gv.team2units[i].transform.position)))
                     {

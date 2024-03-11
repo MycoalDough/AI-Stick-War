@@ -37,7 +37,7 @@ def get_state():
     try:
             client_socket.send("get_state".encode("utf-8"))
 
-            data = client_socket.recv(2000).decode("utf-8")
+            data = client_socket.recv(3000).decode("utf-8")
             data_list = data.split(',')
             current_data = []
             if data:
@@ -61,8 +61,7 @@ def play_step(step):
     try:
         to_send = "play_step:" + str(step)
         client_socket.send(to_send.encode("utf-8"))
-        play_data = client_socket.recv(2000).decode("utf-8")
-        print(play_data)
+        play_data = client_socket.recv(3000).decode("utf-8")
         if play_data:
             elements = play_data.split(':')
 

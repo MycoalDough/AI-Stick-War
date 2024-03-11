@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7239801714110561247}
   - component: {fileID: 2221675545501505755}
   - component: {fileID: 5085722207892002901}
+  - component: {fileID: 6108365079046087667}
   m_Layer: 0
   m_Name: Arrow
   m_TagString: Untagged
@@ -99,9 +100,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   detector: {fileID: 5085722207892002901}
   yValue: 0
-  rb: {fileID: 2221675545501505755}
   Etag: 
   damage: 15
+  moveTo: {x: 0, y: 0}
+  speed: 20
+  rb: {fileID: 2221675545501505755}
 --- !u!50 &2221675545501505755
 Rigidbody2D:
   serializedVersion: 4
@@ -110,7 +113,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4691655747562357014}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -137,3 +140,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   detectionWidth: 0.67
   detectionHeight: 0.12
+--- !u!114 &6108365079046087667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4691655747562357014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1db1c1684546f5343b3ba13925ad9c95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

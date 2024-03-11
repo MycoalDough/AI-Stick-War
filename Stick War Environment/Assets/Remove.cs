@@ -11,6 +11,11 @@ public class Remove : MonoBehaviour
         StartCoroutine(remove());
     }
 
+    private void Update()
+    {
+        StartCoroutine (remove());
+    }
+
     IEnumerator remove()
     {
         yield return new WaitForSeconds(removeAfter);

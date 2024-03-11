@@ -74,7 +74,7 @@ class DuelingDeepQNetwork(nn.Module):
 
 
 class Agent():
-    def __init__(self, gamma, epsilon, lr, n_actions, input_dims, mem_size, batch_size, eps_min = 0.01, eps_dec=5e-7, replace=1000, checkpoint_dir='Agents'):
+    def __init__(self, gamma, epsilon, lr, n_actions, input_dims, mem_size, batch_size,checkpoint_name, eps_min = 0.01, eps_dec=5e-7, replace=1000, checkpoint_dir='Agents'):
         self.gamma = gamma
         self.epsilon = epsilon
         self.lr = lr
@@ -88,10 +88,11 @@ class Agent():
         self.checkpoint_dir = checkpoint_dir
         self.learn_step_counter = 0
         self.action_space = [i for i in range(self.n_actions)]
+        self.checkpoint_name = checkpoint_name
 
         self.memory = ReplayBuffer(mem_size, input_dims)
-        self.q_eval = DuelingDeepQNetwork(self.lr, input_dims=self.input_dims, n_actions=self.n_actions, checkpoint_dir=self.checkpoint_dir, name="buckshot_eval")
-        self.q_next = DuelingDeepQNetwork(self.lr, input_dims=self.input_dims, n_actions=self.n_actions, checkpoint_dir=self.checkpoint_dir, name="buckshot_next")
+        self.q_eval = DuelingDeepQNetwork(self.lr, input_dims=self.input_dims, n_actions=self.n_actions, checkpoint_dir=self.checkpoint_dir, name=self.checkpoint_name+ "_eval")
+        self.q_next = DuelingDeepQNetwork(self.lr, input_dims=self.input_dims, n_actions=self.n_actions, checkpoint_dir=self.checkpoint_dir, name=self.checkpoint_name + "_next")
 
     def choose_action(self, observation):
         if(np.random.random() > self.epsilon):

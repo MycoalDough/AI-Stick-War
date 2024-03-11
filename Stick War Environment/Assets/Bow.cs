@@ -11,19 +11,17 @@ public class Bow : MonoBehaviour
     {
         GameObject _arrow = Instantiate(arrow, transform.position, Quaternion.identity);
 
-        Rigidbody2D rb = _arrow.GetComponent<Rigidbody2D>();
+        ArchidonArrow a = _arrow.GetComponent<ArchidonArrow>();
 
         if (facing == "right")
         {
-            rb.velocity = transform.right * launchForce;
+            a.moveTo = new Vector2(transform.position.x + 15, transform.position.y);
         }
         else if (facing == "left")
         {
-            _arrow.transform.localScale = new Vector2(-_arrow.transform.localScale.x, _arrow.transform.localScale.y);
-            rb.velocity = -transform.right * launchForce;
+            a.moveTo = new Vector2(transform.position.x - 15, transform.position.y);
         }
 
-        rb.AddForce(transform.up * launchForce * 7);
         _arrow.GetComponent<ArchidonArrow>().Etag = Etag;
     }
 }

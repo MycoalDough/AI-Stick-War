@@ -72,6 +72,7 @@ public class Shadowrath : MonoBehaviour
     private void FixedUpdate()
     {
         target = (savedTeam == "Team1") ? "Team2" : "Team1";
+        if(savedTeam != "Team1" || savedTeam != "Team2") { savedTeam = tag; }
         float ms = (invisible) ? moveSpeed / 3 : moveSpeed;
         if (gameObject.GetComponentInChildren<HPSystem>() && gameObject.GetComponentInChildren<HPSystem>().dazed)
         {
@@ -230,7 +231,7 @@ public class Shadowrath : MonoBehaviour
         {
             for (int i = 0; i < gv.team1units.Count; i++)
             {
-                if (gv.team1units[i].gameObject.tag == target)
+                if (gv.team1units[i] && gv.team1units[i].gameObject.tag == target && !gv.garrisonDetector1.IsTargetWithinRange(gv.team1units[i].GetComponentInChildren<HPSystem>().gameObject))
                 {
                     if (closestDistance > Mathf.Abs(Vector2.Distance(gameObject.transform.position, gv.team1units[i].transform.position)))
                     {
@@ -257,7 +258,7 @@ public class Shadowrath : MonoBehaviour
         {
             for (int i = 0; i < gv.team2units.Count; i++)
             {
-                if (gv.team2units[i].gameObject.tag == target)
+                if (gv.team2units[i] && gv.team2units[i].gameObject.tag == target && !gv.garrisonDetector2.IsTargetWithinRange(gv.team2units[i].GetComponentInChildren<HPSystem>().gameObject))
                 {
                     if (closestDistance > Mathf.Abs(Vector2.Distance(gameObject.transform.position, gv.team2units[i].transform.position)))
                     {

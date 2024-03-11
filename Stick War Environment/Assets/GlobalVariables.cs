@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.Common;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class GlobalVariables : MonoBehaviour
@@ -47,9 +49,30 @@ public class GlobalVariables : MonoBehaviour
     public GameObject giant;
     public GameObject shadowrath;
 
+    public UnityMainThreadDispatcher umtd;
+
     public HPSystem statue1;
     public HPSystem statue2;
 
+    public EnemyDetector garrisonDetector1;
+    public EnemyDetector garrisonDetector2;
+
+    public int garrisonedUnits1;
+    public int garrisonedUnits2;
+
+    public List<CastleArchidon> castle1;
+    public List<CastleArchidon> castle2;
+
+    public Transform castleSpawn1;
+    public Transform castleSpawn2;
+
+    public GameObject castleArchidon;
+
+    public int _team1;
+    public int _team2;
+
+    public float _statue1;
+    public float _statue2;
     private void Update()
     {
         population2 = team2units.Count;
@@ -65,42 +88,168 @@ public class GlobalVariables : MonoBehaviour
             ArrangeStickmenTeam2();
         }
         detection();
+        team1units.RemoveAll(item => item == null);
+        team2units.RemoveAll(item => item == null);
+
+        findGarrisonedUnits1();
+        findGarrisonedUnits2();
+
+    }
+
+    public void findGarrisonedUnits1()
+    {
+        int s = 0;
+        if(team1 == 1 || team1miners == 1)
+        {
+            for(int i = 0; i < team1units.Count; i++)
+            {
+                if(team1 == 1)
+                {
+                    if (!team1units[i].GetComponent<Miner>())
+                    {
+                        s++;
+                    }
+                }
+                if(team1miners == 1)
+                {
+                    if (team1units[i].GetComponent<Miner>())
+                    {
+                        s++;
+                    }
+                }
+            }
+        }
+
+        int numberOfCastles = (int)Mathf.Floor(s / 10);
+        if (s > 1) { numberOfCastles++; }
+
+        while (numberOfCastles != castle1.Count) {
+            if(numberOfCastles > castle1.Count)
+            {
+                CastleArchidon ca = Instantiate(castleArchidon.gameObject, new Vector2(castleSpawn1.position.x, castleSpawn1.position.y + UnityEngine.Random.Range(-1f, 1f)), quaternion.identity).GetComponent<CastleArchidon>();
+                ca.tag = "Team1";
+                castle1.Add(ca);
+            }
+
+            if(numberOfCastles < castle1.Count)
+            {
+                CastleArchidon ca = castle1[castle1.Count - 1];
+                castle1.Remove(castle1[castle1.Count - 1]);
+                Destroy(ca.gameObject);
+            }
+        }
+    }
+
+    public void findGarrisonedUnits2()
+    {
+        int s = 0;
+        if (team2 == 1 || team2miners == 1)
+        {
+            for (int i = 0; i < team2units.Count; i++)
+            {
+                if (team2 == 1)
+                {
+                    if (!team2units[i].GetComponent<Miner>())
+                    {
+                        s++;
+                    }
+                }
+                if (team2miners == 1)
+                {
+                    if (team2units[i].GetComponent<Miner>())
+                    {
+                        s++;
+                    }
+                }
+            }
+        }
+
+        int numberOfCastles = (int)Mathf.Floor(s / 10);
+
+        if(s > 1) { numberOfCastles++; }
+
+        while (numberOfCastles != castle2.Count)
+        {
+            if (numberOfCastles > castle2.Count)
+            {
+                CastleArchidon ca = Instantiate(castleArchidon.gameObject, new Vector2(castleSpawn2.position.x, castleSpawn2.position.y + UnityEngine.Random.Range(-1f, 1f)), quaternion.identity).GetComponent<CastleArchidon>();
+                ca.tag = "Team2";
+                castle2.Add(ca);
+            }
+
+            if (numberOfCastles < castle2.Count)
+            {
+                CastleArchidon ca = castle2[castle2.Count - 1];
+                castle2.Remove(castle2[castle2.Count - 1]);
+                Destroy(ca.gameObject);
+            }
+        }
+    }
+    private void FixedUpdate()
+    {
+        team1units.RemoveAll(item => item == null);
+        team2units.RemoveAll(item => item == null);
+    }
+
+    public void LateUpdate()
+    {
+        team1units.RemoveAll(item => item == null);
+        team2units.RemoveAll(item => item == null);
     }
     public void ResetLevel()
     {
-        Debug.Log("reset");
-        if (team1units.Count > 1)
+        umtd.Enqueue(() =>
         {
-            for (int i = team1units.Count - 1; i > 0; i--)
+            Debug.Log("reset");
+            if (team1units.Count > 1)
             {
-                Destroy(team1units[i]);
-                team1units.RemoveAt(i);
+                for (int i = team1units.Count - 1; i > 0; i--)
+                {
+                    GameObject toRemove = team1units[i];
+                    team1units.RemoveAt(i);
+                    Destroy(toRemove);
+                }
             }
-        }
 
-        if (team2units.Count > 1)
-        {
-            for (int i = team2units.Count - 1; i > 0; i--)
+            if (team2units.Count > 1)
             {
-                Destroy(team2units[i]);
-                team2units.RemoveAt(i);
+                for (int i = team2units.Count - 1; i > 0; i--)
+                {
+                    GameObject toRemove = team2units[i];
+                    team2units.RemoveAt(i);
+                    Destroy(toRemove);
+                }
             }
-        }
 
-        statue1.currentHP = statue1.maxHP;
-        statue2.currentHP = statue2.maxHP;
-        team1 = 2;
-        team1miners = 2;
-        team2 = 2;
-        team2miners = 2;
-        GameObject one = Instantiate(miner, garrison1.transform.position, Quaternion.identity);
-        one.tag = "Team1";
-        GameObject two = Instantiate(miner, garrison1.transform.position, Quaternion.identity);
-        two.tag = "Team1";
-        GameObject three = Instantiate(miner, garrison2.transform.position, Quaternion.identity);
-        three.tag = "Team2";
-        GameObject four = Instantiate(miner, garrison2.transform.position, Quaternion.identity);
-        four.tag = "Team2";
+            statue1.currentHP = statue1.maxHP;
+            statue2.currentHP = statue2.maxHP;
+            team1 = 2;
+            team1miners = 2;
+            team2 = 2;
+            team2miners = 2;
+            GameObject one = Instantiate(miner, garrison1.transform.position, Quaternion.identity);
+            one.tag = "Team1";
+            GameObject two = Instantiate(miner, garrison1.transform.position, Quaternion.identity);
+            two.tag = "Team1";
+            GameObject three = Instantiate(miner, garrison2.transform.position, Quaternion.identity);
+            three.tag = "Team2";
+            GameObject four = Instantiate(miner, garrison2.transform.position, Quaternion.identity);
+            four.tag = "Team2";
+            gold1 = 300;
+            gold2 = 300;
+            crystal1 = 0;
+            crystal2 = 0;
+            _statue1 = statue1.currentHP;
+            _statue2 = statue2.currentHP;
+            _team1 = team1units.Count;
+            _team2 = team2units.Count;
+
+            foreach (Resource resouce in mines)
+            {
+                resouce.durability = 200;
+                resouce.queue.Clear();
+            }
+        });
     }
 
     void detection()
@@ -140,75 +289,78 @@ public class GlobalVariables : MonoBehaviour
 
         foreach (GameObject stickman in team1units)
         {
-            string stickmanType = ""; // Determine stickman type
-            float xOffset = 0f; // Offset for each stickman type
-            if (stickman.GetComponent<Swordswrath>())
+            if (stickman != null)
             {
-                stickmanType = "Swordswrath";
-                xOffset = -1f; // Example offset for Swordswrath
-            }
-            if (stickman.GetComponent<Minion>())
-            {
-                stickmanType = "Swordswrath";
-                xOffset = -1f; // Example offset for Swordswrath
-            }
-            else if (stickman.GetComponent<Archidon>())
-            {
-                stickmanType = "Archidon";
-                xOffset = -5f; // Example offset for Archidon
-            }
-            else if (stickman.GetComponent<Shadowrath>())
-            {
-                stickmanType = "Shadowrath";
-                xOffset = -3f; // Example offset for Archidon
-            }
-            else if (stickman.GetComponent<Magikill>())
-            {
-                stickmanType = "Magikill";
-                xOffset = -4f; // Example offset for Archidon
-            }
-            else if (stickman.GetComponent<Spearton>())
-            {
-                stickmanType = "Spearton";
-                xOffset = 0f; // Example offset for Spearton
-            }
-            else if (stickman.GetComponent<Giant>())
-            {
-                stickmanType = "Giant";
-                xOffset = 3f; // Example offset for Giant
-            }
+                string stickmanType = ""; // Determine stickman type
+                float xOffset = 0f; // Offset for each stickman type
+                if (stickman.GetComponent<Swordswrath>())
+                {
+                    stickmanType = "Swordswrath";
+                    xOffset = -1f; // Example offset for Swordswrath
+                }
+                if (stickman.GetComponent<Minion>())
+                {
+                    stickmanType = "Swordswrath";
+                    xOffset = -1f; // Example offset for Swordswrath
+                }
+                else if (stickman.GetComponent<Archidon>())
+                {
+                    stickmanType = "Archidon";
+                    xOffset = -5f; // Example offset for Archidon
+                }
+                else if (stickman.GetComponent<Shadowrath>())
+                {
+                    stickmanType = "Shadowrath";
+                    xOffset = -3f; // Example offset for Archidon
+                }
+                else if (stickman.GetComponent<Magikill>())
+                {
+                    stickmanType = "Magikill";
+                    xOffset = -4f; // Example offset for Archidon
+                }
+                else if (stickman.GetComponent<Spearton>())
+                {
+                    stickmanType = "Spearton";
+                    xOffset = 0f; // Example offset for Spearton
+                }
+                else if (stickman.GetComponent<Giant>())
+                {
+                    stickmanType = "Giant";
+                    xOffset = 3f; // Example offset for Giant
+                }
 
-            // If stickman type is not registered, initialize count and column index
-            if (!stickmenCounts.ContainsKey(stickmanType))
-            {
-                stickmenCounts[stickmanType] = 0;
-                stickmenColumns[stickmanType] = 0;
-            }
+                // If stickman type is not registered, initialize count and column index
+                if (!stickmenCounts.ContainsKey(stickmanType))
+                {
+                    stickmenCounts[stickmanType] = 0;
+                    stickmenColumns[stickmanType] = 0;
+                }
 
-            // Calculate position based on type, current column index, and offset
-            Vector3 position = centerPoint1.position + new Vector3((stickmenColumns[stickmanType] * columnSpacing) + xOffset, stickmenCounts[stickmanType] * rowSpacing, 0);
+                // Calculate position based on type, current column index, and offset
+                Vector3 position = centerPoint1.position + new Vector3((stickmenColumns[stickmanType] * columnSpacing) + xOffset, stickmenCounts[stickmanType] * rowSpacing, 0);
 
-            // Update stickman position
-            if (stickman.GetComponent<Swordswrath>())
-                stickman.GetComponent<Swordswrath>().toMove = position;
-            else if (stickman.GetComponent<Archidon>())
-                stickman.GetComponent<Archidon>().toMove = position;
-            else if (stickman.GetComponent<Spearton>())
-                stickman.GetComponent<Spearton>().toMove = position;
-            else if (stickman.GetComponent<Giant>())
-                stickman.GetComponent<Giant>().toMove = position;
-            else if (stickman.GetComponent<Magikill>())
-                stickman.GetComponent<Magikill>().toMove = position;
-            else if (stickman.GetComponent<Shadowrath>())
-                stickman.GetComponent<Shadowrath>().toMove = position;
-            else if (stickman.GetComponent<Minion>())
-                stickman.GetComponent<Minion>().toMove = position;
-            // Increment counts and update column index
-            stickmenCounts[stickmanType]++;
-            if (stickmenCounts[stickmanType] >= maxStickmenPerRow)
-            {
-                stickmenColumns[stickmanType]++;
-                stickmenCounts[stickmanType] = 0;
+                // Update stickman position
+                if (stickman.GetComponent<Swordswrath>())
+                    stickman.GetComponent<Swordswrath>().toMove = position;
+                else if (stickman.GetComponent<Archidon>())
+                    stickman.GetComponent<Archidon>().toMove = position;
+                else if (stickman.GetComponent<Spearton>())
+                    stickman.GetComponent<Spearton>().toMove = position;
+                else if (stickman.GetComponent<Giant>())
+                    stickman.GetComponent<Giant>().toMove = position;
+                else if (stickman.GetComponent<Magikill>())
+                    stickman.GetComponent<Magikill>().toMove = position;
+                else if (stickman.GetComponent<Shadowrath>())
+                    stickman.GetComponent<Shadowrath>().toMove = position;
+                else if (stickman.GetComponent<Minion>())
+                    stickman.GetComponent<Minion>().toMove = position;
+                // Increment counts and update column index
+                stickmenCounts[stickmanType]++;
+                if (stickmenCounts[stickmanType] >= maxStickmenPerRow)
+                {
+                    stickmenColumns[stickmanType]++;
+                    stickmenCounts[stickmanType] = 0;
+                }
             }
         }
     }
@@ -220,72 +372,75 @@ public class GlobalVariables : MonoBehaviour
 
         foreach (GameObject stickman in team2units)
         {
-            string stickmanType = ""; // Determine stickman type
-            float xOffset = 0f; // Offset for each stickman type
-            if (stickman.GetComponent<Swordswrath>())
+            if (stickman != null)
             {
-                stickmanType = "Swordswrath";
-                xOffset = 1f; // Example offset for Swordswrath
-            }
-            else if (stickman.GetComponent<Archidon>())
-            {
-                stickmanType = "Archidon";
-                xOffset = 5f; // Example offset for Archidon
-            }
-            else if (stickman.GetComponent<Magikill>())
-            {
-                stickmanType = "Magikill";
-                xOffset = 4f; // Example offset for Archidon
-            }
-            else if (stickman.GetComponent<Shadowrath>())
-            {
-                stickmanType = "Shadowrath";
-                xOffset = 3f; // Example offset for Archidon
-            }
-            else if (stickman.GetComponent<Spearton>())
-            {
-                stickmanType = "Spearton";
-                xOffset = 0f;
-            }
-            else if (stickman.GetComponent<Giant>())
-            {
-                stickmanType = "Giant";
-                xOffset = -3f; 
-            }
-            else if (stickman.GetComponent<Minion>())
-            {
-                stickmanType = "Swordswrath";
-                xOffset = 1f; // Example offset for Swordswrath
-            }
+                string stickmanType = ""; // Determine stickman type
+                float xOffset = 0f; // Offset for each stickman type
+                if (stickman.GetComponent<Swordswrath>())
+                {
+                    stickmanType = "Swordswrath";
+                    xOffset = 1f; // Example offset for Swordswrath
+                }
+                else if (stickman.GetComponent<Archidon>())
+                {
+                    stickmanType = "Archidon";
+                    xOffset = 5f; // Example offset for Archidon
+                }
+                else if (stickman.GetComponent<Magikill>())
+                {
+                    stickmanType = "Magikill";
+                    xOffset = 4f; // Example offset for Archidon
+                }
+                else if (stickman.GetComponent<Shadowrath>())
+                {
+                    stickmanType = "Shadowrath";
+                    xOffset = 3f; // Example offset for Archidon
+                }
+                else if (stickman.GetComponent<Spearton>())
+                {
+                    stickmanType = "Spearton";
+                    xOffset = 0f;
+                }
+                else if (stickman.GetComponent<Giant>())
+                {
+                    stickmanType = "Giant";
+                    xOffset = -3f;
+                }
+                else if (stickman.GetComponent<Minion>())
+                {
+                    stickmanType = "Swordswrath";
+                    xOffset = 1f; // Example offset for Swordswrath
+                }
 
-            if (!stickmenCounts.ContainsKey(stickmanType))
-            {
-                stickmenCounts[stickmanType] = 0;
-                stickmenColumns[stickmanType] = 0;
-            }
+                if (!stickmenCounts.ContainsKey(stickmanType))
+                {
+                    stickmenCounts[stickmanType] = 0;
+                    stickmenColumns[stickmanType] = 0;
+                }
 
-            Vector3 position = centerPoint2.position + new Vector3((stickmenColumns[stickmanType] * columnSpacing) + xOffset, stickmenCounts[stickmanType] * rowSpacing, 0);
+                Vector3 position = centerPoint2.position + new Vector3((stickmenColumns[stickmanType] * columnSpacing) + xOffset, stickmenCounts[stickmanType] * rowSpacing, 0);
 
-            if (stickman.GetComponent<Swordswrath>())
-                stickman.GetComponent<Swordswrath>().toMove = position;
-            else if (stickman.GetComponent<Archidon>())
-                stickman.GetComponent<Archidon>().toMove = position;
-            else if (stickman.GetComponent<Spearton>())
-                stickman.GetComponent<Spearton>().toMove = position;
-            else if (stickman.GetComponent<Giant>())
-                stickman.GetComponent<Giant>().toMove = position;
-            else if (stickman.GetComponent<Magikill>())
-                stickman.GetComponent<Magikill>().toMove = position;
-            else if (stickman.GetComponent<Shadowrath>())
-                stickman.GetComponent<Shadowrath>().toMove = position;
-            else if (stickman.GetComponent<Minion>())
-                stickman.GetComponent<Minion>().toMove = position;
+                if (stickman.GetComponent<Swordswrath>())
+                    stickman.GetComponent<Swordswrath>().toMove = position;
+                else if (stickman.GetComponent<Archidon>())
+                    stickman.GetComponent<Archidon>().toMove = position;
+                else if (stickman.GetComponent<Spearton>())
+                    stickman.GetComponent<Spearton>().toMove = position;
+                else if (stickman.GetComponent<Giant>())
+                    stickman.GetComponent<Giant>().toMove = position;
+                else if (stickman.GetComponent<Magikill>())
+                    stickman.GetComponent<Magikill>().toMove = position;
+                else if (stickman.GetComponent<Shadowrath>())
+                    stickman.GetComponent<Shadowrath>().toMove = position;
+                else if (stickman.GetComponent<Minion>())
+                    stickman.GetComponent<Minion>().toMove = position;
 
-            stickmenCounts[stickmanType]++;
-            if (stickmenCounts[stickmanType] >= maxStickmenPerRow)
-            {
-                stickmenColumns[stickmanType]++;
-                stickmenCounts[stickmanType] = 0;
+                stickmenCounts[stickmanType]++;
+                if (stickmenCounts[stickmanType] >= maxStickmenPerRow)
+                {
+                    stickmenColumns[stickmanType]++;
+                    stickmenCounts[stickmanType] = 0;
+                }
             }
         }
     }
@@ -528,7 +683,65 @@ public class GlobalVariables : MonoBehaviour
             }
         }
 
+        if(team % 2 != 0)
+        {
+            if(statue1.currentHP < _statue1)
+            {
+                reward -= 10;
+            }
+            if(team1units.Count < _team1)
+            {
+                reward -= 10;
+            }
+            if(team2units.Count < _team2)
+            {
+                reward += 10;
+            }
+            if (statue2.currentHP < _statue2)
+            {
+                reward += 10;
+            }
+            if(gold1 > 2000)
+            {
+                reward -= 10;
+            }
+            if(team1 == 1 && team2 != 3 || team1miners == 1 && team2 != 3)
+            {
+                reward -= 10;
+            }
+        }
+        if (team % 2 == 0)
+        {
+            if (statue1.currentHP < _statue1)
+            {
+                reward += 10;
+            }
+            if (team1units.Count < _team1)
+            {
+                reward += 10;
+            }
+            if (team2units.Count < _team2)
+            {
+                reward -= 10;
+            }
+            if (statue2.currentHP < _statue2)
+            {
+                reward -= 10;
+            }
+            if (gold2 > 2000)
+            {
+                reward -= 10;
+            }
+            if (team2 == 1 && team1 != 3 || team2miners == 1 && team1 != 3)
+            {
+                reward -= 10;
+            }
+        }
 
+        _statue1 = statue1.currentHP;
+        _statue2 = statue2.currentHP;
+        _team1 = team1units.Count;
+        _team2 = team2units.Count;
         return reward;
     }
 

@@ -70,28 +70,28 @@ public class RLConnection : MonoBehaviour
 
         if(team % 2 == 0)
         {
-            if(gv.statue1.currentHP < 100)
+            if(gv.statue1.currentHP <= 3000)
             {
-                reward += 1000;
+                reward += 500;
                 done = "True";
-            }else if(gv.statue2.currentHP < 100)
+            }else if(gv.statue2.currentHP <= 3000)
             {
-                reward -= 1000;
+                reward -= 500;
                 done = "True";
 
             }
         }
         else
         {
-            if (gv.statue1.currentHP < 100)
+            if (gv.statue1.currentHP < 3000)
             {
-                reward -= 1000;
+                reward -= 500;
                 done = "True";
 
             }
-            else if (gv.statue2.currentHP < 100)
+            else if (gv.statue2.currentHP < 3000)
             {
-                reward += 1000;
+                reward += 500;
                 done = "True";
 
             }
@@ -150,7 +150,6 @@ public class RLConnection : MonoBehaviour
                 if (bytesRead > 0)
                 {
                     string message = Encoding.UTF8.GetString(data, 0, bytesRead);
-                    Debug.Log(message);
                     if (message == "get_state")
                     {
                         // Enqueue the getItems call to be executed on the main thread
@@ -187,7 +186,7 @@ public class RLConnection : MonoBehaviour
                         {
                             gv.ResetLevel();
                         });
-                        gv.ResetLevel();
+                        //gv.ResetLevel();
                     }
                 }
             }
@@ -321,12 +320,13 @@ public class RLConnection : MonoBehaviour
         }
         connected += saved[saved.Count - 1];
         return connected;
-    }
+    } 
 
 
      
     public string returnUnitType(GameObject unit)
     {
+        if(unit == null) { return "null"; }
         if (unit.GetComponent<Miner>())
         {
             return "1";
