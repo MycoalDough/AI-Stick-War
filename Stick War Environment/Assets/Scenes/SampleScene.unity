@@ -635,6 +635,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crystal (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 7736649506416256539, guid: 7b3c51e6a3923e3469d0e5bec7596c91,
+        type: 3}
+      propertyPath: team
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7736649506416256540, guid: 7b3c51e6a3923e3469d0e5bec7596c91,
         type: 3}
       propertyPath: m_SortingOrder
@@ -995,6 +1000,8 @@ MonoBehaviour:
   garrisonedUnits2: 0
   castle1: []
   castle2: []
+  passive: 0
+  passiveMax: 20
   castleSpawn1: {fileID: 1510539135}
   castleSpawn2: {fileID: 1651873023}
   castleArchidon: {fileID: 2505449126992038899, guid: b3638e7507e4f5040b998a8e903f2bf1,
@@ -3481,6 +3488,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 726945468}
     m_Modifications:
+    - target: {fileID: 3725855985268280912, guid: 68fb73ee1732c22449622e87c7a5f30a,
+        type: 3}
+      propertyPath: team
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3725855985268280913, guid: 68fb73ee1732c22449622e87c7a5f30a,
         type: 3}
       propertyPath: m_Name
@@ -4100,6 +4112,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2226930118870025953, guid: 4eb51063549e5434cb2ef8870ac2184a,
         type: 3}
+      propertyPath: defense
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2226930118870025953, guid: 4eb51063549e5434cb2ef8870ac2184a,
+        type: 3}
       propertyPath: currentHP
       value: 5000
       objectReference: {fileID: 0}
@@ -4465,6 +4482,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Crystal (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7736649506416256539, guid: 7b3c51e6a3923e3469d0e5bec7596c91,
+        type: 3}
+      propertyPath: team
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7736649506416256540, guid: 7b3c51e6a3923e3469d0e5bec7596c91,
         type: 3}
@@ -5528,6 +5550,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 726945468}
     m_Modifications:
+    - target: {fileID: 3725855985268280912, guid: 68fb73ee1732c22449622e87c7a5f30a,
+        type: 3}
+      propertyPath: team
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3725855985268280913, guid: 68fb73ee1732c22449622e87c7a5f30a,
         type: 3}
       propertyPath: m_Name
@@ -5653,8 +5680,8 @@ MonoBehaviour:
   upDownSpeed: 10
   cam: 8
   cams: {fileID: 1372810225}
-  minPos: {x: -26.6, y: 0, z: -15}
-  maxPos: {x: 35.7, y: 0, z: -15}
+  minPos: {x: -36.7, y: 0, z: -15}
+  maxPos: {x: 38.34, y: 0, z: -15}
   zoomSpeed: 4
 --- !u!20 &1372810225 stripped
 Camera:
@@ -5885,6 +5912,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 726945468}
     m_Modifications:
+    - target: {fileID: 3725855985268280912, guid: 68fb73ee1732c22449622e87c7a5f30a,
+        type: 3}
+      propertyPath: team
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3725855985268280913, guid: 68fb73ee1732c22449622e87c7a5f30a,
         type: 3}
       propertyPath: m_Name
@@ -7021,6 +7053,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 726945468}
     m_Modifications:
+    - target: {fileID: 3725855985268280912, guid: 68fb73ee1732c22449622e87c7a5f30a,
+        type: 3}
+      propertyPath: team
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3725855985268280913, guid: 68fb73ee1732c22449622e87c7a5f30a,
         type: 3}
       propertyPath: m_Name
@@ -7897,6 +7934,11 @@ PrefabInstance:
         type: 3}
       propertyPath: maxHP
       value: 5000
+      objectReference: {fileID: 0}
+    - target: {fileID: 2226930118870025953, guid: 4eb51063549e5434cb2ef8870ac2184a,
+        type: 3}
+      propertyPath: defense
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 2226930118870025953, guid: 4eb51063549e5434cb2ef8870ac2184a,
         type: 3}
@@ -9122,6 +9164,7 @@ MonoBehaviour:
   speed: {fileID: 2138662010}
   speedT: {fileID: 1598448193}
   gv: {fileID: 89445239}
+  time: 0
 --- !u!114 &1988366166
 MonoBehaviour:
   m_ObjectHideFlags: 0

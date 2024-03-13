@@ -63,6 +63,9 @@ public class GlobalVariables : MonoBehaviour
     public List<CastleArchidon> castle1;
     public List<CastleArchidon> castle2;
 
+    public float passive;
+    public float passiveMax = 20;
+
     public Transform castleSpawn1;
     public Transform castleSpawn2;
 
@@ -81,11 +84,18 @@ public class GlobalVariables : MonoBehaviour
         if (team1 == 2)
         {
             ArrangeStickmenTeam1();
+        }else if(team1 == 1)
+        {
+            arrangeGiants1();
         }
 
         if (team2 == 2)
         {
             ArrangeStickmenTeam2();
+        }
+        else if (team2 == 1)
+        {
+            arrangeGiants2();
         }
         detection();
         team1units.RemoveAll(item => item == null);
@@ -94,6 +104,14 @@ public class GlobalVariables : MonoBehaviour
         findGarrisonedUnits1();
         findGarrisonedUnits2();
 
+        passive += Time.deltaTime;
+
+        if(passive > passiveMax)
+        {
+            gold1 += 10;
+            gold2 += 10;
+            passive = 0;
+        }
     }
 
     public void findGarrisonedUnits1()
@@ -249,8 +267,12 @@ public class GlobalVariables : MonoBehaviour
                 resouce.durability = 200;
                 resouce.queue.Clear();
             }
+
+            passive = 0;
+
         });
     }
+
 
     void detection()
     {
@@ -354,6 +376,86 @@ public class GlobalVariables : MonoBehaviour
                     stickman.GetComponent<Shadowrath>().toMove = position;
                 else if (stickman.GetComponent<Minion>())
                     stickman.GetComponent<Minion>().toMove = position;
+                // Increment counts and update column index
+                stickmenCounts[stickmanType]++;
+                if (stickmenCounts[stickmanType] >= maxStickmenPerRow)
+                {
+                    stickmenColumns[stickmanType]++;
+                    stickmenCounts[stickmanType] = 0;
+                }
+            }
+        }
+    }
+
+    void arrangeGiants1()
+    {
+        Dictionary<string, int> stickmenCounts = new Dictionary<string, int>(); // Dictionary to store counts of each stickman type
+        Dictionary<string, int> stickmenColumns = new Dictionary<string, int>(); // Dictionary to store current column index for each stickman type
+
+        foreach (GameObject stickman in team1units)
+        {
+            if (stickman != null)
+            {
+                string stickmanType = ""; // Determine stickman type
+                float xOffset = 0f; // Offset for each stickman type
+                if (stickman.GetComponent<Giant>())
+                {
+                    stickmanType = "Giant";
+                    xOffset = 3f; // Example offset for Giant
+                }
+
+                // If stickman type is not registered, initialize count and column index
+                if (!stickmenCounts.ContainsKey(stickmanType))
+                {
+                    stickmenCounts[stickmanType] = 0;
+                    stickmenColumns[stickmanType] = 0;
+                }
+
+                // Calculate position based on type, current column index, and offset
+                Vector3 position = centerPoint1.position + new Vector3((stickmenColumns[stickmanType] * columnSpacing) + xOffset, stickmenCounts[stickmanType] * rowSpacing, 0);
+
+                if (stickman.GetComponent<Giant>())
+                    stickman.GetComponent<Giant>().toMove = position;
+                // Increment counts and update column index
+                stickmenCounts[stickmanType]++;
+                if (stickmenCounts[stickmanType] >= maxStickmenPerRow)
+                {
+                    stickmenColumns[stickmanType]++;
+                    stickmenCounts[stickmanType] = 0;
+                }
+            }
+        }
+    }
+
+    void arrangeGiants2()
+    {
+        Dictionary<string, int> stickmenCounts = new Dictionary<string, int>(); // Dictionary to store counts of each stickman type
+        Dictionary<string, int> stickmenColumns = new Dictionary<string, int>(); // Dictionary to store current column index for each stickman type
+
+        foreach (GameObject stickman in team2units)
+        {
+            if (stickman != null)
+            {
+                string stickmanType = ""; // Determine stickman type
+                float xOffset = 0f; // Offset for each stickman type
+                if (stickman.GetComponent<Giant>())
+                {
+                    stickmanType = "Giant";
+                    xOffset = 3f; // Example offset for Giant
+                }
+
+                // If stickman type is not registered, initialize count and column index
+                if (!stickmenCounts.ContainsKey(stickmanType))
+                {
+                    stickmenCounts[stickmanType] = 0;
+                    stickmenColumns[stickmanType] = 0;
+                }
+
+                // Calculate position based on type, current column index, and offset
+                Vector3 position = centerPoint2.position + new Vector3((stickmenColumns[stickmanType] * columnSpacing) + xOffset, stickmenCounts[stickmanType] * rowSpacing, 0);
+
+                if (stickman.GetComponent<Giant>())
+                    stickman.GetComponent<Giant>().toMove = position;
                 // Increment counts and update column index
                 stickmenCounts[stickmanType]++;
                 if (stickmenCounts[stickmanType] >= maxStickmenPerRow)
@@ -484,99 +586,120 @@ public class GlobalVariables : MonoBehaviour
             {
                 setTeam1Miners(2);
             }
-            if (action == 5)
+            if(team1units.Count < 50)
             {
-                if(gold1 >= 150)
+                if (action == 5)
                 {
-                    gold1 -= 150;
-                    summonTroop1("M");
+                    if (gold1 >= 150)
+                    {
+                        gold1 -= 150;
+                        summonTroop1("M");
+                    }
+                    else
+                    {
+                        reward -= 10;
+                    }
+
+                    int numMiners = 0;
+                    foreach(GameObject unit in team1units)
+                    {
+                        if(unit.GetComponent<Miner>() != null)
+                        {
+                            numMiners++;
+                        }
+                    }
+
+                    if(numMiners > 8)
+                    {
+                        reward -= 50;
+                    }
                 }
-                else
+                if (action == 6)
                 {
-                    reward -= 10;
+                    if (gold1 >= 125)
+                    {
+                        gold1 -= 125;
+                        summonTroop1("SWORD");
+                    }
+                    else
+                    {
+                        reward -= 10;
+                    }
+                }
+                if (action == 7)
+                {
+                    if (gold1 >= 300)
+                    {
+                        gold1 -= 300;
+                        summonTroop1("A");
+                    }
+                    else
+                    {
+                        reward -= 10;
+                    }
+                }
+                if (action == 8)
+                {
+                    if (gold1 >= 450 && crystal1 >= 100)
+                    {
+                        gold1 -= 450;
+                        crystal1 -= 100;
+                        summonTroop1("S");
+                    }
+                    else
+                    {
+                        reward -= 10;
+                    }
+                }
+                if (action == 9)
+                {
+                    if (gold1 >= 400 && crystal1 >= 400)
+                    {
+                        gold1 -= 400;
+                        crystal1 -= 400;
+                        summonTroop1("MK");
+                    }
+                    else
+                    {
+                        reward -= 10;
+                    }
+                }
+                if (action == 10)
+                {
+                    if (gold1 >= 1500)
+                    {
+                        gold1 -= 1500;
+                        summonTroop1("G");
+                    }
+                    else
+                    {
+                        reward -= 10;
+                    }
+                }
+                if (action == 11)
+                {
+                    if (gold1 >= 450 && crystal1 >= 150)
+                    {
+                        gold1 -= 450;
+                        crystal1 -= 150;
+                        summonTroop1("SHADOW");
+                    }
+                    else
+                    {
+                        reward -= 10;
+                    }
                 }
             }
-            if (action == 6)
+            else
             {
-                if (gold1 >= 125)
-                {
-                    gold1 -= 125;
-                    summonTroop1("SWORD");
-                }
-                else
-                {
-                    reward -= 10;
-                }
-            }
-            if (action == 7)
-            {
-                if (gold1 >= 300)
-                {
-                    gold1 -= 300;
-                    summonTroop1("A");
-                }
-                else
-                {
-                    reward -= 10;
-                }
-            }
-            if (action == 8)
-            {
-                if (gold1 >= 300 && crystal1 >= 100)
-                {
-                    gold1 -= 300;
-                    crystal1 -= 100;
-                    summonTroop1("S");
-                }
-                else
-                {
-                    reward -= 10;
-                }
-            }
-            if (action == 9)
-            {
-                if (gold1 >= 300 && crystal1 >= 300)
-                {
-                    gold1 -= 300;
-                    crystal1 -= 300;
-                    summonTroop1("MK");
-                }
-                else
-                {
-                    reward -= 10;
-                }
-            }
-            if (action == 10)
-            {
-                if (gold1 >= 1500)
-                {
-                    gold1 -= 1500;
-                    summonTroop1("G");
-                }
-                else
-                {
-                    reward -= 10;
-                }
-            }
-            if (action == 11)
-            {
-                if (gold1 >= 450 && crystal1 >= 150)
-                {
-                    gold1 -= 450;
-                    crystal1 -= 150;
-                    summonTroop1("SHADOW");
-                }
-                else
-                {
-                    reward -= 10;
-                }
+                reward -= 10;
             }
         }
         else
         {
             if (action == 0)
             {
-                setTeam1(1);
+                setTeam2(1);
             }
             if (action == 1)
             {
@@ -594,92 +717,113 @@ public class GlobalVariables : MonoBehaviour
             {
                 setTeam2Miners(2);
             }
-            if (action == 5)
+            if(team2units.Count < 50)
             {
-                if (gold2 >= 150)
+                if (action == 5)
                 {
-                    gold2 -= 150;
-                    summonTroop2("M");
+                    if (gold2 >= 150)
+                    {
+                        gold2 -= 150;
+                        summonTroop2("M");
+                    }
+                    else
+                    {
+                        reward -= 10;
+                    }
+
+                    int numMiners = 0;
+                    foreach (GameObject unit in team2units)
+                    {
+                        if (unit.GetComponent<Miner>() != null)
+                        {
+                            numMiners++;
+                        }
+                    }
+
+                    if (numMiners > 8)
+                    {
+                        reward -= 50;
+                    }
                 }
-                else
+                if (action == 6)
                 {
-                    reward -= 10;
+                    if (gold2 >= 125)
+                    {
+                        gold2 -= 125;
+                        summonTroop2("SWORD");
+                    }
+                    else
+                    {
+                        reward -= 10;
+                    }
+                }
+                if (action == 7)
+                {
+                    if (gold2 >= 300)
+                    {
+                        gold2 -= 300;
+                        summonTroop2("A");
+                    }
+                    else
+                    {
+                        reward -= 10;
+                    }
+                }
+                if (action == 8)
+                {
+                    if (gold2 >= 450 && crystal2 >= 100)
+                    {
+                        gold2 -= 450;
+                        crystal2 -= 100;
+                        summonTroop2("S");
+                    }
+                    else
+                    {
+                        reward -= 10;
+                    }
+                }
+                if (action == 9)
+                {
+                    if (gold2 >= 400 && crystal2 >= 400)
+                    {
+                        gold2 -= 400;
+                        crystal2 -= 400;
+                        summonTroop2("MK");
+                    }
+                    else
+                    {
+                        reward -= 10;
+                    }
+                }
+                if (action == 10)
+                {
+                    if (gold2 >= 1500)
+                    {
+                        gold2 -= 1500;
+                        summonTroop2("G");
+                    }
+                    else
+                    {
+                        reward -= 10;
+                    }
+                }
+                if (action == 11)
+                {
+                    if (gold2 >= 450 && crystal2 >= 150)
+                    {
+                        gold2 -= 450;
+                        crystal2 -= 150;
+                        summonTroop2("SHADOW");
+                    }
+                    else
+                    {
+                        reward -= 10;
+                    }
                 }
             }
-            if (action == 6)
+            else
             {
-                if (gold2 >= 125)
-                {
-                    gold2 -= 125;
-                    summonTroop2("SWORD");
-                }
-                else
-                {
-                    reward -= 10;
-                }
-            }
-            if (action == 7)
-            {
-                if (gold2 >= 300)
-                {
-                    gold2 -= 300;
-                    summonTroop2("A");
-                }
-                else
-                {
-                    reward -= 10;
-                }
-            }
-            if (action == 8)
-            {
-                if (gold2 >= 300 && crystal2 >= 100)
-                {
-                    gold2 -= 300;
-                    crystal2 -= 100;
-                    summonTroop2("S");
-                }
-                else
-                {
-                    reward -= 10;
-                }
-            }
-            if (action == 9)
-            {
-                if (gold2 >= 300 && crystal2 >= 300)
-                {
-                    gold2 -= 300;
-                    crystal2 -= 300;
-                    summonTroop2("MK");
-                }
-                else
-                {
-                    reward -= 10;
-                }
-            }
-            if (action == 10)
-            {
-                if (gold2 >= 1500)
-                {
-                    gold2 -= 1500;
-                    summonTroop2("G");
-                }
-                else
-                {
-                    reward -= 10;
-                }
-            }
-            if (action == 11)
-            {
-                if (gold2 >= 450 && crystal2 >= 150)
-                {
-                    gold2 -= 450;
-                    crystal2 -= 150;
-                    summonTroop2("SHADOW");
-                }
-                else
-                {
-                    reward -= 10;
-                }
+                reward -= 10;
             }
         }
 
@@ -687,7 +831,7 @@ public class GlobalVariables : MonoBehaviour
         {
             if(statue1.currentHP < _statue1)
             {
-                reward -= 10;
+                reward -= 15;
             }
             if(team1units.Count < _team1)
             {
@@ -695,30 +839,30 @@ public class GlobalVariables : MonoBehaviour
             }
             if(team2units.Count < _team2)
             {
-                reward += 10;
+                reward += 20;
             }
             if (statue2.currentHP < _statue2)
             {
-                reward += 10;
+                reward += 30;
             }
             if(gold1 > 2000)
             {
                 reward -= 10;
             }
-            if(team1 == 1 && team2 != 3 || team1miners == 1 && team2 != 3)
+            if((team1 == 1 && team2 != 3) || (team1miners == 1 && team2 != 3))
             {
-                reward -= 10;
+                reward -= 20;
             }
         }
         if (team % 2 == 0)
         {
             if (statue1.currentHP < _statue1)
             {
-                reward += 10;
+                reward += 30;
             }
             if (team1units.Count < _team1)
             {
-                reward += 10;
+                reward += 20;
             }
             if (team2units.Count < _team2)
             {
@@ -726,15 +870,15 @@ public class GlobalVariables : MonoBehaviour
             }
             if (statue2.currentHP < _statue2)
             {
-                reward -= 10;
+                reward -= 15;
             }
             if (gold2 > 2000)
             {
                 reward -= 10;
             }
-            if (team2 == 1 && team1 != 3 || team2miners == 1 && team1 != 3)
+            if ((team2 == 1 && team1 != 3) || (team2miners == 1 && team1 != 3))
             {
-                reward -= 10;
+                reward -= 20;
             }
         }
 
@@ -748,7 +892,7 @@ public class GlobalVariables : MonoBehaviour
     public void summonTroop1(string team1)
     {
         population1 = team1units.Count;
-        if (population1 > 30) return;
+        if (population1 > 50) return;
         GameObject inst = null;
         if(team1 == "M")
         {
@@ -787,7 +931,7 @@ public class GlobalVariables : MonoBehaviour
     public void summonTroop2(string team1)
     {
         population2 = team2units.Count;
-        if (population2 > 30) return;
+        if (population2 > 50) return;
         GameObject inst = null;
         if (team1 == "M")
         {

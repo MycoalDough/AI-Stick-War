@@ -14,25 +14,53 @@ public class Resource : MonoBehaviour
 
     public Vector3 minerSpot() //return miner spot
     {
-        if(queue.Count == 2)
+        if(team == 1)
         {
-            return minerSpot2.position;
+            if (queue.Count == 2)
+            {
+                return minerSpot2.position;
+            }
+            else
+            {
+                return minerSpot1.position;
+            }
         }
         else
         {
-            return minerSpot1.position;
+            if (queue.Count == 2)
+            {
+                return minerSpot1.position;
+            }
+            else
+            {
+                return minerSpot2.position;
+            }
         }
     }
 
-    public bool flip(string team)
+    public bool flip(string _team)
     {
-        if (queue.Count == 2)
+        if (team == 1)
         {
-            return true;
+            if (queue.Count == 2)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         else
         {
-            return false;
+            if (queue.Count == 2)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2221675545501505755}
   - component: {fileID: 5085722207892002901}
   - component: {fileID: 6108365079046087667}
+  - component: {fileID: -434475241581125701}
   m_Layer: 0
   m_Name: Arrow
   m_TagString: Untagged
@@ -101,9 +102,9 @@ MonoBehaviour:
   detector: {fileID: 5085722207892002901}
   yValue: 0
   Etag: 
-  damage: 15
+  damage: 10
   moveTo: {x: 0, y: 0}
-  speed: 20
+  speed: 30
   rb: {fileID: 2221675545501505755}
 --- !u!50 &2221675545501505755
 Rigidbody2D:
@@ -152,3 +153,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1db1c1684546f5343b3ba13925ad9c95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-434475241581125701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4691655747562357014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aaf598bd15dfbb949859f13e6c19bb7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  removeAfter: 10

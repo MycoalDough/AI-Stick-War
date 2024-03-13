@@ -84,7 +84,7 @@ public class CastleArchidon : MonoBehaviour
         }
 
 
-        if (Vector2.Distance(transform.position, toMove) < 30f)
+        if (Vector2.Distance(transform.position, toMove) < 40f)
         {
             if (transform.position.x - toMove.x < 0)
             {

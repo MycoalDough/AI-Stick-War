@@ -211,7 +211,7 @@ PrefabInstance:
         type: 3}
       propertyPath: deathSprite
       value: 
-      objectReference: {fileID: -1175497745698555053, guid: c561f4d22c4bb20449e79f8c9268b771,
+      objectReference: {fileID: 2475363115868177521, guid: 9dfc8bf449e5559438a3cf07a9fd31b1,
         type: 3}
     - target: {fileID: 2226930118870025953, guid: 4eb51063549e5434cb2ef8870ac2184a,
         type: 3}

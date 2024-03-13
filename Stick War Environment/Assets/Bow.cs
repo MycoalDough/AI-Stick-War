@@ -15,11 +15,11 @@ public class Bow : MonoBehaviour
 
         if (facing == "right")
         {
-            a.moveTo = new Vector2(transform.position.x + 15, transform.position.y);
+            a.moveTo = new Vector2(transform.position.x + launchForce, transform.position.y);
         }
         else if (facing == "left")
         {
-            a.moveTo = new Vector2(transform.position.x - 15, transform.position.y);
+            a.moveTo = new Vector2(transform.position.x - launchForce, transform.position.y);
         }
 
         _arrow.GetComponent<ArchidonArrow>().Etag = Etag;

@@ -36,6 +36,7 @@ public class RLConnection : MonoBehaviour
 
     [Header("Gameplay")]
     public GlobalVariables gv;
+    public float time = 0;
     //AI PLANNING:
     //INPUTS:  1) num bullets | 2) num real | 3) num fake | 4) red lives | 5) blue lives | 6) red items (list) | 7) blue items (list) | 8) gun damage | 9) next bullet (-1 if not aviable, 0 for fake, 1 for real)
     //OUTPUTS: 1) shoot self | 2) shoot other | 3) drink | 4) mag. glass | 5) cig | 6) knife | 7) cuffs
@@ -65,6 +66,11 @@ public class RLConnection : MonoBehaviour
     public string playStep(string toPlay)
     {
         float reward = gv.playAction(int.Parse(toPlay), team);
+        if(time > 1800)
+        {
+            gv.team2 = 3;
+            gv.team1 = 3;
+        }
         string toSend = "";
         string done = "False";
 
@@ -72,7 +78,8 @@ public class RLConnection : MonoBehaviour
         {
             if(gv.statue1.currentHP <= 3000)
             {
-                reward += 500;
+                float timeReward = (time < 1000) ? (1000 - time) : 0;
+                reward += 500 + timeReward;
                 done = "True";
             }else if(gv.statue2.currentHP <= 3000)
             {
@@ -91,10 +98,16 @@ public class RLConnection : MonoBehaviour
             }
             else if (gv.statue2.currentHP < 3000)
             {
-                reward += 500;
+                float timeReward = (time < 1000) ? (1000 - time) : 0;
+                reward += 500 + timeReward;
                 done = "True";
 
             }
+        }
+
+        if(time > 1500)
+        {
+            reward -= time / 100;
         }
         toSend += reward.ToString();
         toSend += ":";
@@ -120,6 +133,8 @@ public class RLConnection : MonoBehaviour
 
         pop1.text = "Population:" + gv.population1.ToString();
         pop2.text = "Population: " + gv.population2.ToString();
+
+        time += Time.deltaTime;
 
     }
     public void ConnectToServer()
@@ -184,7 +199,9 @@ public class RLConnection : MonoBehaviour
                     {
                         umtd.Enqueue(() =>
                         {
+                            time = 0;
                             gv.ResetLevel();
+                            team = 1;
                         });
                         //gv.ResetLevel();
                     }
@@ -223,14 +240,14 @@ public class RLConnection : MonoBehaviour
             saved.Add(gv.statue1.currentHP.ToString());
             saved.Add(gv.statue2.currentHP.ToString());
         }
-
+        saved.Add(Math.Round(time, 2).ToString());
         saved.Add(gv.team1miners.ToString());
         saved.Add(gv.team2miners.ToString());
         saved.Add(gv.team1.ToString());
         saved.Add(gv.team2.ToString());
 
 
-        for(int i =  0; i < 30; i++)
+        for(int i =  0; i < 50; i++)
         {
             //1) TYPE (1 MINER, 2 SWORD, 3 ARCHIDON, 4 SPEARTON, 5 MAGIKILL, 6 GIANT, 7 SHADOWRATH)
             //2) HEALTH
@@ -249,29 +266,18 @@ public class RLConnection : MonoBehaviour
                 saved.Add("-2");
                 saved.Add("-2");
                 saved.Add("-2");
-                saved.Add("-2");
-                saved.Add("-2");
                 saved.Add("1");
             }
             else
             {
                 saved.Add(unit);
                 saved.Add(gv.team1units[i].GetComponentInChildren<HPSystem>().currentHP.ToString());
-                saved.Add(gv.team1units[i].transform.position.x.ToString());
-                saved.Add(gv.team1units[i].transform.position.y.ToString());
-                saved.Add(gv.team1units[i].transform.position.z.ToString());
-                if (unit == "1")
-                {
-                    saved.Add(gv.team1units[i].GetComponent<Miner>().maxStorage.ToString());
-                }
-                else
-                {
-                    saved.Add("-2");
-                }
+                saved.Add(Math.Round(gv.team1units[i].transform.position.x, 2).ToString());
+                saved.Add(Math.Round(gv.team1units[i].transform.position.y, 2).ToString());
                 saved.Add("1");
             }
         }
-        for (int i = 0; i < 30; i++)
+        for (int i = 0; i < 50; i++)
         {
             //1) TYPE (1 MINER, 2 SWORD, 3 ARCHIDON, 4 SPEARTON, 5 MAGIKILL, 6 GIANT, 7 SHADOWRATH)
             //2) HEALTH
@@ -290,28 +296,20 @@ public class RLConnection : MonoBehaviour
                 saved.Add("-2");
                 saved.Add("-2");
                 saved.Add("-2");
-                saved.Add("-2");
-                saved.Add("-2");
                 saved.Add("2");
             }
             else
             {
                 saved.Add(unit);
                 saved.Add(gv.team2units[i].GetComponentInChildren<HPSystem>().currentHP.ToString());
-                saved.Add(gv.team2units[i].transform.position.x.ToString());
-                saved.Add(gv.team2units[i].transform.position.y.ToString());
-                saved.Add(gv.team2units[i].transform.position.z.ToString());
-                if (unit == "1")
-                {
-                    saved.Add(gv.team2units[i].GetComponent<Miner>().maxStorage.ToString());
-                } 
-                else
-                {
-                    saved.Add("-2");
-                }
+                saved.Add(Math.Round(gv.team2units[i].transform.position.x, 2).ToString());
+                saved.Add(Math.Round(gv.team2units[i].transform.position.y, 2).ToString());
                 saved.Add("2");
             }
         }
+
+        saved.Add(gv.castle1.Count.ToString());
+        saved.Add(gv.castle2.Count.ToString());
 
 
         for (int i = 0; i < saved.Count - 1; i++)

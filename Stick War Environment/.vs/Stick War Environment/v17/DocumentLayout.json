@@ -3,26 +3,6 @@
   "WorkspaceRootPath": "C:\\Users\\mycoa\\OneDrive\\Documents\\GitHub\\AI-Stick-War\\Stick War Environment\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{2DDE0789-9320-8851-3890-8629B0641881}|Assembly-CSharp.csproj|c:\\users\\mycoa\\onedrive\\documents\\github\\ai-stick-war\\stick war environment\\assets\\bow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2DDE0789-9320-8851-3890-8629B0641881}|Assembly-CSharp.csproj|solutionrelative:assets\\bow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2DDE0789-9320-8851-3890-8629B0641881}|Assembly-CSharp.csproj|C:\\Users\\mycoa\\OneDrive\\Documents\\GitHub\\AI-Stick-War\\Stick War Environment\\assets\\archidon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2DDE0789-9320-8851-3890-8629B0641881}|Assembly-CSharp.csproj|solutionrelative:assets\\archidon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2DDE0789-9320-8851-3890-8629B0641881}|Assembly-CSharp.csproj|c:\\users\\mycoa\\onedrive\\documents\\github\\ai-stick-war\\stick war environment\\assets\\archidonarrow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2DDE0789-9320-8851-3890-8629B0641881}|Assembly-CSharp.csproj|solutionrelative:assets\\archidonarrow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2DDE0789-9320-8851-3890-8629B0641881}|Assembly-CSharp.csproj|C:\\Users\\mycoa\\OneDrive\\Documents\\GitHub\\AI-Stick-War\\Stick War Environment\\assets\\spearton.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2DDE0789-9320-8851-3890-8629B0641881}|Assembly-CSharp.csproj|solutionrelative:assets\\spearton.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2DDE0789-9320-8851-3890-8629B0641881}|Assembly-CSharp.csproj|C:\\Users\\mycoa\\OneDrive\\Documents\\GitHub\\AI-Stick-War\\Stick War Environment\\assets\\swordswrath.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2DDE0789-9320-8851-3890-8629B0641881}|Assembly-CSharp.csproj|solutionrelative:assets\\swordswrath.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{2DDE0789-9320-8851-3890-8629B0641881}|Assembly-CSharp.csproj|c:\\users\\mycoa\\onedrive\\documents\\github\\ai-stick-war\\stick war environment\\assets\\rlconnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2DDE0789-9320-8851-3890-8629B0641881}|Assembly-CSharp.csproj|solutionrelative:assets\\rlconnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -31,12 +11,48 @@
       "RelativeMoniker": "D:0:0:{2DDE0789-9320-8851-3890-8629B0641881}|Assembly-CSharp.csproj|solutionrelative:assets\\globalvariables.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{2DDE0789-9320-8851-3890-8629B0641881}|Assembly-CSharp.csproj|C:\\Users\\mycoa\\OneDrive\\Documents\\GitHub\\AI-Stick-War\\Stick War Environment\\assets\\shadowrath.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2DDE0789-9320-8851-3890-8629B0641881}|Assembly-CSharp.csproj|solutionrelative:assets\\shadowrath.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2DDE0789-9320-8851-3890-8629B0641881}|Assembly-CSharp.csproj|C:\\Users\\mycoa\\OneDrive\\Documents\\GitHub\\AI-Stick-War\\Stick War Environment\\assets\\resource.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2DDE0789-9320-8851-3890-8629B0641881}|Assembly-CSharp.csproj|solutionrelative:assets\\resource.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2DDE0789-9320-8851-3890-8629B0641881}|Assembly-CSharp.csproj|C:\\Users\\mycoa\\OneDrive\\Documents\\GitHub\\AI-Stick-War\\Stick War Environment\\assets\\miner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2DDE0789-9320-8851-3890-8629B0641881}|Assembly-CSharp.csproj|solutionrelative:assets\\miner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{2DDE0789-9320-8851-3890-8629B0641881}|Assembly-CSharp.csproj|C:\\Users\\mycoa\\OneDrive\\Documents\\GitHub\\AI-Stick-War\\Stick War Environment\\assets\\castlearchidon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2DDE0789-9320-8851-3890-8629B0641881}|Assembly-CSharp.csproj|solutionrelative:assets\\castlearchidon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2DDE0789-9320-8851-3890-8629B0641881}|Assembly-CSharp.csproj|C:\\Users\\mycoa\\OneDrive\\Documents\\GitHub\\AI-Stick-War\\Stick War Environment\\assets\\shadowrath.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2DDE0789-9320-8851-3890-8629B0641881}|Assembly-CSharp.csproj|solutionrelative:assets\\shadowrath.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2DDE0789-9320-8851-3890-8629B0641881}|Assembly-CSharp.csproj|C:\\Users\\mycoa\\OneDrive\\Documents\\GitHub\\AI-Stick-War\\Stick War Environment\\assets\\bow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2DDE0789-9320-8851-3890-8629B0641881}|Assembly-CSharp.csproj|solutionrelative:assets\\bow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2DDE0789-9320-8851-3890-8629B0641881}|Assembly-CSharp.csproj|C:\\Users\\mycoa\\OneDrive\\Documents\\GitHub\\AI-Stick-War\\Stick War Environment\\assets\\giant.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2DDE0789-9320-8851-3890-8629B0641881}|Assembly-CSharp.csproj|solutionrelative:assets\\giant.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2DDE0789-9320-8851-3890-8629B0641881}|Assembly-CSharp.csproj|C:\\Users\\mycoa\\OneDrive\\Documents\\GitHub\\AI-Stick-War\\Stick War Environment\\assets\\hpsystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2DDE0789-9320-8851-3890-8629B0641881}|Assembly-CSharp.csproj|solutionrelative:assets\\hpsystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2DDE0789-9320-8851-3890-8629B0641881}|Assembly-CSharp.csproj|C:\\Users\\mycoa\\OneDrive\\Documents\\GitHub\\AI-Stick-War\\Stick War Environment\\assets\\spearton.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2DDE0789-9320-8851-3890-8629B0641881}|Assembly-CSharp.csproj|solutionrelative:assets\\spearton.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2DDE0789-9320-8851-3890-8629B0641881}|Assembly-CSharp.csproj|C:\\Users\\mycoa\\OneDrive\\Documents\\GitHub\\AI-Stick-War\\Stick War Environment\\assets\\archidonarrow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2DDE0789-9320-8851-3890-8629B0641881}|Assembly-CSharp.csproj|solutionrelative:assets\\archidonarrow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2DDE0789-9320-8851-3890-8629B0641881}|Assembly-CSharp.csproj|C:\\Users\\mycoa\\OneDrive\\Documents\\GitHub\\AI-Stick-War\\Stick War Environment\\assets\\archidon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2DDE0789-9320-8851-3890-8629B0641881}|Assembly-CSharp.csproj|solutionrelative:assets\\archidon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2DDE0789-9320-8851-3890-8629B0641881}|Assembly-CSharp.csproj|C:\\Users\\mycoa\\OneDrive\\Documents\\GitHub\\AI-Stick-War\\Stick War Environment\\assets\\swordswrath.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2DDE0789-9320-8851-3890-8629B0641881}|Assembly-CSharp.csproj|solutionrelative:assets\\swordswrath.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2DDE0789-9320-8851-3890-8629B0641881}|Assembly-CSharp.csproj|C:\\Users\\mycoa\\OneDrive\\Documents\\GitHub\\AI-Stick-War\\Stick War Environment\\assets\\minion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -49,18 +65,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{2DDE0789-9320-8851-3890-8629B0641881}|Assembly-CSharp.csproj|C:\\Users\\mycoa\\OneDrive\\Documents\\GitHub\\AI-Stick-War\\Stick War Environment\\assets\\magikill.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2DDE0789-9320-8851-3890-8629B0641881}|Assembly-CSharp.csproj|solutionrelative:assets\\magikill.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2DDE0789-9320-8851-3890-8629B0641881}|Assembly-CSharp.csproj|C:\\Users\\mycoa\\OneDrive\\Documents\\GitHub\\AI-Stick-War\\Stick War Environment\\assets\\giant.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2DDE0789-9320-8851-3890-8629B0641881}|Assembly-CSharp.csproj|solutionrelative:assets\\giant.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2DDE0789-9320-8851-3890-8629B0641881}|Assembly-CSharp.csproj|C:\\Users\\mycoa\\OneDrive\\Documents\\GitHub\\AI-Stick-War\\Stick War Environment\\assets\\miner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2DDE0789-9320-8851-3890-8629B0641881}|Assembly-CSharp.csproj|solutionrelative:assets\\miner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2DDE0789-9320-8851-3890-8629B0641881}|Assembly-CSharp.csproj|C:\\Users\\mycoa\\OneDrive\\Documents\\GitHub\\AI-Stick-War\\Stick War Environment\\assets\\hpsystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2DDE0789-9320-8851-3890-8629B0641881}|Assembly-CSharp.csproj|solutionrelative:assets\\hpsystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2DDE0789-9320-8851-3890-8629B0641881}|Assembly-CSharp.csproj|C:\\Users\\mycoa\\OneDrive\\Documents\\GitHub\\AI-Stick-War\\Stick War Environment\\assets\\unitymainthreaddispatcher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -78,17 +82,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 0,
               "Title": "RLConnection.cs",
               "DocumentMoniker": "C:\\Users\\mycoa\\OneDrive\\Documents\\GitHub\\AI-Stick-War\\Stick War Environment\\Assets\\RLConnection.cs",
               "RelativeDocumentMoniker": "Assets\\RLConnection.cs",
               "ToolTip": "C:\\Users\\mycoa\\OneDrive\\Documents\\GitHub\\AI-Stick-War\\Stick War Environment\\Assets\\RLConnection.cs",
               "RelativeToolTip": "Assets\\RLConnection.cs",
-              "ViewState": "AQIAADgAAAAAAAAAAIBJwEoAAAAdAAAA",
+              "ViewState": "AQIAAKoAAAAAAAAAAAAuwMsAAAAlAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-09T22:24:37.535Z",
               "IsPinned": true,
@@ -96,95 +100,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Bow.cs",
-              "DocumentMoniker": "C:\\Users\\mycoa\\OneDrive\\Documents\\GitHub\\AI-Stick-War\\Stick War Environment\\Assets\\Bow.cs",
-              "RelativeDocumentMoniker": "Assets\\Bow.cs",
-              "ToolTip": "C:\\Users\\mycoa\\OneDrive\\Documents\\GitHub\\AI-Stick-War\\Stick War Environment\\Assets\\Bow.cs",
-              "RelativeToolTip": "Assets\\Bow.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAAA8AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-11T23:30:37.145Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ArchidonArrow.cs",
-              "DocumentMoniker": "C:\\Users\\mycoa\\OneDrive\\Documents\\GitHub\\AI-Stick-War\\Stick War Environment\\Assets\\ArchidonArrow.cs",
-              "RelativeDocumentMoniker": "Assets\\ArchidonArrow.cs",
-              "ToolTip": "C:\\Users\\mycoa\\OneDrive\\Documents\\GitHub\\AI-Stick-War\\Stick War Environment\\Assets\\ArchidonArrow.cs",
-              "RelativeToolTip": "Assets\\ArchidonArrow.cs",
-              "ViewState": "AQIAAAUAAAAAAAAAAAAQwCcAAAA7AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-11T23:30:03.808Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Spearton.cs",
-              "DocumentMoniker": "C:\\Users\\mycoa\\OneDrive\\Documents\\GitHub\\AI-Stick-War\\Stick War Environment\\Assets\\Spearton.cs",
-              "RelativeDocumentMoniker": "Assets\\Spearton.cs",
-              "ToolTip": "C:\\Users\\mycoa\\OneDrive\\Documents\\GitHub\\AI-Stick-War\\Stick War Environment\\Assets\\Spearton.cs",
-              "RelativeToolTip": "Assets\\Spearton.cs",
-              "ViewState": "AQIAAGYAAAAAAAAAAAAQwHkAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-07T08:27:04.391Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Swordswrath.cs",
-              "DocumentMoniker": "C:\\Users\\mycoa\\OneDrive\\Documents\\GitHub\\AI-Stick-War\\Stick War Environment\\Assets\\Swordswrath.cs",
-              "RelativeDocumentMoniker": "Assets\\Swordswrath.cs",
-              "ToolTip": "C:\\Users\\mycoa\\OneDrive\\Documents\\GitHub\\AI-Stick-War\\Stick War Environment\\Assets\\Swordswrath.cs",
-              "RelativeToolTip": "Assets\\Swordswrath.cs",
-              "ViewState": "AQIAAMAAAAAAAAAAAAAIwN8AAABWAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-06T06:02:54.579Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "Miner.cs",
-              "DocumentMoniker": "C:\\Users\\mycoa\\OneDrive\\Documents\\GitHub\\AI-Stick-War\\Stick War Environment\\Assets\\Miner.cs",
-              "RelativeDocumentMoniker": "Assets\\Miner.cs",
-              "ToolTip": "C:\\Users\\mycoa\\OneDrive\\Documents\\GitHub\\AI-Stick-War\\Stick War Environment\\Assets\\Miner.cs",
-              "RelativeToolTip": "Assets\\Miner.cs",
-              "ViewState": "AQIAAKAAAAAAAAAAAAAAwC4BAAANAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-06T08:22:43.957Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "CastleArchidon.cs",
-              "DocumentMoniker": "C:\\Users\\mycoa\\OneDrive\\Documents\\GitHub\\AI-Stick-War\\Stick War Environment\\Assets\\CastleArchidon.cs",
-              "RelativeDocumentMoniker": "Assets\\CastleArchidon.cs",
-              "ToolTip": "C:\\Users\\mycoa\\OneDrive\\Documents\\GitHub\\AI-Stick-War\\Stick War Environment\\Assets\\CastleArchidon.cs",
-              "RelativeToolTip": "Assets\\CastleArchidon.cs",
-              "ViewState": "AQIAAEkAAAAAAAAAAAAcwFkAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-11T04:54:36.794Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "EnemyDetector.cs",
-              "DocumentMoniker": "C:\\Users\\mycoa\\OneDrive\\Documents\\GitHub\\AI-Stick-War\\Stick War Environment\\Assets\\EnemyDetector.cs",
-              "RelativeDocumentMoniker": "Assets\\EnemyDetector.cs",
-              "ToolTip": "C:\\Users\\mycoa\\OneDrive\\Documents\\GitHub\\AI-Stick-War\\Stick War Environment\\Assets\\EnemyDetector.cs",
-              "RelativeToolTip": "Assets\\EnemyDetector.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAcwCAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-06T06:11:30.114Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 11,
               "Title": "Archidon.cs",
               "DocumentMoniker": "C:\\Users\\mycoa\\OneDrive\\Documents\\GitHub\\AI-Stick-War\\Stick War Environment\\Assets\\Archidon.cs",
               "RelativeDocumentMoniker": "Assets\\Archidon.cs",
@@ -192,12 +108,11 @@
               "RelativeToolTip": "Assets\\Archidon.cs",
               "ViewState": "AQIAAFIAAAAAAAAAAAAcwG4AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-08T02:12:55.387Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-03-08T02:12:55.387Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 13,
               "Title": "Minion.cs",
               "DocumentMoniker": "C:\\Users\\mycoa\\OneDrive\\Documents\\GitHub\\AI-Stick-War\\Stick War Environment\\Assets\\Minion.cs",
               "RelativeDocumentMoniker": "Assets\\Minion.cs",
@@ -209,43 +124,55 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 2,
               "Title": "Shadowrath.cs",
               "DocumentMoniker": "C:\\Users\\mycoa\\OneDrive\\Documents\\GitHub\\AI-Stick-War\\Stick War Environment\\Assets\\Shadowrath.cs",
               "RelativeDocumentMoniker": "Assets\\Shadowrath.cs",
               "ToolTip": "C:\\Users\\mycoa\\OneDrive\\Documents\\GitHub\\AI-Stick-War\\Stick War Environment\\Assets\\Shadowrath.cs",
               "RelativeToolTip": "Assets\\Shadowrath.cs",
-              "ViewState": "AQIAADcAAAAAAAAAAAAowEoAAABMAAAA",
+              "ViewState": "AQIAAL0AAAAAAAAAAAAAwM8AAAAlAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-09T01:41:07.519Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 8,
               "Title": "HPSystem.cs",
               "DocumentMoniker": "C:\\Users\\mycoa\\OneDrive\\Documents\\GitHub\\AI-Stick-War\\Stick War Environment\\Assets\\HPSystem.cs",
               "RelativeDocumentMoniker": "Assets\\HPSystem.cs",
               "ToolTip": "C:\\Users\\mycoa\\OneDrive\\Documents\\GitHub\\AI-Stick-War\\Stick War Environment\\Assets\\HPSystem.cs",
               "RelativeToolTip": "Assets\\HPSystem.cs",
-              "ViewState": "AQIAABcAAAAAAAAAAAAQwDQAAAARAAAA",
+              "ViewState": "AQIAAAIAAAAAAAAAAAAcwA4AAAAcAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-06T07:23:40.824Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "GlobalVariables.cs",
-              "DocumentMoniker": "C:\\Users\\mycoa\\OneDrive\\Documents\\GitHub\\AI-Stick-War\\Stick War Environment\\Assets\\GlobalVariables.cs",
-              "RelativeDocumentMoniker": "Assets\\GlobalVariables.cs",
-              "ToolTip": "C:\\Users\\mycoa\\OneDrive\\Documents\\GitHub\\AI-Stick-War\\Stick War Environment\\Assets\\GlobalVariables.cs",
-              "RelativeToolTip": "Assets\\GlobalVariables.cs",
-              "ViewState": "AQIAALsCAAAAAAAAAAAmwN4CAABFAAAA",
+              "DocumentIndex": 10,
+              "Title": "ArchidonArrow.cs",
+              "DocumentMoniker": "C:\\Users\\mycoa\\OneDrive\\Documents\\GitHub\\AI-Stick-War\\Stick War Environment\\Assets\\ArchidonArrow.cs",
+              "RelativeDocumentMoniker": "Assets\\ArchidonArrow.cs",
+              "ToolTip": "C:\\Users\\mycoa\\OneDrive\\Documents\\GitHub\\AI-Stick-War\\Stick War Environment\\Assets\\ArchidonArrow.cs",
+              "RelativeToolTip": "Assets\\ArchidonArrow.cs",
+              "ViewState": "AQIAAAUAAAAAAAAAAAAQwCUAAABSAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-08T02:56:40.247Z"
+              "WhenOpened": "2024-03-11T23:30:03.808Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 6,
+              "Title": "Bow.cs",
+              "DocumentMoniker": "C:\\Users\\mycoa\\OneDrive\\Documents\\GitHub\\AI-Stick-War\\Stick War Environment\\Assets\\Bow.cs",
+              "RelativeDocumentMoniker": "Assets\\Bow.cs",
+              "ToolTip": "C:\\Users\\mycoa\\OneDrive\\Documents\\GitHub\\AI-Stick-War\\Stick War Environment\\Assets\\Bow.cs",
+              "RelativeToolTip": "Assets\\Bow.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAABFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-11T23:30:37.145Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
               "Title": "Magikill.cs",
               "DocumentMoniker": "C:\\Users\\mycoa\\OneDrive\\Documents\\GitHub\\AI-Stick-War\\Stick War Environment\\Assets\\Magikill.cs",
               "RelativeDocumentMoniker": "Assets\\Magikill.cs",
@@ -257,19 +184,103 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 7,
               "Title": "Giant.cs",
               "DocumentMoniker": "C:\\Users\\mycoa\\OneDrive\\Documents\\GitHub\\AI-Stick-War\\Stick War Environment\\Assets\\Giant.cs",
               "RelativeDocumentMoniker": "Assets\\Giant.cs",
               "ToolTip": "C:\\Users\\mycoa\\OneDrive\\Documents\\GitHub\\AI-Stick-War\\Stick War Environment\\Assets\\Giant.cs",
               "RelativeToolTip": "Assets\\Giant.cs",
-              "ViewState": "AQIAAKsAAAAAAAAAAAAUwMIAAABWAAAA",
+              "ViewState": "AQIAAH4AAAAAAAAAAAAYwMIAAABWAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-07T08:54:33.138Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 12,
+              "Title": "Swordswrath.cs",
+              "DocumentMoniker": "C:\\Users\\mycoa\\OneDrive\\Documents\\GitHub\\AI-Stick-War\\Stick War Environment\\Assets\\Swordswrath.cs",
+              "RelativeDocumentMoniker": "Assets\\Swordswrath.cs",
+              "ToolTip": "C:\\Users\\mycoa\\OneDrive\\Documents\\GitHub\\AI-Stick-War\\Stick War Environment\\Assets\\Swordswrath.cs",
+              "RelativeToolTip": "Assets\\Swordswrath.cs",
+              "ViewState": "AQIAAMAAAAAAAAAAAAAIwN8AAABWAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-06T06:02:54.579Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Spearton.cs",
+              "DocumentMoniker": "C:\\Users\\mycoa\\OneDrive\\Documents\\GitHub\\AI-Stick-War\\Stick War Environment\\Assets\\Spearton.cs",
+              "RelativeDocumentMoniker": "Assets\\Spearton.cs",
+              "ToolTip": "C:\\Users\\mycoa\\OneDrive\\Documents\\GitHub\\AI-Stick-War\\Stick War Environment\\Assets\\Spearton.cs",
+              "RelativeToolTip": "Assets\\Spearton.cs",
+              "ViewState": "AQIAAJcAAAAAAAAAAAAowHkAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-07T08:27:04.391Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Resource.cs",
+              "DocumentMoniker": "C:\\Users\\mycoa\\OneDrive\\Documents\\GitHub\\AI-Stick-War\\Stick War Environment\\Assets\\Resource.cs",
+              "RelativeDocumentMoniker": "Assets\\Resource.cs",
+              "ToolTip": "C:\\Users\\mycoa\\OneDrive\\Documents\\GitHub\\AI-Stick-War\\Stick War Environment\\Assets\\Resource.cs",
+              "RelativeToolTip": "Assets\\Resource.cs",
+              "ViewState": "AQIAACgAAAAAAAAAAAAqwCgAAAAdAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-12T03:57:37.46Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "GlobalVariables.cs",
+              "DocumentMoniker": "C:\\Users\\mycoa\\OneDrive\\Documents\\GitHub\\AI-Stick-War\\Stick War Environment\\Assets\\GlobalVariables.cs",
+              "RelativeDocumentMoniker": "Assets\\GlobalVariables.cs",
+              "ToolTip": "C:\\Users\\mycoa\\OneDrive\\Documents\\GitHub\\AI-Stick-War\\Stick War Environment\\Assets\\GlobalVariables.cs",
+              "RelativeToolTip": "Assets\\GlobalVariables.cs",
+              "ViewState": "AQIAAMoCAAAAAAAAAIBZwM8CAAAjAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-08T02:56:40.247Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "EnemyDetector.cs",
+              "DocumentMoniker": "C:\\Users\\mycoa\\OneDrive\\Documents\\GitHub\\AI-Stick-War\\Stick War Environment\\Assets\\EnemyDetector.cs",
+              "RelativeDocumentMoniker": "Assets\\EnemyDetector.cs",
+              "ToolTip": "C:\\Users\\mycoa\\OneDrive\\Documents\\GitHub\\AI-Stick-War\\Stick War Environment\\Assets\\EnemyDetector.cs",
+              "RelativeToolTip": "Assets\\EnemyDetector.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAcwCAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-06T06:11:30.114Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "CastleArchidon.cs",
+              "DocumentMoniker": "C:\\Users\\mycoa\\OneDrive\\Documents\\GitHub\\AI-Stick-War\\Stick War Environment\\Assets\\CastleArchidon.cs",
+              "RelativeDocumentMoniker": "Assets\\CastleArchidon.cs",
+              "ToolTip": "C:\\Users\\mycoa\\OneDrive\\Documents\\GitHub\\AI-Stick-War\\Stick War Environment\\Assets\\CastleArchidon.cs",
+              "RelativeToolTip": "Assets\\CastleArchidon.cs",
+              "ViewState": "AQIAAEMAAAAAAAAAAAAcwFYAAAA8AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-11T04:54:36.794Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Miner.cs",
+              "DocumentMoniker": "C:\\Users\\mycoa\\OneDrive\\Documents\\GitHub\\AI-Stick-War\\Stick War Environment\\Assets\\Miner.cs",
+              "RelativeDocumentMoniker": "Assets\\Miner.cs",
+              "ToolTip": "C:\\Users\\mycoa\\OneDrive\\Documents\\GitHub\\AI-Stick-War\\Stick War Environment\\Assets\\Miner.cs",
+              "RelativeToolTip": "Assets\\Miner.cs",
+              "ViewState": "AQIAAEsBAAAAAAAAAAAcwGgBAAAiAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-06T08:22:43.957Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
               "Title": "UnityMainThreadDispatcher.cs",
               "DocumentMoniker": "C:\\Users\\mycoa\\OneDrive\\Documents\\GitHub\\AI-Stick-War\\Stick War Environment\\Assets\\UnityMainThreadDispatcher.cs",
               "RelativeDocumentMoniker": "Assets\\UnityMainThreadDispatcher.cs",
@@ -281,7 +292,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 17,
               "Title": "ChangeSize.cs",
               "DocumentMoniker": "C:\\Users\\mycoa\\OneDrive\\Documents\\GitHub\\AI-Stick-War\\Stick War Environment\\Assets\\ChangeSize.cs",
               "RelativeDocumentMoniker": "Assets\\ChangeSize.cs",

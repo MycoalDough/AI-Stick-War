@@ -12,6 +12,8 @@ public class HPSystem : MonoBehaviour
 
     public List<Component> toRemove = new List<Component>();
 
+    public float defense = 1;
+
     public SpriteRenderer spriteRenderer;
     public Sprite deathSprite;
 
@@ -105,7 +107,7 @@ public class HPSystem : MonoBehaviour
 
     public void Damage(float dmg)
     {
-        currentHP -= dmg;
+        currentHP -= dmg / defense;
 
         HPBar.localScale = new Vector3 (currentHP/maxHP, HPBar.localScale.y, HPBar.localScale.z);
 

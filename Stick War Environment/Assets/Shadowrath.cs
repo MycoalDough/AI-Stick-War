@@ -22,6 +22,7 @@ public class Shadowrath : MonoBehaviour
     public float damage;
 
     public float moveSpeed;
+    public bool foundTeam;
 
     public EnemyDetector left;
     public EnemyDetector right;
@@ -72,7 +73,7 @@ public class Shadowrath : MonoBehaviour
     private void FixedUpdate()
     {
         target = (savedTeam == "Team1") ? "Team2" : "Team1";
-        if(savedTeam != "Team1" || savedTeam != "Team2") { savedTeam = tag; }
+        if(!foundTeam && (savedTeam != "Team1" || savedTeam != "Team2")) { savedTeam = tag; foundTeam = true; }
         float ms = (invisible) ? moveSpeed / 3 : moveSpeed;
         if (gameObject.GetComponentInChildren<HPSystem>() && gameObject.GetComponentInChildren<HPSystem>().dazed)
         {
@@ -190,14 +191,35 @@ public class Shadowrath : MonoBehaviour
 
     public void AI()
     {
-        if ((gv.team1 == 1 && (target == "Team2")))
+        if ((gv.team1 == 1 && (target == "Team2")) || (gv.team2 == 1 && (target == "Team1")))
         {
-            toMove = gv.garrison1.transform.position;
+            tag = savedTeam;
+            invisible = false;
+            canInvisible = false;
+            StartCoroutine(invisibleCooldown());
+            GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 255);
+            isAttacking = false;
+            if(tag == "Team1")
+            {
+                toMove = gv.garrison1.transform.position;
+            }
+            else
+            {
+                toMove = gv.garrison2.transform.position;
+            }
+            tag = savedTeam;
             //move to formation
         }
-        else if ((gv.team2 == 1 && (target == "Team1")))
+        else if ((gv.team1 == 2 && (target == "Team2")) || (gv.team2 == 2 && (target == "Team1")))
         {
-            toMove = gv.garrison2.transform.position;
+            tag = savedTeam;
+
+            invisible = false;
+            canInvisible = false;
+            StartCoroutine(invisibleCooldown());
+            GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 255);
+            isAttacking = false;
+            
         }
         else if ((gv.team1 == 3 && target == "Team2") || (gv.team2 == 3 && target == "Team1"))
         {

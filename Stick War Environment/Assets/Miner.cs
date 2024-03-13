@@ -38,7 +38,7 @@ public class Miner : MonoBehaviour
     }
     IEnumerator teamAdd()
     {
-        yield return new WaitForEndOfFrame();
+        yield return new WaitForSeconds(UnityEngine.Random.Range(0.01f, 0.1f));
         if (tag == "Team1")
         {
             gv.team1units.Add(gameObject);
@@ -321,7 +321,7 @@ public class Miner : MonoBehaviour
 
     public void findMine()
     {
-        if(myMine != null)
+        if(myMine != null && myMine.GetComponent<Resource>().type == type)
         {
             return;
         }
@@ -348,7 +348,18 @@ public class Miner : MonoBehaviour
             gv.mines[index].queue.Add(GetComponent<Miner>());
             toMove = gv.mines[index].minerSpot();
             flip = gv.mines[index].flip(tag);
-            
+
+        }
+        else
+        {
+            if(tag == "Team1")
+            {
+                toMove = gv.miner2pos.position;
+            }
+            else
+            {
+                toMove = gv.miner1pos.position;
+            }
         }
         anim.Play("MinerWalk");
     }
