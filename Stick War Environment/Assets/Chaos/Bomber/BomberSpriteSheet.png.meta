@@ -1,0 +1,344 @@
+fileFormatVersion: 2
+guid: a9a0f296ac2560640bd70463f0a89dd3
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -1019146884952017672
+    second: BomberSpriteSheet_0
+  - first:
+      213: 5539487717927244695
+    second: BomberSpriteSheet_1
+  - first:
+      213: -2989810758840628604
+    second: BomberSpriteSheet_2
+  - first:
+      213: -3767803086645854441
+    second: BomberSpriteSheet_3
+  - first:
+      213: -4520623514817869307
+    second: BomberSpriteSheet_4
+  - first:
+      213: 3730619200382077565
+    second: BomberSpriteSheet_5
+  - first:
+      213: -1850654969987423630
+    second: BomberSpriteSheet_6
+  - first:
+      213: 762466351748477615
+    second: BomberSpriteSheet_7
+  - first:
+      213: 5779063146674860762
+    second: BomberSpriteSheet_8
+  - first:
+      213: 7145378998694171746
+    second: BomberSpriteSheet_9
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: BomberSpriteSheet_0
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 197
+        width: 311
+        height: 342
+      alignment: 9
+      pivot: {x: 0.31774673, y: 0.78073156}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f43d7cce434bd1f0800000000000000
+      internalID: -1019146884952017672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BomberSpriteSheet_1
+      rect:
+        serializedVersion: 2
+        x: 597
+        y: 191
+        width: 322
+        height: 342
+      alignment: 9
+      pivot: {x: 0.28445643, y: 0.7807316}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79351b0eab630ec40800000000000000
+      internalID: 5539487717927244695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BomberSpriteSheet_2
+      rect:
+        serializedVersion: 2
+        x: 966
+        y: 189
+        width: 350
+        height: 340
+      alignment: 9
+      pivot: {x: 0.36449462, y: 0.7925896}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48ac9ad94fe0286d0800000000000000
+      internalID: -2989810758840628604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BomberSpriteSheet_3
+      rect:
+        serializedVersion: 2
+        x: 1337
+        y: 149
+        width: 359
+        height: 360
+      alignment: 9
+      pivot: {x: 0.3743359, y: 0.7442027}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71f7adc2e0316bbc0800000000000000
+      internalID: -3767803086645854441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BomberSpriteSheet_4
+      rect:
+        serializedVersion: 2
+        x: 1729
+        y: 147
+        width: 364
+        height: 344
+      alignment: 9
+      pivot: {x: 0.3824178, y: 0.80263793}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50ac0045dd48341c0800000000000000
+      internalID: -4520623514817869307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BomberSpriteSheet_5
+      rect:
+        serializedVersion: 2
+        x: 2194
+        y: 119
+        width: 343
+        height: 361
+      alignment: 9
+      pivot: {x: 0.31114262, y: 0.794795}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7a8607a562d5c330800000000000000
+      internalID: 3730619200382077565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BomberSpriteSheet_6
+      rect:
+        serializedVersion: 2
+        x: 2658
+        y: 115
+        width: 343
+        height: 327
+      alignment: 9
+      pivot: {x: 0.40894338, y: 0.76530945}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 272a6182c172156e0800000000000000
+      internalID: -1850654969987423630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BomberSpriteSheet_7
+      rect:
+        serializedVersion: 2
+        x: 3132
+        y: 94
+        width: 341
+        height: 361
+      alignment: 9
+      pivot: {x: 0.29307327, y: 0.80440784}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa2f7217b13d49a00800000000000000
+      internalID: 762466351748477615
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BomberSpriteSheet_8
+      rect:
+        serializedVersion: 2
+        x: 3596
+        y: 102
+        width: 348
+        height: 352
+      alignment: 9
+      pivot: {x: 0.34377176, y: 0.7924736}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad23b18205b533050800000000000000
+      internalID: 5779063146674860762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BomberSpriteSheet_9
+      rect:
+        serializedVersion: 2
+        x: 3976
+        y: 79
+        width: 350
+        height: 358
+      alignment: 9
+      pivot: {x: 0.35457867, y: 0.7875719}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 264d3ba675c792360800000000000000
+      internalID: 7145378998694171746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

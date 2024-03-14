@@ -1,0 +1,452 @@
+fileFormatVersion: 2
+guid: b65bf417a0a87764e82190f1b917664b
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -1707640455658956280
+    second: EnslavedGiantSpriteSheet_0
+  - first:
+      213: 5963371525957655553
+    second: EnslavedGiantSpriteSheet_1
+  - first:
+      213: -1971482899995331754
+    second: EnslavedGiantSpriteSheet_2
+  - first:
+      213: -8998068923341285383
+    second: EnslavedGiantSpriteSheet_3
+  - first:
+      213: 1312635023035837166
+    second: EnslavedGiantSpriteSheet_4
+  - first:
+      213: 3296688769618741658
+    second: EnslavedGiantSpriteSheet_5
+  - first:
+      213: 8826723131429668319
+    second: EnslavedGiantSpriteSheet_6
+  - first:
+      213: -4910908401222448541
+    second: EnslavedGiantSpriteSheet_7
+  - first:
+      213: 1788013848902647895
+    second: EnslavedGiantSpriteSheet_8
+  - first:
+      213: -2163727067891790771
+    second: EnslavedGiantSpriteSheet_9
+  - first:
+      213: -4953394928139153579
+    second: EnslavedGiantSpriteSheet_10
+  - first:
+      213: 936685277143893262
+    second: EnslavedGiantSpriteSheet_11
+  - first:
+      213: 8168601117078829731
+    second: EnslavedGiantSpriteSheet_12
+  - first:
+      213: 7594319354906338356
+    second: EnslavedGiantSpriteSheet_13
+  - first:
+      213: -6993080790980505154
+    second: EnslavedGiantSpriteSheet_14
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: EnslavedGiantSpriteSheet_0
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 3414
+        width: 825
+        height: 1264
+      alignment: 9
+      pivot: {x: 0.5315433, y: 0.261768}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80a9c549d0e3d48e0800000000000000
+      internalID: -1707640455658956280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnslavedGiantSpriteSheet_1
+      rect:
+        serializedVersion: 2
+        x: 1198
+        y: 3384
+        width: 825
+        height: 1264
+      alignment: 9
+      pivot: {x: 0.545062, y: 0.25588545}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10c926cbec622c250800000000000000
+      internalID: 5963371525957655553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnslavedGiantSpriteSheet_2
+      rect:
+        serializedVersion: 2
+        x: 2177
+        y: 3316
+        width: 829
+        height: 1255
+      alignment: 9
+      pivot: {x: 0.5269067, y: 0.27190825}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65375017fb2e3a4e0800000000000000
+      internalID: -1971482899995331754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnslavedGiantSpriteSheet_3
+      rect:
+        serializedVersion: 2
+        x: 3436
+        y: 3253
+        width: 825
+        height: 1284
+      alignment: 9
+      pivot: {x: 0.55407435, y: 0.2915366}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f7d2cfecff602380800000000000000
+      internalID: -8998068923341285383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnslavedGiantSpriteSheet_4
+      rect:
+        serializedVersion: 2
+        x: 4466
+        y: 3244
+        width: 825
+        height: 1285
+      alignment: 9
+      pivot: {x: 0.53154355, y: 0.30616412}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eeaa9cb499a673210800000000000000
+      internalID: 1312635023035837166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnslavedGiantSpriteSheet_5
+      rect:
+        serializedVersion: 2
+        x: 5589
+        y: 3219
+        width: 825
+        height: 1293
+      alignment: 9
+      pivot: {x: 0.4909884, y: 0.26423588}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a99052828f030cd20800000000000000
+      internalID: 3296688769618741658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnslavedGiantSpriteSheet_6
+      rect:
+        serializedVersion: 2
+        x: 6840
+        y: 3291
+        width: 825
+        height: 1293
+      alignment: 9
+      pivot: {x: 0.5675935, y: 0.267111}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd5c69b0ce1de7a70800000000000000
+      internalID: 8826723131429668319
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnslavedGiantSpriteSheet_7
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 1806
+        width: 826
+        height: 1310
+      alignment: 9
+      pivot: {x: 0.5428403, y: 0.2761836}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36a87a404d2f8dbb0800000000000000
+      internalID: -4910908401222448541
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnslavedGiantSpriteSheet_8
+      rect:
+        serializedVersion: 2
+        x: 2015
+        y: 2095
+        width: 1289
+        height: 711
+      alignment: 9
+      pivot: {x: 0.5588263, y: 0.25115204}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 750425d4f1d40d810800000000000000
+      internalID: 1788013848902647895
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnslavedGiantSpriteSheet_9
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 126
+        width: 974
+        height: 1263
+      alignment: 9
+      pivot: {x: 0.44307926, y: 0.23662375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4c896712b5e8f1e0800000000000000
+      internalID: -2163727067891790771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnslavedGiantSpriteSheet_10
+      rect:
+        serializedVersion: 2
+        x: 1798
+        y: 96
+        width: 889
+        height: 1195
+      alignment: 9
+      pivot: {x: 0.8585874, y: 0.2622312}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55f4b0c9e81024bb0800000000000000
+      internalID: -4953394928139153579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnslavedGiantSpriteSheet_11
+      rect:
+        serializedVersion: 2
+        x: 3793
+        y: 36
+        width: 847
+        height: 1442
+      alignment: 9
+      pivot: {x: 0.7209118, y: 0.21645273}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e05008afb46cffc00800000000000000
+      internalID: 936685277143893262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnslavedGiantSpriteSheet_12
+      rect:
+        serializedVersion: 2
+        x: 5602
+        y: 53
+        width: 1029
+        height: 1285
+      alignment: 9
+      pivot: {x: 0.3787734, y: 0.23573996}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3aab757df63bc5170800000000000000
+      internalID: 8168601117078829731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnslavedGiantSpriteSheet_13
+      rect:
+        serializedVersion: 2
+        x: 6976
+        y: 49
+        width: 800
+        height: 1281
+      alignment: 9
+      pivot: {x: 0.4653491, y: 0.26737428}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 434e0148731746960800000000000000
+      internalID: 7594319354906338356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnslavedGiantSpriteSheet_14
+      rect:
+        serializedVersion: 2
+        x: 8227
+        y: 100
+        width: 361
+        height: 366
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb1dfff421693fe90800000000000000
+      internalID: -6993080790980505154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
