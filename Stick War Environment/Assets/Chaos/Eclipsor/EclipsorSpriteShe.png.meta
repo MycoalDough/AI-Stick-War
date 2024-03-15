@@ -1,0 +1,368 @@
+fileFormatVersion: 2
+guid: 15a4264a678933d43b27940bdfc91239
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6231152015290770324
+    second: EclipsorSpriteShe_0
+  - first:
+      213: 5101153775409859688
+    second: EclipsorSpriteShe_1
+  - first:
+      213: -6562955669074659691
+    second: EclipsorSpriteShe_2
+  - first:
+      213: 32032350473629223
+    second: EclipsorSpriteShe_3
+  - first:
+      213: 895011149947112907
+    second: EclipsorSpriteShe_4
+  - first:
+      213: 1615376046366291060
+    second: EclipsorSpriteShe_5
+  - first:
+      213: -7118540901403731958
+    second: EclipsorSpriteShe_6
+  - first:
+      213: -4343353539854406859
+    second: EclipsorSpriteShe_7
+  - first:
+      213: -5752911833620129878
+    second: EclipsorSpriteShe_8
+  - first:
+      213: 6877662237860820483
+    second: EclipsorSpriteShe_9
+  - first:
+      213: -5581722860069764661
+    second: EclipsorSpriteShe_10
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: EclipsorSpriteShe_0
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 1308
+        width: 276
+        height: 401
+      alignment: 9
+      pivot: {x: 0.43949386, y: 0.68046224}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6c522391408689a0800000000000000
+      internalID: -6231152015290770324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EclipsorSpriteShe_1
+      rect:
+        serializedVersion: 2
+        x: 570
+        y: 1360
+        width: 326
+        height: 329
+      alignment: 9
+      pivot: {x: 0.76162624, y: 0.15434586}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86c82f7e450fac640800000000000000
+      internalID: 5101153775409859688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EclipsorSpriteShe_2
+      rect:
+        serializedVersion: 2
+        x: 1066
+        y: 1372
+        width: 339
+        height: 296
+      alignment: 9
+      pivot: {x: 0.9053447, y: 0.2086561}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5963b2c4792bbe4a0800000000000000
+      internalID: -6562955669074659691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EclipsorSpriteShe_3
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 903
+        width: 275
+        height: 401
+      alignment: 9
+      pivot: {x: 0.4730107, y: 0.7035984}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72e2d47c04dc17000800000000000000
+      internalID: 32032350473629223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EclipsorSpriteShe_4
+      rect:
+        serializedVersion: 2
+        x: 441
+        y: 1013
+        width: 335
+        height: 90
+      alignment: 9
+      pivot: {x: 0.80551684, y: 0.87906766}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bcd8c9e16e7bb6c00800000000000000
+      internalID: 895011149947112907
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EclipsorSpriteShe_5
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 1036
+        width: 335
+        height: 84
+      alignment: 9
+      pivot: {x: 0.8224901, y: 0.7820449}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 474765e94f7fa6610800000000000000
+      internalID: 1615376046366291060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EclipsorSpriteShe_6
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 499
+        width: 276
+        height: 401
+      alignment: 9
+      pivot: {x: 0.45818007, y: 0.68709373}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a08ddbc04ccd53d90800000000000000
+      internalID: -7118540901403731958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EclipsorSpriteShe_7
+      rect:
+        serializedVersion: 2
+        x: 557
+        y: 594
+        width: 325
+        height: 280
+      alignment: 9
+      pivot: {x: 0.911142, y: 0.8046077}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53bea03b7fe49b3c0800000000000000
+      internalID: -4343353539854406859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EclipsorSpriteShe_8
+      rect:
+        serializedVersion: 2
+        x: 1193
+        y: 603
+        width: 346
+        height: 249
+      alignment: 9
+      pivot: {x: 0.94918346, y: 0.7892483}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa75ee4ea2d8920b0800000000000000
+      internalID: -5752911833620129878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EclipsorSpriteShe_9
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 52
+        width: 289
+        height: 358
+      alignment: 9
+      pivot: {x: 0.51996934, y: 0.7337466}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 306ffccad5d527f50800000000000000
+      internalID: 6877662237860820483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EclipsorSpriteShe_10
+      rect:
+        serializedVersion: 2
+        x: 1234
+        y: 69
+        width: 219
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc14ddac1acb982b0800000000000000
+      internalID: -5581722860069764661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

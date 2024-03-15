@@ -29,7 +29,6 @@ public class RLConnection : MonoBehaviour
     public Text crystal2;
     public Text pop1;
     public Text pop2;
-    int dones = 0;
 
     public Slider speed;
     public Text speedT;

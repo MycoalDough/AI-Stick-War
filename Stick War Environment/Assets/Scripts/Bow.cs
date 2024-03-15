@@ -7,21 +7,12 @@ public class Bow : MonoBehaviour
     public GameObject arrow;
     public float launchForce;
 
-    public void Shoot(string Etag, string facing)
+    public void Shoot(string Etag, Vector3 pos)
     {
         GameObject _arrow = Instantiate(arrow, transform.position, Quaternion.identity);
 
         ArchidonArrow a = _arrow.GetComponent<ArchidonArrow>();
-
-        if (facing == "right")
-        {
-            a.moveTo = new Vector2(transform.position.x + launchForce, transform.position.y);
-        }
-        else if (facing == "left")
-        {
-            a.moveTo = new Vector2(transform.position.x - launchForce, transform.position.y);
-        }
-
+        a.moveTo = pos;
         _arrow.GetComponent<ArchidonArrow>().Etag = Etag;
     }
 }

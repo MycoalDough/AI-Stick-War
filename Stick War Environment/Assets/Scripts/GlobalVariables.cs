@@ -350,6 +350,48 @@ public class GlobalVariables : MonoBehaviour
                     stickmanType = "Giant";
                     xOffset = 3f; // Example offset for Giant
                 }
+                //CHAOS.
+                else if (stickman.GetComponent<Juggernaut>())
+                {
+                    stickmanType = "Juggernaut";
+                    xOffset = 2f; // Example offset for Archidon
+                }
+                else if (stickman.GetComponent<Bomber>())
+                {
+                    stickmanType = "Bomber";
+                    xOffset = -4f; // Example offset for Archidon
+                }
+                else if (stickman.GetComponent<Crawler>())
+                {
+                    stickmanType = "Crawler";
+                    xOffset = 1f; // Example offset for Spearton
+                }
+                else if (stickman.GetComponent<EnslavedGiant>())
+                {
+                    stickmanType = "EnslavedGiant";
+                    xOffset = -6f; // Example offset for Giant
+                }
+                else if (stickman.GetComponent<Dead>())
+                {
+                    stickmanType = "Dead";
+                    xOffset = -4f; // Example offset for Giant
+                }
+                else if (stickman.GetComponent<Meric>())
+                {
+                    stickmanType = "Meric";
+                    xOffset = -2f; // Example offset for Giant
+                }
+                else if (stickman.GetComponent<Albowtross>())
+                {
+                    stickmanType = "Albowtross";
+                    xOffset = -4f; // Example offset for Giant
+                }
+                else if (stickman.GetComponent<Eclipsor>())
+                {
+                    stickmanType = "Eclipsor";
+                    xOffset = -4f; // Example offset for Giant
+                }
+
 
                 // If stickman type is not registered, initialize count and column index
                 if (!stickmenCounts.ContainsKey(stickmanType))
@@ -376,6 +418,22 @@ public class GlobalVariables : MonoBehaviour
                     stickman.GetComponent<Shadowrath>().toMove = position;
                 else if (stickman.GetComponent<Minion>())
                     stickman.GetComponent<Minion>().toMove = position;
+                else if (stickman.GetComponent<EnslavedGiant>())
+                    stickman.GetComponent<EnslavedGiant>().toMove = position;
+                else if (stickman.GetComponent<Juggernaut>())
+                    stickman.GetComponent<Juggernaut>().toMove = position;
+                else if (stickman.GetComponent<Bomber>())
+                    stickman.GetComponent<Bomber>().toMove = position;
+                else if (stickman.GetComponent<Crawler>())
+                    stickman.GetComponent<Crawler>().toMove = position;
+                else if (stickman.GetComponent<Dead>())
+                    stickman.GetComponent<Dead>().toMove = position;
+                else if (stickman.GetComponent<Albowtross>())
+                    stickman.GetComponent<Albowtross>().toMove = position + new Vector3(0, 6);
+                else if (stickman.GetComponent<Eclipsor>())
+                    stickman.GetComponent<Eclipsor>().toMove = position + new Vector3(0, 6);
+                else if (stickman.GetComponent<Meric>())
+                    stickman.GetComponent<Meric>().toMove = position;
                 // Increment counts and update column index
                 stickmenCounts[stickmanType]++;
                 if (stickmenCounts[stickmanType] >= maxStickmenPerRow)
@@ -514,6 +572,47 @@ public class GlobalVariables : MonoBehaviour
                     xOffset = 1f; // Example offset for Swordswrath
                 }
 
+                else if (stickman.GetComponent<Juggernaut>())
+                {
+                    stickmanType = "Juggernaut";
+                    xOffset = 1f; // Example offset for Archidon
+                }
+                else if (stickman.GetComponent<Bomber>())
+                {
+                    stickmanType = "Bomber";
+                    xOffset = 4f; // Example offset for Archidon
+                }
+                else if (stickman.GetComponent<Crawler>())
+                {
+                    stickmanType = "Crawler";
+                    xOffset = 2f; // Example offset for Spearton
+                }
+                else if (stickman.GetComponent<EnslavedGiant>())
+                {
+                    stickmanType = "EnslavedGiant";
+                    xOffset = 6f; // Example offset for Giant
+                }
+                else if (stickman.GetComponent<Dead>())
+                {
+                    stickmanType = "Dead";
+                    xOffset = 4f; // Example offset for Giant
+                }
+                else if (stickman.GetComponent<Meric>())
+                {
+                    stickmanType = "Meric";
+                    xOffset = 2f; // Example offset for Giant
+                }
+                else if (stickman.GetComponent<Albowtross>())
+                {
+                    stickmanType = "Albowtross";
+                    xOffset = 4f; // Example offset for Giant
+                }
+                else if (stickman.GetComponent<Eclipsor>())
+                {
+                    stickmanType = "Eclipsor";
+                    xOffset = -4f; // Example offset for Giant
+                }
+
                 if (!stickmenCounts.ContainsKey(stickmanType))
                 {
                     stickmenCounts[stickmanType] = 0;
@@ -536,7 +635,22 @@ public class GlobalVariables : MonoBehaviour
                     stickman.GetComponent<Shadowrath>().toMove = position;
                 else if (stickman.GetComponent<Minion>())
                     stickman.GetComponent<Minion>().toMove = position;
-
+                else if (stickman.GetComponent<EnslavedGiant>())
+                    stickman.GetComponent<EnslavedGiant>().toMove = position;
+                else if (stickman.GetComponent<Juggernaut>())
+                    stickman.GetComponent<Juggernaut>().toMove = position;
+                else if (stickman.GetComponent<Bomber>())
+                    stickman.GetComponent<Bomber>().toMove = position;
+                else if (stickman.GetComponent<Crawler>())
+                    stickman.GetComponent<Crawler>().toMove = position;
+                else if (stickman.GetComponent<Dead>())
+                    stickman.GetComponent<Dead>().toMove = position;
+                else if (stickman.GetComponent<Albowtross>())
+                    stickman.GetComponent<Albowtross>().toMove = position + new Vector3(0, 6);
+                else if (stickman.GetComponent<Eclipsor>())
+                    stickman.GetComponent<Eclipsor>().toMove = position + new Vector3(0, 6);
+                else if (stickman.GetComponent<Meric>())
+                    stickman.GetComponent<Meric>().toMove = position;
                 stickmenCounts[stickmanType]++;
                 if (stickmenCounts[stickmanType] >= maxStickmenPerRow)
                 {

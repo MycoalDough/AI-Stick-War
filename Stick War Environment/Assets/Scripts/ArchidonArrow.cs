@@ -30,6 +30,18 @@ public class ArchidonArrow : MonoBehaviour
             hit.GetComponentInChildren<HPSystem>().Damage(damage);
             Destroy(gameObject);
         }
+        
+        List<GameObject> hitFlying = detector.IsTagWithinRangeList(Etag + "Flying", 1);
+        if (hitFlying.Count != 0)
+        {
+            foreach (GameObject go in hitFlying)
+            {
+                go.GetComponentInChildren<HPSystem>().Damage(damage);
+                go.GetComponentInChildren<HPSystem>().poisonStacks = (go.GetComponentInChildren<HPSystem>().isChaos) ? 5 : 999;
+
+            }
+            Destroy(gameObject);
+        }
 
         if(Mathf.Abs(transform.position.x) > 1000) {
             Destroy(gameObject);

@@ -225,7 +225,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   target: Team2
-  damage: 10
+  damage: 16
   moveSpeed: 2.5
   left: {fileID: 3271978059947273906}
   right: {fileID: 3271978060482360627}

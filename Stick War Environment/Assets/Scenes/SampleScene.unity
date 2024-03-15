@@ -4128,6 +4128,11 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 2226930118870025953, guid: 4eb51063549e5434cb2ef8870ac2184a,
         type: 3}
+      propertyPath: canGetEffects
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2226930118870025953, guid: 4eb51063549e5434cb2ef8870ac2184a,
+        type: 3}
       propertyPath: spriteRenderer
       value: 
       objectReference: {fileID: 845599710}
@@ -7951,6 +7956,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 4790dfac8ce01f543bbbb64fde58cf42,
         type: 3}
+    - target: {fileID: 2226930118870025953, guid: 4eb51063549e5434cb2ef8870ac2184a,
+        type: 3}
+      propertyPath: canGetEffects
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2226930118870025953, guid: 4eb51063549e5434cb2ef8870ac2184a,
         type: 3}
       propertyPath: spriteRenderer

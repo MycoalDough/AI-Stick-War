@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Team1
   - Team2
+  - Team1Flying
+  - Team2Flying
   layers:
   - Default
   - TransparentFX

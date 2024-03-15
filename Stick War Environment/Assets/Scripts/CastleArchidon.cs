@@ -122,7 +122,7 @@ public class CastleArchidon : MonoBehaviour
         anim.Play("ArchidonShoot");
         yield return new WaitForSeconds(1);
         string facing = GetComponent<SpriteRenderer>().flipX ? "left" : "right";
-        bow.Shoot(Etag, facing);
+        bow.Shoot(Etag, toMove);
         yield return new WaitForSeconds(1f);
         isAttacking = false;
         StartCoroutine(Reload());
@@ -158,11 +158,12 @@ public class CastleArchidon : MonoBehaviour
         int index = -1;
         HPSystem hp = null;
         Vector2 saved = new Vector2(-100, -100);
+        string flyingTag = (tag == "Team1") ? "Team2Flying" : "Team1Flying";
         if (target == "Team1")
         {
             for (int i = 0; i < gv.team1units.Count; i++)
             {
-                if (gv.team1units[i] && gv.team1units[i].gameObject.tag == target)
+                if (gv.team1units[i] && (gv.team1units[i].gameObject.tag == target || gv.team1units[i].gameObject.tag == flyingTag) && !gv.garrisonDetector1.IsTargetWithinRange(gv.team1units[i].GetComponentInChildren<HPSystem>().gameObject))
                 {
                     if (closestDistance > Mathf.Abs(Vector2.Distance(gameObject.transform.position, gv.team1units[i].transform.position)))
                     {
@@ -178,7 +179,7 @@ public class CastleArchidon : MonoBehaviour
         {
             for (int i = 0; i < gv.team2units.Count; i++)
             {
-                if (gv.team2units[i] && gv.team2units[i].gameObject.tag == target)
+                if (gv.team2units[i] && (gv.team2units[i].gameObject.tag == target || gv.team2units[i].gameObject.tag == flyingTag) && !gv.garrisonDetector2.IsTargetWithinRange(gv.team2units[i].GetComponentInChildren<HPSystem>().gameObject))
                 {
                     if (closestDistance > Mathf.Abs(Vector2.Distance(gameObject.transform.position, gv.team2units[i].transform.position)))
                     {

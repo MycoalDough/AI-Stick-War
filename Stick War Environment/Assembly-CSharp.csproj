@@ -56,25 +56,30 @@
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Bomber.cs" />
-    <Compile Include="Assets\Crawler.cs" />
-    <Compile Include="Assets\EnslavedGiant.cs" />
-    <Compile Include="Assets\EnslavedGiantBoulder.cs" />
-    <Compile Include="Assets\Juggernaut.cs" />
+    <Compile Include="Assets\Scripts\Albowtross.cs" />
     <Compile Include="Assets\Scripts\Archidon.cs" />
     <Compile Include="Assets\Scripts\ArchidonArrow.cs" />
     <Compile Include="Assets\Scripts\ArchidonArrowFix.cs" />
+    <Compile Include="Assets\Scripts\Bomber.cs" />
     <Compile Include="Assets\Scripts\BomberExplosion.cs" />
     <Compile Include="Assets\Scripts\Bow.cs" />
     <Compile Include="Assets\Scripts\CameraMovement.cs" />
     <Compile Include="Assets\Scripts\CastleArchidon.cs" />
     <Compile Include="Assets\Scripts\ChangeSize.cs" />
+    <Compile Include="Assets\Scripts\Crawler.cs" />
+    <Compile Include="Assets\Scripts\Dead.cs" />
+    <Compile Include="Assets\Scripts\DeadProjectile.cs" />
+    <Compile Include="Assets\Scripts\Eclipsor.cs" />
     <Compile Include="Assets\Scripts\EnemyDetector.cs" />
+    <Compile Include="Assets\Scripts\EnslavedGiant.cs" />
+    <Compile Include="Assets\Scripts\EnslavedGiantBoulder.cs" />
     <Compile Include="Assets\Scripts\Giant.cs" />
     <Compile Include="Assets\Scripts\GlobalVariables.cs" />
     <Compile Include="Assets\Scripts\HPSystem.cs" />
+    <Compile Include="Assets\Scripts\Juggernaut.cs" />
     <Compile Include="Assets\Scripts\Magikill.cs" />
     <Compile Include="Assets\Scripts\MagikillSpell.cs" />
+    <Compile Include="Assets\Scripts\Meric.cs" />
     <Compile Include="Assets\Scripts\Miner.cs" />
     <Compile Include="Assets\Scripts\Minion.cs" />
     <Compile Include="Assets\Scripts\Parallax.cs" />
