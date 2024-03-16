@@ -445,6 +445,44 @@ public class GlobalVariables : MonoBehaviour
         }
     }
 
+    public void setPos(GameObject stickman, Vector3 position)
+    {
+        if (stickman.GetComponent<Miner>())
+        {
+            stickman.GetComponent<Miner>().toMove = position;
+            Debug.Log("iajwojda");
+        }
+        else if (stickman.GetComponent<Swordswrath>())
+            stickman.GetComponent<Swordswrath>().toMove = position;
+        else if (stickman.GetComponent<Archidon>())
+            stickman.GetComponent<Archidon>().toMove = position;
+        else if (stickman.GetComponent<Spearton>())
+            stickman.GetComponent<Spearton>().toMove = position;
+        else if (stickman.GetComponent<Giant>())
+            stickman.GetComponent<Giant>().toMove = position;
+        else if (stickman.GetComponent<Magikill>())
+            stickman.GetComponent<Magikill>().toMove = position;
+        else if (stickman.GetComponent<Shadowrath>())
+            stickman.GetComponent<Shadowrath>().toMove = position;
+        else if (stickman.GetComponent<Minion>())
+            stickman.GetComponent<Minion>().toMove = position;
+        else if (stickman.GetComponent<EnslavedGiant>())
+            stickman.GetComponent<EnslavedGiant>().toMove = position;
+        else if (stickman.GetComponent<Juggernaut>())
+            stickman.GetComponent<Juggernaut>().toMove = position;
+        else if (stickman.GetComponent<Bomber>())
+            stickman.GetComponent<Bomber>().toMove = position;
+        else if (stickman.GetComponent<Crawler>())
+            stickman.GetComponent<Crawler>().toMove = position;
+        else if (stickman.GetComponent<Dead>())
+            stickman.GetComponent<Dead>().toMove = position;
+        else if (stickman.GetComponent<Albowtross>())
+            stickman.GetComponent<Albowtross>().toMove = position + new Vector3(0, 6);
+        else if (stickman.GetComponent<Eclipsor>())
+            stickman.GetComponent<Eclipsor>().toMove = position + new Vector3(0, 6);
+        else if (stickman.GetComponent<Meric>())
+            stickman.GetComponent<Meric>().toMove = position;
+    }
     void arrangeGiants1()
     {
         Dictionary<string, int> stickmenCounts = new Dictionary<string, int>(); // Dictionary to store counts of each stickman type
