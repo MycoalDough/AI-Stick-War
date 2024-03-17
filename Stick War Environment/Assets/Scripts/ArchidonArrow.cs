@@ -12,9 +12,17 @@ public class ArchidonArrow : MonoBehaviour
 
     public float speed;
     public Rigidbody2D rb;
+
+    public bool canFire;
+    public GameObject fireParticle;
+
+    public bool canPoison;
+
+    public GlobalVariables gv;
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        gv = GameObject.FindObjectOfType<GlobalVariables>().GetComponent<GlobalVariables>();
     }
     void Update()
     {
@@ -28,6 +36,9 @@ public class ArchidonArrow : MonoBehaviour
         if (hit != null)
         {
             hit.GetComponentInChildren<HPSystem>().Damage(damage);
+            if(canFire) {
+                hit.GetComponentInChildren<HPSystem>().fireStacks = 8;
+            }
             Destroy(gameObject);
         }
         
@@ -37,7 +48,14 @@ public class ArchidonArrow : MonoBehaviour
             foreach (GameObject go in hitFlying)
             {
                 go.GetComponentInChildren<HPSystem>().Damage(damage);
-                go.GetComponentInChildren<HPSystem>().poisonStacks = (go.GetComponentInChildren<HPSystem>().isChaos) ? 5 : 999;
+
+                if(canPoison)
+                    go.GetComponentInChildren<HPSystem>().poisonStacks = (go.GetComponentInChildren<HPSystem>().isChaos) ? 5 : 999;
+
+                if (canFire)
+                {
+                    go.GetComponentInChildren<HPSystem>().fireStacks = 8;
+                }
 
             }
             Destroy(gameObject);

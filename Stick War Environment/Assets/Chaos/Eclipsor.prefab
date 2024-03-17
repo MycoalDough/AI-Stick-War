@@ -698,7 +698,7 @@ GameObject:
   - component: {fileID: 6981740005752781429}
   m_Layer: 0
   m_Name: Eclipsor
-  m_TagString: Team1Flying
+  m_TagString: Team2Flying
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -832,6 +832,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arrow: {fileID: 4691655747562357014, guid: 360d9a9694b6c9f4c8a0f5ee3ac576fa, type: 3}
   launchForce: 20
+  gv: {fileID: 0}
 --- !u!114 &6981740005752781417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -905,7 +906,7 @@ GameObject:
   - component: {fileID: 8260625475801788728}
   m_Layer: 0
   m_Name: Eclipsor
-  m_TagString: Team1Flying
+  m_TagString: Team2Flying
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -953,6 +954,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6981740005752781422}
     m_Modifications:
+    - target: {fileID: 2226930118870025953, guid: 4eb51063549e5434cb2ef8870ac2184a,
+        type: 3}
+      propertyPath: maxHP
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 2226930118870025953, guid: 4eb51063549e5434cb2ef8870ac2184a,
+        type: 3}
+      propertyPath: currentHP
+      value: 150
+      objectReference: {fileID: 0}
     - target: {fileID: 2226930118870025953, guid: 4eb51063549e5434cb2ef8870ac2184a,
         type: 3}
       propertyPath: deathSprite

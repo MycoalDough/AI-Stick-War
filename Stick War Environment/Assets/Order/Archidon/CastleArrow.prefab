@@ -106,6 +106,10 @@ MonoBehaviour:
   moveTo: {x: 0, y: 0}
   speed: 7
   rb: {fileID: 2221675545501505755}
+  canFire: 0
+  fireParticle: {fileID: 0}
+  canPoison: 0
+  gv: {fileID: 0}
 --- !u!50 &2221675545501505755
 Rigidbody2D:
   serializedVersion: 4
@@ -165,4 +169,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaf598bd15dfbb949859f13e6c19bb7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  removeAfter: 10
+  removeAfter: 5

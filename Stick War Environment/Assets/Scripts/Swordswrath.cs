@@ -25,6 +25,10 @@ public class Swordswrath : MonoBehaviour
 
     public bool jumpAttacking;
     public bool canJumpAttack;
+
+    public float dmg;
+
+    public GameObject rageParticle;
     // Start is called before the first frame update
     void Start()
     {
@@ -64,6 +68,11 @@ public class Swordswrath : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        dmg = (gv.rage && GetComponentInChildren<HPSystem>().currentHP > 20) ? damage * 1.5f : damage;
+        if (gv.rage)
+            rageParticle.SetActive(true);
+        else
+            rageParticle.SetActive(false);
         target = (gameObject.tag == "Team1") ? "Team2" : "Team1";
 
         if (gameObject.GetComponentInChildren<HPSystem>() && gameObject.GetComponentInChildren<HPSystem>().dazed)
@@ -137,7 +146,7 @@ public class Swordswrath : MonoBehaviour
         isAttacking = true;
         anim.Play("SwordswrathAttack");
         yield return new WaitForSeconds(.5f);
-        Attack(damage);
+        Attack(dmg);
         yield return new WaitForSeconds(1f);
         isAttacking = false;
     }
@@ -148,7 +157,7 @@ public class Swordswrath : MonoBehaviour
         canJumpAttack = false;
         anim.Play("SwordswrathJumpAttack");
         yield return new WaitForSeconds(1f);
-        if(Attack(damage * 2)) enemy.Daze();
+        if(Attack(dmg * 2)) enemy.Daze();
         yield return new WaitForSeconds(0.7f);
         jumpAttacking = false;
         yield return new WaitForSeconds(5f);

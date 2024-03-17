@@ -129,7 +129,9 @@ public class Archidon : MonoBehaviour
         if (Vector2.Distance(transform.position, toMove) < 8f && (((gv.team1 != 2 && gv.team1 != 1 && target == "Team2") || (gv.team2 != 2 && gv.team2 != 1 && target == "Team1"))) && (isAttacking || isReloading))
         {
             moveDirection = ((Vector2)transform.position - toMove).normalized;
-            rb.MovePosition(rb.position + moveDirection * curSpeed * Time.fixedDeltaTime);
+            Vector2 newPosition = rb.position + moveDirection * curSpeed * Time.fixedDeltaTime;
+            newPosition.y = Mathf.Clamp(newPosition.y, -9.51f, -1.59f);
+            rb.MovePosition(newPosition);
             return;
         }
         moveDirection = (toMove - (Vector2)transform.position).normalized;
@@ -155,7 +157,7 @@ public class Archidon : MonoBehaviour
         anim.Play("ArchidonShoot");
         yield return new WaitForSeconds(1);
         string facing = GetComponent<SpriteRenderer>().flipX ? "left" : "right";
-        bow.Shoot(Etag, toMove);
+        bow.Shoot(Etag, toMove, "Archidon");
         yield return new WaitForSeconds(1f);
         isAttacking = false;
         StartCoroutine(Reload());

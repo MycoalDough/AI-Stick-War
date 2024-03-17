@@ -22,6 +22,7 @@ public class Bomber : MonoBehaviour
     public EnemyDetector right;
 
     public BomberExplosion bomber;
+    public bool boom;
     // Start is called before the first frame update
     void Start()
     {
@@ -80,8 +81,9 @@ public class Bomber : MonoBehaviour
         }
   
 
-        if (Vector2.Distance(transform.position, toMove) < .5f && (((target == "Team2") && (toMove != (Vector2)gv.garrison1.position && gv.team1 != 2)) || ((target == "Team1") && (toMove != (Vector2)gv.garrison2.position && gv.team2 != 2))))
+        if (Vector2.Distance(transform.position, toMove) < .5f && (((target == "Team2") && (toMove != (Vector2)gv.garrison1.position && gv.team1 != 2)) || ((target == "Team1") && (toMove != (Vector2)gv.garrison2.position && gv.team2 != 2))) && !boom)
         {
+            boom = true;
             StartCoroutine(AttackAnimation());
         }
 
@@ -105,7 +107,7 @@ public class Bomber : MonoBehaviour
         yield return new WaitForSeconds(1f);
         BomberExplosion be = Instantiate(bomber, transform.position, Quaternion.identity);
         be.enemyTag = target;
-        GetComponentInChildren<HPSystem>().Damage(100);
+        GetComponentInChildren<HPSystem>().Damage(100, "bomber");
     }
     // Update is called once per frame
     void Update()

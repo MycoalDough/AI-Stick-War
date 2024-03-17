@@ -103,7 +103,7 @@ public class Meric : MonoBehaviour
         }
 
 
-        if (Vector2.Distance(transform.position, toMove) < 5f)
+        if (Vector2.Distance(transform.position, toMove) < 5f && (target == "Team1" && (gv.team2 == 2 || toMove == (Vector2)gv.garrison2.position)))
         {
             if (transform.position.x - toMove.x < 0)
             {
@@ -123,6 +123,7 @@ public class Meric : MonoBehaviour
             {
                 return;
             }
+            return;
         }
 
         anim.Play("MericWalk");
@@ -201,7 +202,7 @@ public class Meric : MonoBehaviour
             {
                 if (gv.team1units[i] && (gv.team1units[i].gameObject.tag == target || gv.team1units[i].gameObject.tag == flyingTag) && !gv.garrisonDetector1.IsTargetWithinRange(gv.team1units[i].GetComponentInChildren<HPSystem>().gameObject))
                 {
-                    if (gv.team1units[i].gameObject.GetComponentInChildren<HPSystem>() && (gv.team1units[i].gameObject.GetComponentInChildren<HPSystem>().maxHP - gv.team1units[i].gameObject.GetComponentInChildren<HPSystem>().currentHP > hp.maxHP - hp.currentHP))
+                    if (gv.team1units[i].gameObject.GetComponentInChildren<HPSystem>() && (gv.team1units[i].gameObject.GetComponentInChildren<HPSystem>().maxHP - gv.team1units[i].gameObject.GetComponentInChildren<HPSystem>().currentHP > hp.maxHP - hp.currentHP) && !gv.team1units[i].gameObject.GetComponent<Meric>())
                     {
                         closestDistance = Mathf.Abs(Vector2.Distance(gameObject.transform.position, gv.team1units[i].transform.position));
                         saved = gv.team1units[i].transform.position;
@@ -215,7 +216,7 @@ public class Meric : MonoBehaviour
         {
             for (int i = 1; i < gv.team2units.Count; i++)
             {
-                if (gv.team2units[i].gameObject.GetComponentInChildren<HPSystem>() && (gv.team2units[i].gameObject.GetComponentInChildren<HPSystem>().maxHP - gv.team2units[i].gameObject.GetComponentInChildren<HPSystem>().currentHP > hp.maxHP - hp.currentHP))
+                if (gv.team2units[i].gameObject.GetComponentInChildren<HPSystem>() && (gv.team2units[i].gameObject.GetComponentInChildren<HPSystem>().maxHP - gv.team2units[i].gameObject.GetComponentInChildren<HPSystem>().currentHP > hp.maxHP - hp.currentHP) && !gv.team2units[i].gameObject.GetComponent<Meric>())
                 {
                     if (closestDistance > Mathf.Abs(Vector2.Distance(gameObject.transform.position, gv.team2units[i].transform.position)))
                     {

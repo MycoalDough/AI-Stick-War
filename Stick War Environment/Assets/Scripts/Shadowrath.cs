@@ -262,7 +262,7 @@ public class Shadowrath : MonoBehaviour
                         hp = gv.team1units[i].gameObject.GetComponentInChildren<HPSystem>();
                     }
 
-                    if(gv.team1units[i].gameObject.GetComponent<Archidon>() || gv.team1units[i].gameObject.GetComponent<Magikill>())
+                    if(gv.team1units[i].gameObject.GetComponent<Archidon>() || gv.team1units[i].gameObject.GetComponent<Magikill>() || gv.team1units[i].gameObject.GetComponent<Marrowkai>() || gv.team1units[i].gameObject.GetComponent<Medusa>() || gv.team1units[i].gameObject.GetComponent<Dead>() || gv.team1units[i].gameObject.GetComponent<Meric>())
                     {
                         closestDistance = Mathf.Abs(Vector2.Distance(gameObject.transform.position, gv.team1units[i].transform.position));
                         saved = gv.team1units[i].transform.position;

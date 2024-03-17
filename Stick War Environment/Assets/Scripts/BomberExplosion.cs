@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -25,10 +26,22 @@ public class BomberExplosion : MonoBehaviour
                 List<GameObject> enemies = new List<GameObject>();
                 enemies = ed.IsTagWithinRangeList(enemyTag, 5);
 
-                foreach (GameObject enemy in enemies)
+
+                // Use a HashSet to track unique enemies
+                HashSet<GameObject> uniqueEnemies = new HashSet<GameObject>();
+                Debug.Log(enemies.Count);
+                for(int i = 0; i < enemies.Count; i++)
                 {
-                    enemy.GetComponent<HPSystem>().Daze();
-                    enemy.GetComponent<HPSystem>().Damage(damage);
+                    // Check if the enemy is already in hitenemeies
+                    if (!uniqueEnemies.Contains(enemies[i]))
+                    {
+                        Debug.Log(enemies[i].transform.position + " " + enemies[i].name);
+                        enemies[i].GetComponent<HPSystem>().Daze();
+                        enemies[i].GetComponent<HPSystem>().Damage(damage);
+
+                        // Add the enemy to the uniqueEnemies HashSet
+                        uniqueEnemies.Add(enemies[i]);
+                    }
                 }
                 break;
             }

@@ -57,11 +57,20 @@ public class EnemyDetector : MonoBehaviour
         Collider2D[] colliders = Physics2D.OverlapBoxAll(transform.position, new Vector2(detectionWidth, detectionHeight), transform.rotation.eulerAngles.z);
         int currentCount = 0;
         List<GameObject> list = new List<GameObject>();
+        HashSet<GameObject> uniqueSet = new HashSet<GameObject>();
+
         foreach (var collider in colliders)
         {
-            if (collider.gameObject.tag == tag && collider.gameObject.GetComponentInChildren<HPSystem>())
-                list.Add(collider.gameObject.GetComponentInChildren<HPSystem>().gameObject);
-            currentCount++;
+            GameObject hpSystemObject = collider.gameObject.GetComponentInChildren<HPSystem>()?.gameObject;
+
+            // Check if the collider has the specified tag, has an HPSystem component, and is not already in the list
+            if (collider.gameObject.tag == tag && hpSystemObject != null && !uniqueSet.Contains(hpSystemObject))
+            {
+                list.Add(hpSystemObject);
+                uniqueSet.Add(hpSystemObject); // Add the GameObject to the HashSet
+                currentCount++;
+            }
+
             if (currentCount >= count)
             {
                 break;
@@ -70,7 +79,4 @@ public class EnemyDetector : MonoBehaviour
 
         return list;
     }
-
-
-
 }

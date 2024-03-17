@@ -45,7 +45,6 @@ public class EnslavedGiant : MonoBehaviour
     public void fluctuation()
     {
         float fluc = UnityEngine.Random.Range(-0.05f, 0.05f);
-        transform.localScale = new Vector2(transform.localScale.x + fluc, transform.localScale.y + fluc);
         moveSpeed = moveSpeed + UnityEngine.Random.Range(-0.1f, 0.1f);
     }
 

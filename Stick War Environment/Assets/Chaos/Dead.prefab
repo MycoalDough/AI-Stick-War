@@ -519,8 +519,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HPBar: {fileID: 4318244526572147100}
-  maxHP: 120
-  currentHP: 120
+  maxHP: 100
+  currentHP: 100
   gv: {fileID: 0}
   toRemove: []
   defense: 1
@@ -534,7 +534,8 @@ MonoBehaviour:
   isChaos: 0
   poisonStacks: 0
   poisonTime: 0
-  poisionMaxTime: 8
+  poisonMaxTime: 4
+  canGetEffects: 1
   fireStacks: 0
   fireTime: 0
   fireMaxTime: 4

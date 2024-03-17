@@ -164,6 +164,7 @@ MonoBehaviour:
   target: Team2
   damage: 20
   moveSpeed: 4
+  foundTeam: 0
   left: {fileID: 5357434951276899523}
   right: {fileID: 5357434952347296321}
   invisible: 0
@@ -383,12 +384,12 @@ PrefabInstance:
     - target: {fileID: 2226930118870025953, guid: 4eb51063549e5434cb2ef8870ac2184a,
         type: 3}
       propertyPath: maxHP
-      value: 105
+      value: 160
       objectReference: {fileID: 0}
     - target: {fileID: 2226930118870025953, guid: 4eb51063549e5434cb2ef8870ac2184a,
         type: 3}
       propertyPath: currentHP
-      value: 105
+      value: 160
       objectReference: {fileID: 0}
     - target: {fileID: 2226930118870025953, guid: 4eb51063549e5434cb2ef8870ac2184a,
         type: 3}

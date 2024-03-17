@@ -122,7 +122,7 @@ public class CastleArchidon : MonoBehaviour
         anim.Play("ArchidonShoot");
         yield return new WaitForSeconds(1);
         string facing = GetComponent<SpriteRenderer>().flipX ? "left" : "right";
-        bow.Shoot(Etag, toMove);
+        bow.Shoot(Etag, toMove, "Castle");
         yield return new WaitForSeconds(1f);
         isAttacking = false;
         StartCoroutine(Reload());

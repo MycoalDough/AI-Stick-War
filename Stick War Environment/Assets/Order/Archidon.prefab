@@ -197,6 +197,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arrow: {fileID: 4691655747562357014, guid: 2f36d123da6f4fd44bd4d0b5338ffb64, type: 3}
   launchForce: 20
+  gv: {fileID: 0}
 --- !u!114 &-8627726032683050256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,6 +219,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2505449126992038909}
     m_Modifications:
+    - target: {fileID: 2226930118870025953, guid: 4eb51063549e5434cb2ef8870ac2184a,
+        type: 3}
+      propertyPath: maxHP
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2226930118870025953, guid: 4eb51063549e5434cb2ef8870ac2184a,
+        type: 3}
+      propertyPath: currentHP
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 2226930118870025953, guid: 4eb51063549e5434cb2ef8870ac2184a,
         type: 3}
       propertyPath: deathSprite

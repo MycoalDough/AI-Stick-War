@@ -217,7 +217,7 @@ public class RLConnection : MonoBehaviour
     {
         return b ? 1 : 0;
     }
-    public string sendInput(int team) //429
+    public string sendInput(int team) //724, 720
     {
 
         string connected = ""; 
@@ -230,6 +230,24 @@ public class RLConnection : MonoBehaviour
             saved.Add(gv.population1.ToString());
             saved.Add(gv.statue1.currentHP.ToString());
             saved.Add(gv.statue2.currentHP.ToString());
+
+            saved.Add(Convert.ToInt32(gv.rageBUY).ToString());
+            saved.Add(Convert.ToInt32(gv.canRage).ToString());
+            saved.Add(Convert.ToInt32(gv.canFireArrows).ToString());
+            saved.Add(Convert.ToInt32(gv.passive1).ToString());
+
+
+            saved.Add(Convert.ToInt32(gv.rage).ToString());
+            saved.Add(Convert.ToInt32(gv.shieldWall).ToString());
+            saved.Add(Convert.ToInt32(gv.blazingBolts).ToString());
+            saved.Add(Convert.ToInt32(gv.fireArrows).ToString());
+            saved.Add(gv.giantUpgrade1.ToString());
+            saved.Add(gv.castle1ability.ToString());
+            saved.Add(gv.castle2ability.ToString());
+            saved.Add(gv.giantUpgrade2.ToString());
+
+            //17
+
         }
         else
         {
@@ -238,6 +256,17 @@ public class RLConnection : MonoBehaviour
             saved.Add(gv.population2.ToString());
             saved.Add(gv.statue1.currentHP.ToString());
             saved.Add(gv.statue2.currentHP.ToString());
+
+            saved.Add(Convert.ToInt32(gv.rage).ToString());
+            saved.Add(Convert.ToInt32(gv.shieldWall).ToString());
+            saved.Add(Convert.ToInt32(gv.blazingBolts).ToString());
+            saved.Add(Convert.ToInt32(gv.fireArrows).ToString());
+            saved.Add(gv.giantUpgrade1.ToString());
+            saved.Add(gv.castle1ability.ToString());
+            saved.Add(gv.castle2ability.ToString());
+            saved.Add(gv.giantUpgrade2.ToString());
+
+            //13
         }
         saved.Add(Math.Round(time, 2).ToString());
         saved.Add(gv.team1miners.ToString());
@@ -252,8 +281,8 @@ public class RLConnection : MonoBehaviour
             //2) HEALTH
             //3) X
             //4) Y
-            //5) Z
-            //6) MINER: STORAGE
+            //5) POISON
+            //6) FIRE
             //7) TEAM
 
             //7) IF NULL, SET ALL TO -2
@@ -261,6 +290,8 @@ public class RLConnection : MonoBehaviour
             if (gv.team1units.Count > i) { unit = returnUnitType(gv.team1units[i]); }
             if (unit == "null" || gv.team1units.Count <= i)
             {
+                saved.Add("-2");
+                saved.Add("-2");
                 saved.Add("-2");
                 saved.Add("-2");
                 saved.Add("-2");
@@ -273,6 +304,8 @@ public class RLConnection : MonoBehaviour
                 saved.Add(gv.team1units[i].GetComponentInChildren<HPSystem>().currentHP.ToString());
                 saved.Add(Math.Round(gv.team1units[i].transform.position.x, 2).ToString());
                 saved.Add(Math.Round(gv.team1units[i].transform.position.y, 2).ToString());
+                saved.Add(gv.team1units[i].GetComponentInChildren<HPSystem>().poisonStacks.ToString());
+                saved.Add(gv.team1units[i].GetComponentInChildren<HPSystem>().fireStacks.ToString());
                 saved.Add("1");
             }
         }
@@ -295,7 +328,9 @@ public class RLConnection : MonoBehaviour
                 saved.Add("-2");
                 saved.Add("-2");
                 saved.Add("-2");
-                saved.Add("2");
+                saved.Add("-2");
+                saved.Add("-2");
+                saved.Add("1");
             }
             else
             {
@@ -303,12 +338,14 @@ public class RLConnection : MonoBehaviour
                 saved.Add(gv.team2units[i].GetComponentInChildren<HPSystem>().currentHP.ToString());
                 saved.Add(Math.Round(gv.team2units[i].transform.position.x, 2).ToString());
                 saved.Add(Math.Round(gv.team2units[i].transform.position.y, 2).ToString());
+                saved.Add(gv.team2units[i].GetComponentInChildren<HPSystem>().poisonStacks.ToString());
+                saved.Add(gv.team2units[i].GetComponentInChildren<HPSystem>().fireStacks.ToString());
                 saved.Add("2");
             }
         }
 
-        saved.Add(gv.castle1.Count.ToString());
-        saved.Add(gv.castle2.Count.ToString());
+        saved.Add(gv.castle1.Count.ToString() + gv.castle1ability.ToString());
+        saved.Add(gv.castle2.Count.ToString() + gv.castle2ability.ToString());
 
 
         for (int i = 0; i < saved.Count - 1; i++)
@@ -351,6 +388,46 @@ public class RLConnection : MonoBehaviour
         if (unit.GetComponent<Shadowrath>())
         {
             return "7";
+        }
+        if (unit.GetComponent<Meric>())
+        {
+            return "8";
+        }
+        if (unit.GetComponentInChildren<Albowtross>())
+        {
+            return "9";
+        }
+        if (unit.GetComponent<Crawler>())
+        {
+            return "10";
+        }
+        if (unit.GetComponent<Bomber>())
+        {
+            return "11";
+        }
+        if (unit.GetComponent<Juggernaut>())
+        {
+            return "12";
+        }
+        if (unit.GetComponentInChildren<Eclipsor>())
+        {
+            return "13";
+        }
+        if (unit.GetComponent<Medusa>())
+        {
+            return "14";
+        }
+        if (unit.GetComponent<Marrowkai>())
+        {
+            return "15";
+        }
+        if (unit.GetComponent<Dead>())
+        {
+            return "16";
+        }
+        if (unit.GetComponent<EnslavedGiant>())
+        {
+            return "17";
         }
         return "null";
     }

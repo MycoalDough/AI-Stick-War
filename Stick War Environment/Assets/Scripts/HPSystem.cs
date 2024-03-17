@@ -249,6 +249,104 @@ public class HPSystem : MonoBehaviour
 
     }
 
+    public void Damage(float dmg, string bomber) //"true", "false" for death
+    {
+        currentHP -= dmg / defense;
+
+
+        HPBar.localScale = new Vector3(currentHP / maxHP, HPBar.localScale.y, HPBar.localScale.z);
+
+
+        if (currentHP <= 0)
+        {
+            spriteRenderer.sprite = deathSprite;
+            spriteRenderer.sortingOrder = -19;
+
+
+            foreach (Component sp in spriteRenderer.gameObject.GetComponents(typeof(Component)))
+            {
+                if (sp.GetType() != typeof(SpriteRenderer) && sp.GetType() != typeof(Transform))
+                {
+                    Destroy(sp);
+                }
+            }
+
+
+            if (spriteRenderer.gameObject.tag == "Team1")
+            {
+                gv.team1units.Remove(spriteRenderer.gameObject);
+            }
+            else
+            {
+                gv.team2units.Remove(spriteRenderer.gameObject);
+            }
+
+
+            spriteRenderer.gameObject.tag = "Untagged";
+
+
+            spriteRenderer.gameObject.AddComponent<Remove>();
+            Destroy(gameObject);
+
+
+        }
+
+    }
+    public void Damage(float dmg, bool medusa)
+    {
+        currentHP -= dmg / defense;
+
+
+        HPBar.localScale = new Vector3(currentHP / maxHP, HPBar.localScale.y, HPBar.localScale.z);
+
+
+        if (currentHP <= 0)
+        {
+            spriteRenderer.sortingOrder = 1000;
+
+
+            foreach (Component sp in spriteRenderer.gameObject.GetComponents(typeof(Component)))
+            {
+                if (sp.GetType() != typeof(SpriteRenderer) && sp.GetType() != typeof(Transform))
+                {
+                    if (sp.GetType() == typeof(Bomber))
+                    {
+                        sp.gameObject.GetComponent<Bomber>().StartCoroutine(sp.gameObject.GetComponent<Bomber>().AttackAnimation());
+                    }
+                    if(sp.GetType() == typeof(Animator))
+                    {
+                        sp.gameObject.GetComponent<Animator>().speed = 0;
+                    }
+                    else
+                    {
+                        Destroy(sp);
+                    }   
+                }
+            }
+
+
+            if (spriteRenderer.gameObject.tag == "Team1")
+            {
+                gv.team1units.Remove(spriteRenderer.gameObject);
+            }
+            else
+            {
+                gv.team2units.Remove(spriteRenderer.gameObject);
+            }
+
+
+            spriteRenderer.gameObject.tag = "Untagged";
+
+
+            spriteRenderer.gameObject.AddComponent<Remove>();
+            spriteRenderer.flipX = false;
+            Destroy(gameObject);
+
+
+        }
+
+    }
+
 
     public void Daze()
     {

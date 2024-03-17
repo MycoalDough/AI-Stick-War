@@ -166,7 +166,7 @@ public class Marrowkai : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         string facing = GetComponent<SpriteRenderer>().flipX ? "left" : "right";
         Vector2 offset = (facing == "left") ? new Vector2(-5, 0) : new Vector2(5, 0);
-        hellFist.Shoot(Etag, toMove + offset);
+        hellFist.Shoot(Etag, toMove + offset, "Marrowkai");
         yield return new WaitForSeconds(2.5f);
         isAttacking = false;
         StartCoroutine(Reload());
@@ -185,7 +185,7 @@ public class Marrowkai : MonoBehaviour
         anim.Play("MarrowkaiReaper");
         yield return new WaitForSeconds(.5f);
         string facing = GetComponent<SpriteRenderer>().flipX ? "left" : "right";
-        reaper.Shoot(Etag, toMove);
+        reaper.Shoot(Etag, toMove, "Marrowkai");
         yield return new WaitForSeconds(1.5f);
         isAttackingReaper = false;
         StartCoroutine(ReloadReaper());

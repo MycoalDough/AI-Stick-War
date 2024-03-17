@@ -5,10 +5,10 @@ import data
 import time
 
 if(__name__ == "__main__"):
-    load_checkpoint = True
+    load_checkpoint = False
 
-    agent1 = Agent(gamma=0.99,epsilon=1,lr=4e-4, input_dims=[512],n_actions=12, mem_size=1_000_000, eps_min=0.01, batch_size=64, checkpoint_name="team1",eps_dec=2e-5,replace=100)
-    agent2 = Agent(gamma=0.99,epsilon=1,lr=4e-4, input_dims=[512],n_actions=12, mem_size=1_000_000, eps_min=0.01, batch_size=64,checkpoint_name="team2",eps_dec=2e-5,replace=100)
+    agent1 = Agent(gamma=0.99,epsilon=1,lr=4e-4, input_dims=[724],n_actions=22, mem_size=1_000_000, eps_min=0.01, batch_size=32, checkpoint_name="team1",eps_dec=2e-6,replace=100)
+    agent2 = Agent(gamma=0.99,epsilon=1,lr=4e-4, input_dims=[720],n_actions=15, mem_size=1_000_000, eps_min=0.01, batch_size=32,checkpoint_name="team2",eps_dec=2e-6,replace=100)
 
     if load_checkpoint:
         agent1.load_models()

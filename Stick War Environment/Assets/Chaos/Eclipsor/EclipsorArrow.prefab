@@ -106,6 +106,9 @@ MonoBehaviour:
   moveTo: {x: 0, y: 0}
   speed: 5
   rb: {fileID: 2221675545501505755}
+  canFire: 0
+  fireParticle: {fileID: 0}
+  canPoison: 1
 --- !u!50 &2221675545501505755
 Rigidbody2D:
   serializedVersion: 4

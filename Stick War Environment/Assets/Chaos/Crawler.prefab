@@ -342,6 +342,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2226930118870025953, guid: 4eb51063549e5434cb2ef8870ac2184a,
         type: 3}
+      propertyPath: maxHP
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 2226930118870025953, guid: 4eb51063549e5434cb2ef8870ac2184a,
+        type: 3}
+      propertyPath: currentHP
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 2226930118870025953, guid: 4eb51063549e5434cb2ef8870ac2184a,
+        type: 3}
       propertyPath: deathSprite
       value: 
       objectReference: {fileID: 1841214590183089751, guid: 2781a8a6d072e274581f6871dc0f8e9d,

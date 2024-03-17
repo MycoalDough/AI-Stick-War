@@ -95,13 +95,25 @@ public class Spearton : MonoBehaviour
             isAttacking = false;
         }
 
+
+
         if (Vector2.Distance(transform.position, toMove) < 5f && (((target == "Team2") && (toMove != (Vector2)gv.garrison1.position && gv.team1 != 2)) || ((target == "Team1") && (toMove != (Vector2)gv.garrison2.position && gv.team2 != 2))))
         {
             anim.Play("SpeartonShield");
             defence = true;
-        }else if(Vector2.Distance(transform.position, toMove) > 5f)
+            gameObject.GetComponentInChildren<HPSystem>().defense = 1.3f;
+        }
+        else if(Vector2.Distance(transform.position, toMove) > 5f)
         {
             defence = false;
+            gameObject.GetComponentInChildren<HPSystem>().defense = 1;
+        }
+
+        if (gv.shieldWall)
+        {
+            defence = true;
+            anim.Play("SpeartonShield");
+            gameObject.GetComponentInChildren<HPSystem>().defense = 1.4f;
         }
 
 
