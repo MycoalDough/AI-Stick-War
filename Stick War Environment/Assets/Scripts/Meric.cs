@@ -103,7 +103,7 @@ public class Meric : MonoBehaviour
         }
 
 
-        if (Vector2.Distance(transform.position, toMove) < 5f && (target == "Team1" && (gv.team2 == 2 || toMove == (Vector2)gv.garrison2.position)))
+        if (Vector2.Distance(transform.position, toMove) < 5f && (((gv.team1 != 2 && gv.team1 != 1 && target == "Team2") || (gv.team2 != 2 && gv.team2 != 1 && target == "Team1"))))
         {
             if (transform.position.x - toMove.x < 0)
             {
@@ -170,16 +170,19 @@ public class Meric : MonoBehaviour
 
     public void AI()
     {
-        findEnemy();
-        if ((gv.team1 == 1 && (target == "Team2")))
+        
+        if ((gv.team1 == 1 && (target == "Team1")))
         {
             toMove = gv.garrison1.transform.position;
             //move to formation
+            return;
         }
-        else if ((gv.team2 == 1 && (target == "Team1")))
+        else if ((gv.team2 == 1 && (target == "Team2")))
         {
             toMove = gv.garrison2.transform.position;
+            return;
         }
+        findEnemy();
     }
 
     public void Attack(float dmg)
@@ -202,7 +205,7 @@ public class Meric : MonoBehaviour
             {
                 if (gv.team1units[i] && (gv.team1units[i].gameObject.tag == target || gv.team1units[i].gameObject.tag == flyingTag) && !gv.garrisonDetector1.IsTargetWithinRange(gv.team1units[i].GetComponentInChildren<HPSystem>().gameObject))
                 {
-                    if (gv.team1units[i].gameObject.GetComponentInChildren<HPSystem>() && (gv.team1units[i].gameObject.GetComponentInChildren<HPSystem>().maxHP - gv.team1units[i].gameObject.GetComponentInChildren<HPSystem>().currentHP > hp.maxHP - hp.currentHP) && !gv.team1units[i].gameObject.GetComponent<Meric>())
+                    if (gv.team1units[i].gameObject.GetComponentInChildren<HPSystem>() && (gv.team1units[i].gameObject.GetComponentInChildren<HPSystem>().maxHP - gv.team1units[i].gameObject.GetComponentInChildren<HPSystem>().currentHP > hp.maxHP - hp.currentHP) && gv.team1units[i].gameObject != gameObject)
                     {
                         closestDistance = Mathf.Abs(Vector2.Distance(gameObject.transform.position, gv.team1units[i].transform.position));
                         saved = gv.team1units[i].transform.position;
@@ -216,7 +219,7 @@ public class Meric : MonoBehaviour
         {
             for (int i = 1; i < gv.team2units.Count; i++)
             {
-                if (gv.team2units[i].gameObject.GetComponentInChildren<HPSystem>() && (gv.team2units[i].gameObject.GetComponentInChildren<HPSystem>().maxHP - gv.team2units[i].gameObject.GetComponentInChildren<HPSystem>().currentHP > hp.maxHP - hp.currentHP) && !gv.team2units[i].gameObject.GetComponent<Meric>())
+                if (gv.team2units[i].gameObject.GetComponentInChildren<HPSystem>() && (gv.team2units[i].gameObject.GetComponentInChildren<HPSystem>().maxHP - gv.team2units[i].gameObject.GetComponentInChildren<HPSystem>().currentHP > hp.maxHP - hp.currentHP) && gv.team2units[i].gameObject != gameObject)
                 {
                     if (closestDistance > Mathf.Abs(Vector2.Distance(gameObject.transform.position, gv.team2units[i].transform.position)))
                     {

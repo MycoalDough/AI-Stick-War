@@ -53,14 +53,17 @@ public class Miner : MonoBehaviour
                 }
                 else if (gv.team1units[i].GetComponent<Miner>() && gv.team1units[i].GetComponent<Miner>().type == "crystal")
                 {
-                    goldCount -= 2;
+                    goldCount -= 2; // Reset gold count after encountering a crystal miner
                 }
 
-            }
-
-            if(goldCount > 0)
-            {
-                type = "crystal";
+                if (goldCount >= 2)
+                {
+                    type = "crystal"; // If two gold miners have been encountered, switch to "crystal"
+                }
+                else
+                {
+                    type = "gold"; // Otherwise, keep the type as "gold"
+                }
             }
         }
         else
@@ -77,14 +80,17 @@ public class Miner : MonoBehaviour
                 }
                 else if (gv.team2units[i].GetComponent<Miner>() && gv.team2units[i].GetComponent<Miner>().type == "crystal")
                 {
-                    goldCount -= 2;
+                    goldCount -= 2; // Reset gold count after encountering a crystal miner
                 }
 
-            }
-
-            if (goldCount > 0)
-            {
-                type = "crystal";
+                if (goldCount >= 2)
+                {
+                    type = "crystal"; // If two gold miners have been encountered, switch to "crystal"
+                }
+                else
+                {
+                    type = "gold"; // Otherwise, keep the type as "gold"
+                }
             }
         }
     }

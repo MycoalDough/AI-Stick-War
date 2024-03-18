@@ -88,6 +88,11 @@ public class GlobalVariables : MonoBehaviour
     public float _statue1;
     public float _statue2;
 
+    public float _gold1;
+    public float _gold2;
+    public float _crystal1;
+    public float _crystal2;
+
 
     [Header("Rage")]
     public bool rageBUY;
@@ -162,8 +167,9 @@ public class GlobalVariables : MonoBehaviour
     // FIRE ARROWS
     public IEnumerator FIRE_ARROWS()
     {
-        if (!canFireArrows) { yield return null; }
-        fireArrows = !fireArrows;
+        if (canFireArrows) {
+            fireArrows = !fireArrows;
+        }
         yield return null;
     }
     public int buyFire_Arrows()
@@ -540,6 +546,10 @@ public class GlobalVariables : MonoBehaviour
             three.tag = "Team2";
             GameObject four = Instantiate(miner, garrison2.transform.position, Quaternion.identity);
             four.tag = "Team2";
+            GameObject five = Instantiate(miner, garrison1.transform.position, Quaternion.identity);
+            five.tag = "Team1";
+            GameObject six = Instantiate(miner, garrison2.transform.position, Quaternion.identity);
+            six.tag = "Team2";
             gold1 = 300;
             gold2 = 300;
             crystal1 = 0;
@@ -548,6 +558,10 @@ public class GlobalVariables : MonoBehaviour
             _statue2 = statue2.currentHP;
             _team1 = team1units.Count;
             _team2 = team2units.Count;
+            _gold1 = gold1;
+            _gold2 = gold2;
+            _crystal1 = crystal1;
+            _crystal2 = crystal2;
 
             foreach (Resource resouce in mines)
             {
@@ -1154,6 +1168,7 @@ public class GlobalVariables : MonoBehaviour
                     {
                         gold1 -= 150;
                         summonTroop1("MINER");
+                        reward += 10;
                     }
                     else
                     {
@@ -1169,9 +1184,9 @@ public class GlobalVariables : MonoBehaviour
                         }
                     }
 
-                    if(numMiners > 8)
+                    if(numMiners > 12)
                     {
-                        reward -= 50;
+                        reward -= 80;
                     }
                 }
                 else if (action == 6)
@@ -1347,6 +1362,7 @@ public class GlobalVariables : MonoBehaviour
                     {
                         gold2 -= 150;
                         summonTroop2("MINER");
+                        reward += 10;
                     }
                     else
                     {
@@ -1362,9 +1378,9 @@ public class GlobalVariables : MonoBehaviour
                         }
                     }
 
-                    if (numMiners > 8)
+                    if (numMiners > 12)
                     {
-                        reward -= 50;
+                        reward -= 80;
                     }
                 }
                 if (action == 6)
@@ -1513,9 +1529,25 @@ public class GlobalVariables : MonoBehaviour
             {
                 reward -= 20;
             }
+
+            if(_gold1 < gold1)
+            {
+                reward += 10;
+                _gold1 = gold1;
+            }
+            if(_crystal1 < crystal1)
+            {
+                reward += 10;
+                _crystal1 = crystal1;
+            }
+
+            if(gold1 < 150) { reward -= 10; }
+
+
         }
         if (team % 2 == 0)
         {
+            if (gold2 < 150) { reward -= 10; }
             if (statue1.currentHP < _statue1)
             {
                 reward += 30;
@@ -1539,6 +1571,16 @@ public class GlobalVariables : MonoBehaviour
             if ((team2 == 1 && team1 != 3) || (team2miners == 1 && team1 != 3))
             {
                 reward -= 20;
+            }
+            if (_gold2 < gold2)
+            {
+                reward += 10;
+                _gold2 = gold2;
+            }
+            if(_crystal2 < crystal2)
+            {
+                reward += 10;
+                _crystal2 = crystal2;
             }
         }
 

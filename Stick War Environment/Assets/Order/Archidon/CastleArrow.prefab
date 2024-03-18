@@ -102,7 +102,7 @@ MonoBehaviour:
   detector: {fileID: 5085722207892002901}
   yValue: 0
   Etag: 
-  damage: 30
+  damage: 17
   moveTo: {x: 0, y: 0}
   speed: 7
   rb: {fileID: 2221675545501505755}

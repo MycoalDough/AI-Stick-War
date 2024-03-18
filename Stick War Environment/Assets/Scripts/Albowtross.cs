@@ -53,7 +53,7 @@ public class Albowtross : MonoBehaviour
     IEnumerator teamAdd()
     {
         tag = transform.parent.gameObject.tag;
-        yield return new WaitForEndOfFrame();
+        yield return new WaitForSeconds(0.1f);
         if (tag == "Team1Flying")
         {
             gv.team1units.Add(gameObject);
