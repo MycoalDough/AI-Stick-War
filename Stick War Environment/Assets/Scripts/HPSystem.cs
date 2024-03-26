@@ -88,7 +88,7 @@ public class HPSystem : MonoBehaviour
             if (poisonTime > poisonMaxTime)
             {
                 poisonTime = 0;
-                Damage(3);
+                Damage(0.2f);
                 poisonStacks--;
             }
             poisonShow.SetActive(true);
@@ -107,7 +107,7 @@ public class HPSystem : MonoBehaviour
             if (fireTime > fireMaxTime)
             {
                 fireTime = 0;
-                Damage(12);
+                Damage(0.5f);
                 fireStacks--;
             }
 
@@ -296,10 +296,6 @@ public class HPSystem : MonoBehaviour
     {
         currentHP -= dmg / defense;
 
-
-        HPBar.localScale = new Vector3(currentHP / maxHP, HPBar.localScale.y, HPBar.localScale.z);
-
-
         if (currentHP <= 0)
         {
             spriteRenderer.sortingOrder = 1000;
@@ -340,7 +336,11 @@ public class HPSystem : MonoBehaviour
 
             spriteRenderer.gameObject.AddComponent<Remove>();
             spriteRenderer.flipX = false;
-            Destroy(gameObject);
+
+            if (gameObject)
+            {
+                Destroy(gameObject);
+            }
 
 
         }

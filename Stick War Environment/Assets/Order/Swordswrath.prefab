@@ -4997,8 +4997,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   target: Team2
-  damage: 15
-  moveSpeed: 3.5
+  damage: 1.85
+  moveSpeed: 3.45
   left: {fileID: 3590580708711030962}
   right: {fileID: 3590580709077860245}
   jumpAttacking: 0
@@ -5052,6 +5052,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4932366756427872774}
     m_Modifications:
+    - target: {fileID: 2226930118870025953, guid: 4eb51063549e5434cb2ef8870ac2184a,
+        type: 3}
+      propertyPath: maxHP
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 2226930118870025953, guid: 4eb51063549e5434cb2ef8870ac2184a,
+        type: 3}
+      propertyPath: currentHP
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 2226930118870025953, guid: 4eb51063549e5434cb2ef8870ac2184a,
         type: 3}
       propertyPath: deathSprite

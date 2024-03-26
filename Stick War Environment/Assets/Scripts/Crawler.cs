@@ -22,6 +22,8 @@ public class Crawler : MonoBehaviour
 
     public EnemyDetector left;
     public EnemyDetector right;
+
+    public EnemyDetector packMentality;
     // Start is called before the first frame update
     void Start()
     {
@@ -71,6 +73,15 @@ public class Crawler : MonoBehaviour
             anim.Play("CrawlerIdle");
 
             return;
+        }
+
+        if (packMentality.getNameNameInRange("Crawler") >= 5)
+        {
+            damage = 0.6f;
+        }
+        else
+        {
+            damage = 0.3f;
         }
 
         if (Vector2.Distance(transform.position, toMove) < 0.05f)

@@ -283,10 +283,11 @@ MonoBehaviour:
     m_Bits: 0
   target: 
   damage: 0
-  moveSpeed: 4
+  moveSpeed: 3.4
   left: {fileID: 586988573949676119}
   right: {fileID: 586988573599208816}
   bomber: {fileID: 4618970726890557879, guid: 9a6eb4706d9b8dd42b4c7aee5714a23b, type: 3}
+  boom: 0
 --- !u!1001 &4122421879687782785
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -297,12 +298,12 @@ PrefabInstance:
     - target: {fileID: 2226930118870025953, guid: 4eb51063549e5434cb2ef8870ac2184a,
         type: 3}
       propertyPath: maxHP
-      value: 50
+      value: 4.5
       objectReference: {fileID: 0}
     - target: {fileID: 2226930118870025953, guid: 4eb51063549e5434cb2ef8870ac2184a,
         type: 3}
       propertyPath: currentHP
-      value: 50
+      value: 4.5
       objectReference: {fileID: 0}
     - target: {fileID: 2226930118870025953, guid: 4eb51063549e5434cb2ef8870ac2184a,
         type: 3}

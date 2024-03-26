@@ -161,7 +161,7 @@ MonoBehaviour:
   detector: {fileID: 7122280408000507570}
   yValue: 0
   Etag: 
-  damage: 1
+  damage: 0.3
   moveTo: {x: 0, y: 0}
   h: {fileID: 0}
   gv: {fileID: 0}

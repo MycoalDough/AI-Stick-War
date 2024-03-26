@@ -130,11 +130,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HPBar: {fileID: 514556243036305515}
-  maxHP: 250
-  currentHP: 250
+  maxHP: 54
+  currentHP: 54
   gv: {fileID: 0}
   toRemove: []
-  defense: 1
+  defense: 1.2
   spriteRenderer: {fileID: 7810561471584727038}
   deathSprite: {fileID: -6296535467082541977, guid: 2c13a89eb93745d4ca59553f3dbd9a25,
     type: 3}
@@ -794,7 +794,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   target: 
-  damage: 24
+  damage: 1.5
   moveSpeed: 2.5
   left: {fileID: 1856528723254949195}
   right: {fileID: 1856528723055503980}

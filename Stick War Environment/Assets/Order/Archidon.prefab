@@ -182,7 +182,7 @@ MonoBehaviour:
   Etag: Team2
   target: Team2
   damage: 10
-  moveSpeed: 1.8
+  moveSpeed: 2.2
 --- !u!114 &2505449126992038906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -222,12 +222,12 @@ PrefabInstance:
     - target: {fileID: 2226930118870025953, guid: 4eb51063549e5434cb2ef8870ac2184a,
         type: 3}
       propertyPath: maxHP
-      value: 100
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2226930118870025953, guid: 4eb51063549e5434cb2ef8870ac2184a,
         type: 3}
       propertyPath: currentHP
-      value: 100
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2226930118870025953, guid: 4eb51063549e5434cb2ef8870ac2184a,
         type: 3}

@@ -113,7 +113,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   detector: {fileID: 6739888948434412768}
   Etag: 
-  damage: 40
+  damage: 6.6
   moveTo: {x: 0, y: 0}
   speed: 3
   rb: {fileID: 8880999347580513017}

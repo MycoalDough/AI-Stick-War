@@ -34,6 +34,9 @@ public class GlobalVariables : MonoBehaviour
     public Transform centerPoint1;
     public Transform centerPoint2;
 
+    public Transform towerPoint1;
+    public Transform towerPoint2;
+
     public float rowSpacing = 1.5f; // Spacing between rows
     public float columnSpacing = 1f; // Spacing between columns
     public int maxStickmenPerRow = 4; // Maximum stickmen per row
@@ -124,7 +127,57 @@ public class GlobalVariables : MonoBehaviour
     public int castle1ability;
     public int castle2ability;
 
+    [Header("TOWER SPAWN")]
+    public int towerSpawn1;
+    public int towerSpawn2;
+
+    public Tower tower;
+
+    //TOWER SPAWN
+    public int buyTowerSpawn1()
+    {
+        if (gold1 >= 600 && crystal1 >= 200 && towerSpawn1 == 0)
+        {
+            towerSpawn1 = 1;
+            gold1 -= 600;
+            crystal1 -= 200;
+            return 0;
+        }
+        else if (gold1 >= 2000 && crystal1 >= 1000 && towerSpawn1 == 1)
+        {
+            towerSpawn1 = 2;
+            gold1 -= 2000;
+            crystal1 -= 1000;
+            return 0;
+        }
+        return -10;
+
+    }
+
+    public int buyTowerSpawn2()
+    {
+        if (gold2 >= 600 && crystal2 >= 200 && towerSpawn2 == 0)
+        {
+            towerSpawn2 = 1;
+            gold2 -= 600;
+            crystal2 -= 200;
+            return 0;
+        }
+        else if (gold2 >= 2000 && crystal2 >= 1000 && towerSpawn2 == 1)
+        {
+            towerSpawn2 = 2;
+            gold2 -= 2000;
+            crystal2 -= 1000;
+            return 0;
+        }
+        return -10;
+
+    }
+
+
     // RAGE
+
+    public RLConnection RLConnection;
     public IEnumerator RAGE()
     {
         if (rageBUY && canRage)
@@ -355,19 +408,28 @@ public class GlobalVariables : MonoBehaviour
 
         if (team1 == 2)
         {
-            ArrangeStickmenTeam1();
-        }else if(team1 == 1)
+            ArrangeStickmenTeam1(centerPoint1);
+        }
+        else if(team1 == 1)
         {
             arrangeGiants1();
+        }
+        else if (team1 == 4)
+        {
+            ArrangeStickmenTeam1(towerPoint1);
         }
 
         if (team2 == 2)
         {
-            ArrangeStickmenTeam2();
+            ArrangeStickmenTeam2(centerPoint2);
         }
         else if (team2 == 1)
         {
             arrangeGiants2();
+        }
+        else if (team2 == 4)
+        {
+            ArrangeStickmenTeam2(towerPoint2);
         }
         detection();
         team1units.RemoveAll(item => item == null);
@@ -414,6 +476,11 @@ public class GlobalVariables : MonoBehaviour
         int numberOfCastles = castle1ability + (int)Mathf.Floor(s / 10);
         if (s > 1) { numberOfCastles++; }
 
+        if(RLConnection.time > 1800)
+        {
+            numberOfCastles = 0;
+        }
+
         while (numberOfCastles != castle1.Count) {
             if(numberOfCastles > castle1.Count)
             {
@@ -457,6 +524,11 @@ public class GlobalVariables : MonoBehaviour
         int numberOfCastles = castle2ability + (int)Mathf.Floor(s / 10);
 
         if(s > 1) { numberOfCastles++; }
+
+        if (RLConnection.time > 1800)
+        {
+            numberOfCastles = 0;
+        }
 
         while (numberOfCastles != castle2.Count)
         {
@@ -562,6 +634,11 @@ public class GlobalVariables : MonoBehaviour
             _gold2 = gold2;
             _crystal1 = crystal1;
             _crystal2 = crystal2;
+            towerSpawn1 = 0;
+            towerSpawn2 = 0;
+            tower.control = 0;
+            tower.ticks = 0;
+            tower.ticksResources = 0;
 
             foreach (Resource resouce in mines)
             {
@@ -601,7 +678,7 @@ public class GlobalVariables : MonoBehaviour
     {
         team1miners = to;
     }
-    void ArrangeStickmenTeam1()
+    void ArrangeStickmenTeam1(Transform point)
     {
         Dictionary<string, int> stickmenCounts = new Dictionary<string, int>(); // Dictionary to store counts of each stickman type
         Dictionary<string, int> stickmenColumns = new Dictionary<string, int>(); // Dictionary to store current column index for each stickman type
@@ -707,7 +784,7 @@ public class GlobalVariables : MonoBehaviour
                 }
 
                 // Calculate position based on type, current column index, and offset
-                Vector3 position = centerPoint1.position + new Vector3((stickmenColumns[stickmanType] * columnSpacing) + xOffset, stickmenCounts[stickmanType] * rowSpacing, 0);
+                Vector3 position = point.position + new Vector3((stickmenColumns[stickmanType] * columnSpacing) + xOffset, stickmenCounts[stickmanType] * rowSpacing, 0);
 
                 // Update stickman position
                 setPos(stickman, position);
@@ -838,7 +915,7 @@ public class GlobalVariables : MonoBehaviour
         }
     }
 
-    void ArrangeStickmenTeam2()
+    void ArrangeStickmenTeam2(Transform point)
     {
         Dictionary<string, int> stickmenCounts = new Dictionary<string, int>(); // Dictionary to store counts of each stickman type
         Dictionary<string, int> stickmenColumns = new Dictionary<string, int>(); // Dictionary to store current column index for each stickman type
@@ -942,7 +1019,7 @@ public class GlobalVariables : MonoBehaviour
                     stickmenColumns[stickmanType] = 0;
                 }
 
-                Vector3 position = centerPoint2.position + new Vector3((stickmenColumns[stickmanType] * columnSpacing) + xOffset, stickmenCounts[stickmanType] * rowSpacing, 0);
+                Vector3 position = point.position + new Vector3((stickmenColumns[stickmanType] * columnSpacing) + xOffset, stickmenCounts[stickmanType] * rowSpacing, 0);
 
                 setPos(stickman, position);
                 stickmenCounts[stickmanType]++;
@@ -1120,6 +1197,14 @@ public class GlobalVariables : MonoBehaviour
         {
             reward += buyGiant_Upgrade2();
         }
+        else if(action == 16)
+        {
+            setTeam2(4);
+        }
+        else if (action == 17)
+        {
+            reward += buyTowerSpawn2();
+        }
     }
     public float playAction(int action, int team) 
     {
@@ -1168,7 +1253,7 @@ public class GlobalVariables : MonoBehaviour
                     {
                         gold1 -= 150;
                         summonTroop1("MINER");
-                        reward += 10;
+                        reward += 20;
                     }
                     else
                     {
@@ -1326,6 +1411,14 @@ public class GlobalVariables : MonoBehaviour
             else if (action == 22)
             {
                 reward += buyCastle_Archer1();
+            }
+            else if (action == 23)
+            {
+                setTeam1(4);
+            }
+            else if (action == 24)
+            {
+                reward += buyTowerSpawn1();
             }
             else
             {
@@ -1495,6 +1588,14 @@ public class GlobalVariables : MonoBehaviour
             {
                 reward += buyGiant_Upgrade2();
             }
+            else if (action == 16)
+            {
+                setTeam2(4);
+            }
+            else if (action == 17)
+            {
+                reward += buyTowerSpawn2();
+            }
             else
             {
                 reward -= 10;
@@ -1505,7 +1606,21 @@ public class GlobalVariables : MonoBehaviour
         //reward 
         if(team % 2 != 0)
         {
-            if(statue1.currentHP < _statue1)
+            int numMiners = 0;
+            foreach (GameObject unit in team1units)
+            {
+                if (unit.GetComponent<Miner>() != null)
+                {
+                    numMiners++;
+                }
+            }
+
+            if (numMiners > 12 || numMiners <= 0)
+            {
+                reward -= 50;
+            }
+
+            if (statue1.currentHP < _statue1)
             {
                 reward -= 15;
             }
@@ -1521,13 +1636,17 @@ public class GlobalVariables : MonoBehaviour
             {
                 reward += 30;
             }
-            if(gold1 > 2000)
+            if(gold1 > 3000)
             {
                 reward -= 10;
             }
+            if(tower.control == 100)
+            {
+                reward += 10;
+            }
             if((team1 == 1 && team2 != 3) || (team1miners == 1 && team2 != 3))
             {
-                reward -= 20;
+                reward -= 30;
             }
 
             if(_gold1 < gold1)
@@ -1547,6 +1666,20 @@ public class GlobalVariables : MonoBehaviour
         }
         if (team % 2 == 0)
         {
+            int numMiners = 0;
+            foreach (GameObject unit in team2units)
+            {
+                if (unit.GetComponent<Miner>() != null)
+                {
+                    numMiners++;
+                }
+            }
+
+            if (numMiners > 12 || numMiners <= 0)
+            {
+                reward -= 50;
+            }
+
             if (gold2 < 150) { reward -= 10; }
             if (statue1.currentHP < _statue1)
             {
@@ -1564,13 +1697,17 @@ public class GlobalVariables : MonoBehaviour
             {
                 reward -= 15;
             }
-            if (gold2 > 2000)
+            if (gold2 > 3000)
             {
                 reward -= 10;
             }
+            if (tower.control == -100)
+            {
+                reward += 10;
+            }
             if ((team2 == 1 && team1 != 3) || (team2miners == 1 && team1 != 3))
             {
-                reward -= 20;
+                reward -= 30;
             }
             if (_gold2 < gold2)
             {

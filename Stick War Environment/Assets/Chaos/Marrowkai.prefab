@@ -152,6 +152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arrow: {fileID: 7102707849673085004, guid: 3c8549f79e04d4e4a8857547c6290c8f, type: 3}
   launchForce: 20
+  gv: {fileID: 0}
 --- !u!114 &3373682955604211931
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -230,6 +231,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arrow: {fileID: 7304677135827875825, guid: 7c76c1f40e2bf564e96d82d59f3ae391, type: 3}
   launchForce: 20
+  gv: {fileID: 0}
 --- !u!1 &4609008716191302191
 GameObject:
   m_ObjectHideFlags: 0
@@ -322,12 +324,12 @@ PrefabInstance:
     - target: {fileID: 2226930118870025953, guid: 4eb51063549e5434cb2ef8870ac2184a,
         type: 3}
       propertyPath: maxHP
-      value: 200
+      value: 36
       objectReference: {fileID: 0}
     - target: {fileID: 2226930118870025953, guid: 4eb51063549e5434cb2ef8870ac2184a,
         type: 3}
       propertyPath: currentHP
-      value: 200
+      value: 36
       objectReference: {fileID: 0}
     - target: {fileID: 2226930118870025953, guid: 4eb51063549e5434cb2ef8870ac2184a,
         type: 3}

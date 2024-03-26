@@ -70,17 +70,29 @@ public class RLConnection : MonoBehaviour
             gv.team2 = 3;
             gv.team1 = 3;
         }
+
+        if(time > 2000)
+        {
+            string toSend1 = "";
+            string done1 = "True";
+            reward = -700;
+
+            toSend1 += reward.ToString();
+            toSend1 += ":";
+            toSend1 += done1.ToString();
+            return toSend1;
+        }
         string toSend = "";
         string done = "False";
 
         if(team % 2 == 0)
         {
-            if(gv.statue1.currentHP <= 3000)
+            if(gv.statue1.currentHP <= 300)
             {
                 float timeReward = (time < 1000) ? (1000 - time) : 0;
                 reward += 500 + timeReward;
                 done = "True";
-            }else if(gv.statue2.currentHP <= 3000)
+            }else if(gv.statue2.currentHP <= 300)
             {
                 reward -= 500;
                 done = "True";
@@ -89,13 +101,13 @@ public class RLConnection : MonoBehaviour
         }
         else
         {
-            if (gv.statue1.currentHP < 3000)
+            if (gv.statue1.currentHP < 300)
             {
                 reward -= 500;
                 done = "True";
 
             }
-            else if (gv.statue2.currentHP < 3000)
+            else if (gv.statue2.currentHP < 300)
             {
                 float timeReward = (time < 1000) ? (1000 - time) : 0;
                 reward += 500 + timeReward;
@@ -246,6 +258,9 @@ public class RLConnection : MonoBehaviour
             saved.Add(gv.castle2ability.ToString());
             saved.Add(gv.giantUpgrade2.ToString());
 
+            saved.Add(gv.tower.control.ToString());
+            saved.Add(gv.tower.ticksResources.ToString());
+
             //17
 
         }
@@ -265,6 +280,9 @@ public class RLConnection : MonoBehaviour
             saved.Add(gv.castle1ability.ToString());
             saved.Add(gv.castle2ability.ToString());
             saved.Add(gv.giantUpgrade2.ToString());
+
+            saved.Add(gv.tower.control.ToString());
+            saved.Add(gv.tower.ticksResources.ToString());
 
             //13
         }

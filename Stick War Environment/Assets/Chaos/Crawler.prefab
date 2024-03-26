@@ -284,10 +284,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   target: 
-  damage: 15
+  damage: 10
   moveSpeed: 3.5
   left: {fileID: 1399749637572253287}
   right: {fileID: 1399749637339482432}
+  packMentality: {fileID: 9049141649819640591}
 --- !u!1 &9049141649819640589
 GameObject:
   m_ObjectHideFlags: 0
@@ -343,12 +344,12 @@ PrefabInstance:
     - target: {fileID: 2226930118870025953, guid: 4eb51063549e5434cb2ef8870ac2184a,
         type: 3}
       propertyPath: maxHP
-      value: 50
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2226930118870025953, guid: 4eb51063549e5434cb2ef8870ac2184a,
         type: 3}
       propertyPath: currentHP
-      value: 50
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2226930118870025953, guid: 4eb51063549e5434cb2ef8870ac2184a,
         type: 3}

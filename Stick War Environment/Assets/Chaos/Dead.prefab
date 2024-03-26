@@ -519,11 +519,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HPBar: {fileID: 4318244526572147100}
-  maxHP: 100
-  currentHP: 100
+  maxHP: 27
+  currentHP: 27
   gv: {fileID: 0}
   toRemove: []
-  defense: 1
+  defense: 1.2
   spriteRenderer: {fileID: 2669185012260507741}
   deathSprite: {fileID: 2713315891683364347, guid: 2420d3cb2a84d2b4e8158751d8609d4e,
     type: 3}

@@ -109,7 +109,7 @@ MonoBehaviour:
   isMining: 0
   anim: {fileID: 3049998048079118126}
   team: 1
-  moveSpeed: 1.4
+  moveSpeed: 1.5
   maxStorage: 0
 --- !u!95 &3049998048079118126
 Animator:
@@ -198,6 +198,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3049998048079118124}
     m_Modifications:
+    - target: {fileID: 2226930118870025953, guid: 4eb51063549e5434cb2ef8870ac2184a,
+        type: 3}
+      propertyPath: maxHP
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 2226930118870025953, guid: 4eb51063549e5434cb2ef8870ac2184a,
+        type: 3}
+      propertyPath: currentHP
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 2226930118870025953, guid: 4eb51063549e5434cb2ef8870ac2184a,
         type: 3}
       propertyPath: spriteRenderer

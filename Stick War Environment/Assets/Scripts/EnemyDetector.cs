@@ -38,6 +38,23 @@ public class EnemyDetector : MonoBehaviour
 
     }
 
+    public int getNameNameInRange(string enemy)
+    {
+        Collider2D[] colliders = Physics2D.OverlapBoxAll(transform.position, new Vector2(detectionWidth, detectionHeight), transform.rotation.eulerAngles.z);
+        int num = 0;
+        foreach (var collider in colliders)
+        {
+            if (colliders.Length == 0) { return 0; }
+            if (collider && collider.gameObject && collider.gameObject.name.Contains(enemy))
+            {
+                num++;
+            }
+        }
+
+        return num;
+
+    }
+
     public GameObject IsTagWithinRange(String tag)
     {
         Collider2D[] colliders = Physics2D.OverlapBoxAll(transform.position, new Vector2(detectionWidth, detectionHeight), transform.rotation.eulerAngles.z);

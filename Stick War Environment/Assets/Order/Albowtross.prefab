@@ -265,7 +265,7 @@ MonoBehaviour:
   Etag: 
   target: 
   damage: 20
-  moveSpeed: 2
+  moveSpeed: 1.9
 --- !u!1 &4067608700376779593
 GameObject:
   m_ObjectHideFlags: 0
@@ -543,12 +543,17 @@ PrefabInstance:
     - target: {fileID: 2226930118870025953, guid: 4eb51063549e5434cb2ef8870ac2184a,
         type: 3}
       propertyPath: maxHP
-      value: 200
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 2226930118870025953, guid: 4eb51063549e5434cb2ef8870ac2184a,
+        type: 3}
+      propertyPath: defense
+      value: 1.3
       objectReference: {fileID: 0}
     - target: {fileID: 2226930118870025953, guid: 4eb51063549e5434cb2ef8870ac2184a,
         type: 3}
       propertyPath: currentHP
-      value: 200
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 2226930118870025953, guid: 4eb51063549e5434cb2ef8870ac2184a,
         type: 3}

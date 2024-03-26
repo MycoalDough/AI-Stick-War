@@ -125,6 +125,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   detector: {fileID: 567146678403220785}
   Etag: 
-  damage: 1
+  damage: 0.01
   time: 0
   ticks: 0.5

@@ -223,8 +223,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   target: Team2
-  damage: 50
-  moveSpeed: 1
+  damage: 3
+  moveSpeed: 1.4
   left: {fileID: 2714532154336518440}
   right: {fileID: 2714532154781236542}
 --- !u!1 &2714532154781236543
@@ -282,12 +282,17 @@ PrefabInstance:
     - target: {fileID: 2226930118870025953, guid: 4eb51063549e5434cb2ef8870ac2184a,
         type: 3}
       propertyPath: maxHP
-      value: 1500
+      value: 126
+      objectReference: {fileID: 0}
+    - target: {fileID: 2226930118870025953, guid: 4eb51063549e5434cb2ef8870ac2184a,
+        type: 3}
+      propertyPath: defense
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 2226930118870025953, guid: 4eb51063549e5434cb2ef8870ac2184a,
         type: 3}
       propertyPath: currentHP
-      value: 1500
+      value: 126
       objectReference: {fileID: 0}
     - target: {fileID: 2226930118870025953, guid: 4eb51063549e5434cb2ef8870ac2184a,
         type: 3}
