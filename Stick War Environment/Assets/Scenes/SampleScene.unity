@@ -974,8 +974,8 @@ MonoBehaviour:
   - {fileID: 625157791}
   centerPoint1: {fileID: 1349411636}
   centerPoint2: {fileID: 1567646625}
-  towerPoint1: {fileID: 0}
-  towerPoint2: {fileID: 0}
+  towerPoint1: {fileID: 1349411636}
+  towerPoint2: {fileID: 1860911743}
   rowSpacing: 1.5
   columnSpacing: 1
   maxStickmenPerRow: 5

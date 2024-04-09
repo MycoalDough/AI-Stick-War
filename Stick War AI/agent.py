@@ -7,11 +7,11 @@ import PER.D3QN_PER_NN as Model
 
 
 if(__name__ == "__main__"):
-    load_checkpoint = True
+    load_checkpoint = False
 
 
-    agent1 = Model.Agent(gamma=0.99,epsilon=1,lr=4e-4, input_dims=[726],n_actions=24, mem_size=200_000, eps_min=0.01, batch_size=32, checkpoint_name="team1",eps_dec=2e-6,replace=100)
-    agent2 = Model.Agent(gamma=0.99,epsilon=1,lr=4e-4, input_dims=[722],n_actions=17, mem_size=200_000, eps_min=0.01, batch_size=32,checkpoint_name="team2",eps_dec=2e-6,replace=100)
+    agent1 = Model.Agent(gamma=0.99,epsilon=1,lr=4e-4, input_dims=[726],n_actions=24, mem_size=300_000, eps_min=0.01, batch_size=32, checkpoint_name="team1",eps_dec=2e-6,replace=100)
+    agent2 = Model.Agent(gamma=0.99,epsilon=1,lr=4e-4, input_dims=[722],n_actions=17, mem_size=300_000, eps_min=0.01, batch_size=32,checkpoint_name="team2",eps_dec=2e-6,replace=100)
 
 
     if load_checkpoint:
