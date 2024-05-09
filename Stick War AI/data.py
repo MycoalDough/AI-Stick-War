@@ -57,6 +57,18 @@ def convert_list(string):
     return l
 
 
+def normalize_reward(reward):
+    """
+    Normalize reward from a given range to [-1, 1].
+
+    Args:
+    reward (float): The reward value to be normalized.
+
+    Returns:
+    float: The normalized reward.
+    """
+    return 2 * ((reward + 1000) / (1300 + 1000)) - 1
+
 def play_step(step):
     try:
         to_send = "play_step:" + str(step)
@@ -76,7 +88,7 @@ def play_step(step):
                     result_list.append(element.lower() == 'true')
                 else:
                     result_list.append(element)
-            return result_list[0], result_list[1], np.array(convert_list(elements[2]), dtype=float), result_list[3]
+            return result_list[0], result_list[1], np.array(convert_list(elements[2]), dtype=float), result_list[3], result_list[4]
     except Exception as e:
         print("Error in get_state:", e)
         return None

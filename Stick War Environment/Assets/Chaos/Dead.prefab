@@ -519,8 +519,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HPBar: {fileID: 4318244526572147100}
-  maxHP: 27
-  currentHP: 27
+  maxHP: 20
+  currentHP: 20
   gv: {fileID: 0}
   toRemove: []
   defense: 1.2

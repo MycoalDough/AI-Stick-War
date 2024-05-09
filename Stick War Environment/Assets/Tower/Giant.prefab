@@ -61,7 +61,7 @@ GameObject:
   - component: {fileID: 9222474795398865710}
   m_Layer: 0
   m_Name: Giant
-  m_TagString: Team1
+  m_TagString: Team2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

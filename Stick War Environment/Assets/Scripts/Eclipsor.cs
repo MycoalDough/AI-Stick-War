@@ -85,7 +85,7 @@ public class Eclipsor : MonoBehaviour
 
         if (Vector2.Distance(transform.position, toMove) < 0.05f)
         {
-            if ((target == "Team2" && (gv.team1 == 2 || toMove == (Vector2)gv.garrison1.position)) || (target == "Team1" && (gv.team2 == 2 || toMove == (Vector2)gv.garrison2.position)))
+            if ((target == "Team2" && (gv.team1 == 2 || gv.team1 == 4 || toMove == (Vector2)gv.garrison1.position)) || (target == "Team1" && (gv.team2 == 2 || gv.team2 == 4 || toMove == (Vector2)gv.garrison2.position)))
             {
                 isAttacking = false;
                 anim.Play("EclipsorIdle");
@@ -104,7 +104,7 @@ public class Eclipsor : MonoBehaviour
         }
 
 
-        if (Vector2.Distance(transform.position, toMove) < 10f && (((gv.team1 != 2 && gv.team1 != 1 && target == "Team2") || (gv.team2 != 2 && gv.team2 != 1 && target == "Team1"))))
+        if (Vector2.Distance(transform.position, toMove) < 10f && (((gv.team1 != 2 && gv.team1 != 1 && gv.team1 != 4 && target == "Team2") || (gv.team2 != 2 && gv.team2 != 1 && gv.team2 != 4 && target == "Team1"))))
         {
             if (transform.position.x - toMove.x < 0)
             {
@@ -127,7 +127,7 @@ public class Eclipsor : MonoBehaviour
         }
 
         if (!isReloading) anim.Play("EclipsorWalk");
-        if (Vector2.Distance(transform.position, toMove) < 8f && (((gv.team1 != 2 && gv.team1 != 1 && target == "Team2") || (gv.team2 != 2 && gv.team2 != 1 && target == "Team1"))) && (isAttacking || isReloading))
+        if (Vector2.Distance(transform.position, toMove) < 8f && (((gv.team1 != 2 && gv.team1 != 1 && gv.team1 != 4 && target == "Team2") || (gv.team2 != 2 && gv.team2 != 4 && gv.team2 != 1 && target == "Team1"))) && (isAttacking || isReloading))
         {
             moveDirection = ((Vector2)transform.position - toMove).normalized;
             Vector2 newPosition = rb.position + moveDirection * curSpeed * Time.fixedDeltaTime;

@@ -72,7 +72,7 @@ public class Bomber : MonoBehaviour
         }
         if (Vector2.Distance(transform.position, toMove) < 0.05f)
         {
-            if (((target == "Team2") && (toMove == (Vector2)gv.garrison1.position || gv.team1 == 2)) || ((target == "Team1") && (toMove == (Vector2)gv.garrison2.position || gv.team2 == 2)))
+            if ((target == "Team2" && (gv.team1 == 2 || gv.team1 == 4 || toMove == (Vector2)gv.garrison1.position)) || (target == "Team1" && (gv.team2 == 2 || gv.team2 == 4 || toMove == (Vector2)gv.garrison2.position)))
             {
                 anim.Play("BomberIdle");
                 return;
@@ -81,7 +81,7 @@ public class Bomber : MonoBehaviour
         }
   
 
-        if (Vector2.Distance(transform.position, toMove) < .5f && (((target == "Team2") && (toMove != (Vector2)gv.garrison1.position && gv.team1 != 2)) || ((target == "Team1") && (toMove != (Vector2)gv.garrison2.position && gv.team2 != 2))) && !boom)
+        if (Vector2.Distance(transform.position, toMove) < .5f && (((target == "Team2") && (toMove != (Vector2)gv.garrison1.position && gv.team1 != 2 && gv.team1 != 4)) || ((target == "Team1") && (toMove != (Vector2)gv.garrison2.position && gv.team2 != 2 && gv.team2 != 4))) && !boom)
         {
             boom = true;
             StartCoroutine(AttackAnimation());

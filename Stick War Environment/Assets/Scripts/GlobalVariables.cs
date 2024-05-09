@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Data.Common;
+using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -96,6 +97,9 @@ public class GlobalVariables : MonoBehaviour
     public float _crystal1;
     public float _crystal2;
 
+    public TextMeshProUGUI TEAM1;
+    public TextMeshProUGUI TEAM2;
+
 
     [Header("Rage")]
     public bool rageBUY;
@@ -138,6 +142,7 @@ public class GlobalVariables : MonoBehaviour
     {
         if (gold1 >= 600 && crystal1 >= 200 && towerSpawn1 == 0)
         {
+            TEAM1.text = "TOWER SPAWN";
             towerSpawn1 = 1;
             gold1 -= 600;
             crystal1 -= 200;
@@ -145,12 +150,14 @@ public class GlobalVariables : MonoBehaviour
         }
         else if (gold1 >= 2000 && crystal1 >= 1000 && towerSpawn1 == 1)
         {
+            TEAM1.text = "TOWER SPAWN 2";
             towerSpawn1 = 2;
             gold1 -= 2000;
             crystal1 -= 1000;
             return 0;
         }
-        return -10;
+        TEAM1.text = "CANNOT AFFORD TOWER SPAWN";
+        return -100;
 
     }
 
@@ -158,6 +165,7 @@ public class GlobalVariables : MonoBehaviour
     {
         if (gold2 >= 600 && crystal2 >= 200 && towerSpawn2 == 0)
         {
+            TEAM2.text = "TOWER SPAWN";
             towerSpawn2 = 1;
             gold2 -= 600;
             crystal2 -= 200;
@@ -165,12 +173,14 @@ public class GlobalVariables : MonoBehaviour
         }
         else if (gold2 >= 2000 && crystal2 >= 1000 && towerSpawn2 == 1)
         {
+            TEAM2.text = "TOWER SPAWN 2";
             towerSpawn2 = 2;
             gold2 -= 2000;
             crystal2 -= 1000;
             return 0;
         }
-        return -10;
+        TEAM2.text = "CANNOT AFFORD TOWER SPAWN";
+        return -100;
 
     }
 
@@ -180,8 +190,10 @@ public class GlobalVariables : MonoBehaviour
     public RLConnection RLConnection;
     public IEnumerator RAGE()
     {
+        TEAM1.text = "ATTEMPTED RAGE";
         if (rageBUY && canRage)
         {
+            TEAM1.text = "RAGE";
             for (int i = 0; i < team2units.Count; i++)
             {
                 if (team2units[i].GetComponent<Swordswrath>())
@@ -206,13 +218,15 @@ public class GlobalVariables : MonoBehaviour
     public int buyRage()
     {
         if(gold1 >= 50 && crystal1 >= 50 && !rageBUY) {
+            TEAM1.text = "RAGE BUY";
             rageBUY = true;
             canRage = true;
             gold1 -= 50;
             crystal1 -= 50;
             return 0;
         }
-        return -10;
+        TEAM1.text = "CANNOT AFFORD RAGE";
+        return -100;
 
     }
 
@@ -220,7 +234,9 @@ public class GlobalVariables : MonoBehaviour
     // FIRE ARROWS
     public IEnumerator FIRE_ARROWS()
     {
+        TEAM1.text = "ATTEMPTED FIRE ARROWS";
         if (canFireArrows) {
+            TEAM1.text = "FIRE ARROWS";
             fireArrows = !fireArrows;
         }
         yield return null;
@@ -229,17 +245,20 @@ public class GlobalVariables : MonoBehaviour
     {
         if (gold1 >= 50 && crystal1 >= 100 && !canFireArrows)
         {
+            TEAM1.text = "FIRE ARROW BUY";
             canFireArrows = true;
             gold1 -= 50;
             crystal1 -= 100;
             return 0;
         }
-        return -10;
+        TEAM1.text = "FIRE ARROW TOO EXPENSIVE";
+        return -100;
     }
 
     //SHIELD WALL
     public IEnumerator SHIELD_WALL()
     {
+        TEAM1.text = "SHIELD WALL";
         shieldWall = !shieldWall;
         yield return null;
     }
@@ -249,11 +268,14 @@ public class GlobalVariables : MonoBehaviour
     {
         if (gold1 >= 400 && !blazingBolts)
         {
+            TEAM1.text = "BLAZING BOLTS BUY";
             blazingBolts = true;
             gold1 -= 400;
             return 0;
         }
-        return -10;
+
+        TEAM1.text = "ATTEMPTED BLAZING BOLTS BUY";
+        return -100;
     }
 
     //GIANT UPGRADE
@@ -261,23 +283,28 @@ public class GlobalVariables : MonoBehaviour
     {
         if (gold1 >= 400 && crystal1 >= 400 && giantUpgrade1 == 1)
         {
+            TEAM1.text = "GIANT 1";
             giantUpgrade1 = 1.3f;
             gold1 -= 400;
             crystal1 -= 400;
             return 0;
         }else if(gold1 >= 600 && crystal1 >= 600 && giantUpgrade1 == 1.3f)
         {
+            TEAM1.text = "GIANT 2";
             giantUpgrade1 = 1.7f;
             gold1 -= 600;
             crystal1 -= 600;return 0;
         }
-        return -10;
+
+        TEAM1.text = "GIANT UPGRADE TOO EXPENSIVE";
+        return -100;
     }
 
     public int buyGiant_Upgrade2()
     {
         if (gold2 >= 400 && crystal2 >= 400 && giantUpgrade2 == 1)
         {
+            TEAM2.text = "GIANT 1";
             giantUpgrade2 = 1.3f;
             gold2 -= 400;
             crystal2 -= 400;
@@ -285,11 +312,14 @@ public class GlobalVariables : MonoBehaviour
         }
         else if (gold2 >= 600 && crystal2 >= 600 && giantUpgrade2 == 1.3f)
         {
+            TEAM2.text = "GIANT 2";
             giantUpgrade2 = 1.7f;
             gold2 -= 600;
             crystal2 -= 600;
             return 0;   
         }
+
+        TEAM2.text = "GIANT UPGRADE TOO EXPESNIVE";
         return -10;
     }
 
@@ -301,6 +331,7 @@ public class GlobalVariables : MonoBehaviour
         {
             if(passive1 == 5)
             {
+                TEAM1.text = "PASSIVE 1";
                 passive1 = 10;
                 gold1 -= 150;
                 crystal1 -= 100;
@@ -308,6 +339,7 @@ public class GlobalVariables : MonoBehaviour
             }
             else
             {
+                TEAM1.text = "PASSIVE 2";
                 passive1 = 15;
                 gold1 -= 150;
                 crystal1 -= 100;
@@ -315,7 +347,9 @@ public class GlobalVariables : MonoBehaviour
             }
         }
 
-        return -10;
+        TEAM1.text = "PASSIVE TOO EXPENSIVE";
+
+        return -100;
 
 
     }
@@ -325,6 +359,7 @@ public class GlobalVariables : MonoBehaviour
         {
             if (passive2 == 5)
             {
+                TEAM2.text = "PASSIVE 1";
                 passive2 = 10;
                 gold2 -= 150;
                 crystal2 -= 100;
@@ -332,13 +367,14 @@ public class GlobalVariables : MonoBehaviour
             }
             else
             {
+                TEAM2.text = "PASSIVE 2";
                 passive2 = 15;
                 gold2 -= 150;
                 crystal2 -= 100;
                 return 0;
             }
         }
-
+        TEAM2.text = "PASSIVE TOO EXPENSIVE";
         return -10;
 
 
@@ -347,34 +383,38 @@ public class GlobalVariables : MonoBehaviour
     //CASTLE ARCHERS
     public int buyCastle_Archer1()
     {
-        if (castle1ability == 3) { return -10; }
+        if (castle1ability == 3) { TEAM1.text = "CASTLE ARCHER FULL"; return -10; }
         if (gold1 >= 300 && castle1ability == 0)
         {
             gold1 -= 300;
             castle1ability++;
+            TEAM1.text = "CASTLE ARCHER 1";
             return 0;
         }
         else if (gold1 >= 600 && castle1ability == 1)
         {
             gold1 -= 600;
             castle1ability++;
+            TEAM1.text = "CASTLE ARCHER 2";
             return 0;
         }
         else if (gold1 >= 1000 && castle1ability == 2)
         {
             gold1 -= 1000;
             castle1ability++;
+            TEAM1.text = "CASTLE ARCHER 3";
             return 0;
         }
-
-        return -10;
+        TEAM1.text = "CASTLE ARCHER COST";
+        return -100;
     }
     public int buyCastle_Archer2()
     {
-        if (castle2ability == 3) { return -10; }
+        if (castle2ability == 3) { TEAM2.text = "CASTLE ARCHER FULL"; return -10; }
         if (gold2 >= 300 && castle2ability == 0)
         {
             gold2 -= 300;
+            TEAM2.text = "CASTLE ARCHER 1";
             castle2ability++;
             return 0;
         }
@@ -382,15 +422,19 @@ public class GlobalVariables : MonoBehaviour
         {
             gold2 -= 600;
             castle2ability++;
+            TEAM2.text = "CASTLE ARCHER 2";
             return 0;
         }
         else if (gold2 >= 2000 && castle2ability == 2)
         {
             gold2 -= 2000;
             castle2ability++;
+            TEAM2.text = "CASTLE ARCHER 3";
             return 0;
         }
-        return -10;
+
+        TEAM2.text = "CASTLE ARCHER COST";
+        return -100;
     }
 
 
@@ -622,6 +666,8 @@ public class GlobalVariables : MonoBehaviour
             five.tag = "Team1";
             GameObject six = Instantiate(miner, garrison2.transform.position, Quaternion.identity);
             six.tag = "Team2";
+            GameObject arc = Instantiate(archidon, garrison1.transform.position, Quaternion.identity);
+            arc.tag = "Team1";
             gold1 = 300;
             gold2 = 300;
             crystal1 = 0;
@@ -1032,180 +1078,6 @@ public class GlobalVariables : MonoBehaviour
         }
     }
 
-    public void testAction(int action)
-    {
-        int reward = 0;
-        if (action == 0)
-        {
-            setTeam2(1);
-        }
-        if (action == 1)
-        {
-            setTeam2(2);
-        }
-        if (action == 2)
-        {
-            setTeam2(3);
-        }
-        if (action == 3)
-        {
-            setTeam2Miners(1);
-        }
-        if (action == 4)
-        {
-            setTeam2Miners(2);
-        }
-        if (team2units.Count < 50)
-        {
-            if (action == 5)
-            {
-                if (gold2 >= 150)
-                {
-                    gold2 -= 150;
-                    summonTroop2("MINER");
-                }
-                else
-                {
-                    reward -= 10;
-                }
-
-                int numMiners = 0;
-                foreach (GameObject unit in team2units)
-                {
-                    if (unit.GetComponent<Miner>() != null)
-                    {
-                        numMiners++;
-                    }
-                }
-
-                if (numMiners > 8)
-                {
-                    reward -= 50;
-                }
-            }
-            if (action == 6)
-            {
-                if (gold2 >= 100)
-                {
-                    gold2 -= 100;
-                    summonTroop2("CRAWLER");
-                }
-                else
-                {
-                    reward -= 10;
-                }
-            }
-            if (action == 7)
-            {
-                if (gold2 >= 200)
-                {
-                    gold2 -= 200;
-                    summonTroop2("BOMBER");
-                }
-                else
-                {
-                    reward -= 10;
-                }
-            }
-            if (action == 8)
-            {
-                if (gold2 >= 450 && crystal2 >= 50)
-                {
-                    gold2 -= 450;
-                    crystal2 -= 50;
-                    summonTroop2("JUGGERNAUT");
-                }
-                else
-                {
-                    reward -= 10;
-                }
-            }
-            if (action == 9)
-            {
-                if (gold2 >= 300 && crystal2 >= 100)
-                {
-                    gold2 -= 300;
-                    crystal2 -= 100;
-                    summonTroop2("DEAD");
-                }
-                else
-                {
-                    reward -= 10;
-                }
-            }
-            if (action == 10)
-            {
-                if (gold2 >= 1500)
-                {
-                    gold2 -= 1500;
-                    summonTroop2("GIANT");
-                }
-                else
-                {
-                    reward -= 10;
-                }
-            }
-            if (action == 11)
-            {
-                if (gold2 >= 400 && crystal2 >= 100)
-                {
-                    gold2 -= 400;
-                    crystal2 -= 100;
-                    summonTroop2("ECLIPSOR");
-                }
-                else
-                {
-                    reward -= 10;
-                }
-            }
-            if (action == 12)
-            {
-                if (gold2 >= 400 && crystal2 >= 400)
-                {
-                    gold2 -= 400;
-                    crystal2 -= 400;
-                    summonTroop2("MARROWKAI");
-                }
-                else
-                {
-                    reward -= 10;
-                }
-            }
-            if (action == 13)
-            {
-                if (gold2 >= 500 && crystal2 >= 400)
-                {
-                    gold2 -= 500;
-                    crystal2 -= 400;
-                    summonTroop2("MEDUSA");
-                }
-                else
-                {
-                    reward -= 10;
-                }
-            }
-        }
-        if (action == 13)
-        {
-            reward += buyCastle_Archer2();
-        }
-        else if (action == 14)
-        {
-            reward += buyPassive_Income2();
-        }
-        else if (action == 15)
-        {
-            reward += buyGiant_Upgrade2();
-        }
-        else if(action == 16)
-        {
-            setTeam2(4);
-        }
-        else if (action == 17)
-        {
-            reward += buyTowerSpawn2();
-        }
-    }
     public float playAction(int action, int team) 
     {
         int reward = 0;
@@ -1222,161 +1094,196 @@ public class GlobalVariables : MonoBehaviour
         //9) magikill
         //10) giant
         //11) shadow
+        TEAM1.text = "";
+        TEAM2.text = "";
 
         if(team % 2 != 0)
         {
+
             if(action == 0)
             {
+                TEAM1.text = "GARRISON UNITS";
                 setTeam1(1);
             }
-            if (action == 1)
+            else if (action == 1)
             {
                 setTeam1(2);
+                TEAM1.text = "DEFEND UNITS";
             }
-            if (action == 2)
+            else if (action == 2)
             {
                 setTeam1(3);
+                TEAM1.text = "ATTACK UNITS";
             }
-            if (action == 3)
+            else if (action == 3)
             {
                 setTeam1Miners(1);
+                TEAM1.text = "GARRISON MINERS";
             }
-            if (action == 4)
+            else if (action == 4)
             {
                 setTeam1Miners(2);
+                TEAM1.text = "MINE";
             }
-            if(team1units.Count < 50)
+            else if (action >= 5 && action <= 13)
             {
-                if (action == 5)
+                if(team1units.Count >= 50)
                 {
-                    if (gold1 >= 150)
-                    {
-                        gold1 -= 150;
-                        summonTroop1("MINER");
-                        reward += 20;
-                    }
-                    else
-                    {
-                        reward -= 10;
-                    }
+                    TEAM1.text = "MAX UNITS";
+                    reward -= 100;
+                }
+                else
+                {
 
-                    int numMiners = 0;
-                    foreach(GameObject unit in team1units)
+                    if (action == 5)
                     {
-                        if(unit.GetComponent<Miner>() != null)
+                        if (gold1 >= 150)
                         {
-                            numMiners++;
+                            TEAM1.text = "MINER SUMMON";
+                            gold1 -= 150;
+                            summonTroop1("MINER");
+                            reward += 20;
+                        }
+                        else
+                        {
+                            TEAM1.text = "CANNOT AFFORD MINER";
+                            reward -= 100;
+                        }
+
+                        int numMiners = 0;
+                        foreach (GameObject unit in team1units)
+                        {
+                            if (unit.GetComponent<Miner>() != null)
+                            {
+                                numMiners++;
+                            }
+                        }
+
+                        if (numMiners > 12)
+                        {
+                            reward -= 100;
                         }
                     }
-
-                    if(numMiners > 12)
+                    else if (action == 6)
                     {
-                        reward -= 80;
+                        if (gold1 >= 125)
+                        {
+                            gold1 -= 125;
+                            summonTroop1("SWORD");
+                            TEAM1.text = "SWORD SUMMON";
+                        }
+                        else
+                        {
+                            reward -= 100;
+                            TEAM1.text = "CANNOT AFFORD SWORD";
+                        }
                     }
-                }
-                else if (action == 6)
-                {
-                    if (gold1 >= 125)
+                    else if (action == 7)
                     {
-                        gold1 -= 125;
-                        summonTroop1("SWORD");
+                        if (gold1 >= 300)
+                        {
+                            gold1 -= 300;
+                            TEAM1.text = "ARCHIDON SUMMON";
+                            summonTroop1("ARCHIDON");
+                        }
+                        else
+                        {
+                            reward -= 100;
+                            TEAM1.text = "CANNOT AFFORD ARCHIDON";
+                        }
                     }
-                    else
+                    else if (action == 8)
                     {
-                        reward -= 10;
+                        if (gold1 >= 450 && crystal1 >= 100)
+                        {
+                            gold1 -= 450;
+                            crystal1 -= 100;
+                            summonTroop1("SPEARTON");
+                            TEAM1.text = "SUMMON SPEARTON";
+                        }
+                        else
+                        {
+                            reward -= 100;
+                            TEAM1.text = "CANNOT AFFORD SPEARTON";
+                        }
                     }
-                }
-                else if (action == 7)
-                {
-                    if (gold1 >= 300)
+                    else if (action == 9)
                     {
-                        gold1 -= 300;
-                        summonTroop1("ARCHIDON");
+                        if (gold1 >= 400 && crystal1 >= 400)
+                        {
+                            gold1 -= 400;
+                            crystal1 -= 400;
+                            TEAM1.text = "MAGIKILL SUMMON";
+                            summonTroop1("MAGIKILL");
+                        }
+                        else
+                        {
+                            reward -= 10;
+                            TEAM1.text = "CANNOT AFFORD MAGIKILL";
+                        }
                     }
-                    else
+                    else if (action == 10)
                     {
-                        reward -= 10;
+                        if (gold1 >= 1500)
+                        {
+                            gold1 -= 1500;
+                            summonTroop1("GIANT");
+                            TEAM1.text = "GIANT SPAWN";
+                        }
+                        else
+                        {
+                            reward -= 100;
+                            TEAM1.text = "CANNOT AFFORD GIANT";
+                        }
                     }
-                }
-                else if(action == 8)
-                {
-                    if (gold1 >= 450 && crystal1 >= 100)
+                    else if (action == 11)
                     {
-                        gold1 -= 450;
-                        crystal1 -= 100;
-                        summonTroop1("SPEARTON");
+                        if (gold1 >= 450 && crystal1 >= 150)
+                        {
+                            gold1 -= 450;
+                            crystal1 -= 150;
+                            TEAM1.text = "SHADOWRATH SPAWN";
+                            summonTroop1("SHADOW");
+                        }
+                        else
+                        {
+                            reward -= 100;
+                            TEAM1.text = "CANNOT AFFORD SHADOW";
+                        }
                     }
-                    else
+                    else if (action == 12)
                     {
-                        reward -= 10;
+                        if (gold1 >= 450 && crystal1 >= 200)
+                        {
+                            gold1 -= 450;
+                            crystal1 -= 200;
+                            summonTroop1("ALBOWTROSS");
+                            TEAM1.text = "ALBOWTROSS SPAWN";
+                        }
+                        else
+                        {
+                            reward -= 100;
+                            TEAM1.text = "CANNOT AFFORD ALBOWTROSS";
+                        }
                     }
-                }
-                else if (action == 9)
-                {
-                    if (gold1 >= 400 && crystal1 >= 400)
+                    else if (action == 13)
                     {
-                        gold1 -= 400;
-                        crystal1 -= 400;
-                        summonTroop1("MAGIKILL");
-                    }
-                    else
-                    {
-                        reward -= 10;
-                    }
-                }
-                else if (action == 10)
-                {
-                    if (gold1 >= 1500)
-                    {
-                        gold1 -= 1500;
-                        summonTroop1("GIANT");
-                    }
-                    else
-                    {
-                        reward -= 10;
-                    }
-                }
-                else if (action == 11)
-                {
-                    if (gold1 >= 450 && crystal1 >= 150)
-                    {
-                        gold1 -= 450;
-                        crystal1 -= 150;
-                        summonTroop1("SHADOW");
-                    }
-                    else
-                    {
-                        reward -= 10;
-                    }
-                }
-                else if (action == 12)
-                {
-                    if (gold1 >= 450 && crystal1 >= 200)
-                    {
-                        gold1 -= 450;
-                        crystal1 -= 200;
-                        summonTroop1("ALBOWTROSS");
-                    }
-                    else
-                    {
-                        reward -= 10;
-                    }
-                }
-                else if (action == 13)
-                {
-                    if (gold1 >= 300 && crystal1 >= 200)
-                    {
-                        gold1 -= 300;
-                        crystal1 -= 200;
-                        summonTroop1("MERIC");
-                    }
-                    else
-                    {
-                        reward -= 10;
+                        if (gold1 >= 300 && crystal1 >= 200)
+                        {
+                            gold1 -= 300;
+                            crystal1 -= 200;
+                            TEAM1.text = "MERIC SUMMON";
+                            summonTroop1("MERIC");
+                        }
+                        else
+                        {
+                            reward -= 100;
+                            TEAM1.text = "CANNOT AFFORD MERIC";
+                        }
                     }
                 }
             }
-            if (action == 14)
+            else if (action == 14)
             {
                 reward += buyRage();
             }
@@ -1415,6 +1322,7 @@ public class GlobalVariables : MonoBehaviour
             else if (action == 23)
             {
                 setTeam1(4);
+                TEAM1.text = "UNITS TO TOWER";
             }
             else if (action == 24)
             {
@@ -1430,169 +1338,201 @@ public class GlobalVariables : MonoBehaviour
             if (action == 0)
             {
                 setTeam2(1);
+                TEAM2.text = "GARRISON UNITS";
             }
-            if (action == 1)
+            else if (action == 1)
             {
                 setTeam2(2);
+                TEAM2.text = "DEFEND UNITS";
             }
-            if (action == 2)
+            else if (action == 2)
             {
                 setTeam2(3);
+                TEAM2.text = "ATTACK UNITS";
             }
-            if (action == 3)
+            else if (action == 3)
             {
                 setTeam2Miners(1);
+                TEAM2.text = "MINERS GARRISON";
             }
-            if (action == 4)
+            else if (action == 4)
             {
                 setTeam2Miners(2);
+                TEAM2.text = "MINERS MINE";
             }
-            if(team2units.Count < 50)
+            else if (action >= 5 && action <= 13)
             {
-                if (action == 5)
+                if(team2units.Count >= 50)
                 {
-                    if (gold2 >= 150)
+                    reward -=100;
+                    TEAM2.text = "MAX UNITS";
+                }
+                else
+                {
+                    if (action == 5)
                     {
-                        gold2 -= 150;
-                        summonTroop2("MINER");
-                        reward += 10;
-                    }
-                    else
-                    {
-                        reward -= 10;
-                    }
-
-                    int numMiners = 0;
-                    foreach (GameObject unit in team2units)
-                    {
-                        if (unit.GetComponent<Miner>() != null)
+                        if (gold2 >= 150)
                         {
-                            numMiners++;
+                            gold2 -= 150;
+                            summonTroop2("MINER");
+                            reward += 20;
+                        }
+                        else
+                        {
+                            reward -= 100;
+                            TEAM2.text = "CANNOT AFFORD MINER";
+                        }
+
+                        int numMiners = 0;
+                        foreach (GameObject unit in team2units)
+                        {
+                            if (unit.GetComponent<Miner>() != null)
+                            {
+                                numMiners++;
+                            }
+                        }
+
+                        if (numMiners > 12)
+                        {
+                            reward -= 100;
                         }
                     }
-
-                    if (numMiners > 12)
+                    if (action == 6)
                     {
-                        reward -= 80;
+                        if (gold2 >= 75)
+                        {
+                            gold2 -= 75;
+                            summonTroop2("CRAWLER");
+                            TEAM2.text = "CRAWLER SUMMON";
+                        }
+                        else
+                        {
+                            reward -= 100;
+                            TEAM2.text = "CANNOT AFFORD CRAWLER";
+                        }
+                    }
+                    if (action == 7)
+                    {
+                        if (gold2 >= 200)
+                        {
+                            gold2 -= 200;
+                            summonTroop2("BOMBER");
+                            TEAM2.text = "BOMBER SPAWN";
+                        }
+                        else
+                        {
+                            reward -= 100;
+                            TEAM2.text = "CANNOT AFFORD BOMBER";
+                        }
+                    }
+                    if (action == 8)
+                    {
+                        if (gold2 >= 450 && crystal2 >= 50)
+                        {
+                            gold2 -= 450;
+                            crystal2 -= 50;
+                            summonTroop2("JUGGERNAUT");
+                            TEAM2.text = "JUGGERNAUT SPAWN";
+                        }
+                        else
+                        {
+                            reward -= 100;
+                            TEAM2.text = "CANNOT AFFORD JUGGER";
+                        }
+                    }
+                    if (action == 9)
+                    {
+                        if (gold2 >= 300 && crystal2 >= 100)
+                        {
+                            gold2 -= 300;
+                            crystal2 -= 100;
+                            summonTroop2("DEAD");
+                            TEAM2.text = "DEAD SPAWN";
+                        }
+                        else
+                        {
+                            reward -= 100;
+                            TEAM2.text = "CANNOT AFFORD DEAD";
+                        }
+                    }
+                    if (action == 10)
+                    {
+                        if (gold2 >= 1500)
+                        {
+                            gold2 -= 1500;
+                            TEAM2.text = "GIANT SPAWN";
+                            summonTroop2("GIANT");
+                        }
+                        else
+                        {
+                            reward -= 100;
+                            TEAM2.text = "CANNOT AFFORD GIANT";
+                        }
+                    }
+                    if (action == 11)
+                    {
+                        if (gold2 >= 400 && crystal2 >= 100)
+                        {
+                            gold2 -= 400;
+                            crystal2 -= 100;
+                            summonTroop2("ECLIPSOR");
+                            TEAM2.text = "SUMMON ECLIPSOR";
+                        }
+                        else
+                        {
+                            reward -= 100;
+                            TEAM2.text = "CANNOT AFFORD ECLIPSOR";
+                        }
+                    }
+                    if (action == 12)
+                    {
+                        if (gold2 >= 400 && crystal2 >= 400)
+                        {
+                            gold2 -= 400;
+                            crystal2 -= 400;
+                            summonTroop2("MARROWKAI");
+                            TEAM2.text = "MARROWKAI SUMMON";
+                        }
+                        else
+                        {
+                            reward -= 100;
+                            TEAM2.text = "CANNOT AFFORD MARROW";
+                        }
+                    }
+                    if (action == 13)
+                    {
+                        if (gold2 >= 500 && crystal2 >= 400)
+                        {
+                            gold2 -= 500;
+                            crystal2 -= 400;
+                            summonTroop2("MEDUSA");
+                            TEAM2.text = "SPAWN MEDUSA";
+                        }
+                        else
+                        {
+                            reward -= 100;
+                            TEAM2.text = "CANNOT AFFORD MEDUSA";
+                        }
                     }
                 }
-                if (action == 6)
-                {
-                    if (gold2 >= 100)
-                    {
-                        gold2 -= 100;
-                        summonTroop2("CRAWLER");
-                    }
-                    else
-                    {
-                        reward -= 10;
-                    }
-                }
-                if (action == 7)
-                {
-                    if (gold2 >= 200)
-                    {
-                        gold2 -= 200;
-                        summonTroop2("BOMBER");
-                    }
-                    else
-                    {
-                        reward -= 10;
-                    }
-                }
-                if (action == 8)
-                {
-                    if (gold2 >= 450 && crystal2 >= 50)
-                    {
-                        gold2 -= 450;
-                        crystal2 -= 50;
-                        summonTroop2("JUGGERNAUT");
-                    }
-                    else
-                    {
-                        reward -= 10;
-                    }
-                }
-                if (action == 9)
-                {
-                    if (gold2 >= 300 && crystal2 >= 100)
-                    {
-                        gold2 -= 300;
-                        crystal2 -= 100;
-                        summonTroop2("DEAD");
-                    }
-                    else
-                    {
-                        reward -= 10;
-                    }
-                }
-                if (action == 10)
-                {
-                    if (gold2 >= 1500)
-                    {
-                        gold2 -= 1500;
-                        summonTroop2("GIANT");
-                    }
-                    else
-                    {
-                        reward -= 10;
-                    }
-                }
-                if (action == 11)
-                {
-                    if (gold2 >= 400 && crystal2 >= 100)
-                    {
-                        gold2 -= 400;
-                        crystal2 -= 100;
-                        summonTroop2("ECLIPSOR");
-                    }
-                    else
-                    {
-                        reward -= 10;
-                    }
-                }
-                if (action == 12)
-                {
-                    if (gold2 >= 400 && crystal2 >= 400)
-                    {
-                        gold2 -= 400;
-                        crystal2 -= 400;
-                        summonTroop2("MARROWKAI");
-                    }
-                    else
-                    {
-                        reward -= 10;
-                    }
-                }
-                if (action == 12)
-                {
-                    if (gold2 >= 500 && crystal2 >= 400)
-                    {
-                        gold2 -= 500;
-                        crystal2 -= 400;
-                        summonTroop2("MEDUSA");
-                    }
-                    else
-                    {
-                        reward -= 10;
-                    }
-                }
+                
             }
-            if(action == 13)
+            else if(action == 14)
             {
                 reward += buyCastle_Archer2();
-            }else if(action == 14)
+            }else if(action == 15)
             {
                 reward += buyPassive_Income2();
-            }else if(action == 15)
+            }else if(action == 16)
             {
                 reward += buyGiant_Upgrade2();
             }
-            else if (action == 16)
+            else if (action == 17)
             {
                 setTeam2(4);
+                TEAM2.text = "UNITS TO TOWER";
             }
-            else if (action == 17)
+            else if (action == 18)
             {
                 reward += buyTowerSpawn2();
             }
@@ -1600,6 +1540,7 @@ public class GlobalVariables : MonoBehaviour
             {
                 reward -= 10;
             }
+            TEAM2.text += (team + "," + action);
         }
 
 
@@ -1622,45 +1563,45 @@ public class GlobalVariables : MonoBehaviour
 
             if (statue1.currentHP < _statue1)
             {
-                reward -= 15;
+                reward -= 55;
             }
             if(team1units.Count < _team1)
             {
-                reward -= 10;
+                reward -= 50;
             }
             if(team2units.Count < _team2)
             {
-                reward += 20;
+                reward += 50;
             }
             if (statue2.currentHP < _statue2)
             {
-                reward += 30;
+                reward += 50;
             }
             if(gold1 > 3000)
             {
-                reward -= 10;
+                reward -= 50;
             }
             if(tower.control == 100)
             {
-                reward += 10;
+                reward += 50;
             }
             if((team1 == 1 && team2 != 3) || (team1miners == 1 && team2 != 3))
             {
-                reward -= 30;
+                reward -= 100;
             }
 
             if(_gold1 < gold1)
             {
-                reward += 10;
+                reward += 50;
                 _gold1 = gold1;
             }
             if(_crystal1 < crystal1)
             {
-                reward += 10;
+                reward += 50;
                 _crystal1 = crystal1;
             }
 
-            if(gold1 < 150) { reward -= 10; }
+            if(gold1 < 150) { reward -= 50; }
 
 
         }
@@ -1683,40 +1624,40 @@ public class GlobalVariables : MonoBehaviour
             if (gold2 < 150) { reward -= 10; }
             if (statue1.currentHP < _statue1)
             {
-                reward += 30;
+                reward += 50;
             }
             if (team1units.Count < _team1)
             {
-                reward += 20;
+                reward += 50;
             }
             if (team2units.Count < _team2)
             {
-                reward -= 10;
+                reward -= 50;
             }
             if (statue2.currentHP < _statue2)
             {
-                reward -= 15;
+                reward -= 50;
             }
             if (gold2 > 3000)
             {
-                reward -= 10;
+                reward -= 50;
             }
             if (tower.control == -100)
             {
-                reward += 10;
+                reward += 50;
             }
             if ((team2 == 1 && team1 != 3) || (team2miners == 1 && team1 != 3))
             {
-                reward -= 30;
+                reward -= 100;
             }
             if (_gold2 < gold2)
             {
-                reward += 10;
+                reward += 50;
                 _gold2 = gold2;
             }
             if(_crystal2 < crystal2)
             {
-                reward += 10;
+                reward += 50;
                 _crystal2 = crystal2;
             }
         }
@@ -1726,6 +1667,18 @@ public class GlobalVariables : MonoBehaviour
         _team1 = team1units.Count;
         _team2 = team2units.Count;
         return reward;
+    }
+
+    public string whichTeamDidIt(int team)
+    {
+        if(team % 2 != 0)
+        {
+            return "TEAM1";
+        }
+        else
+        {
+            return "TEAM2";
+        }
     }
 
     public void summonTroop1(string team1)

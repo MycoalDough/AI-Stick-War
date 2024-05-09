@@ -115,8 +115,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48f12298b33da9843bd169fc1a35e39d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionWidth: 0.12
-  detectionHeight: 0.17
+  detectionWidth: 0.27
+  detectionHeight: -0.16
 --- !u!50 &-3392321514683237150
 Rigidbody2D:
   serializedVersion: 4

@@ -60,7 +60,7 @@ public class Minion : MonoBehaviour
         }
         if (Vector2.Distance(transform.position, toMove) < 0.05f)
         {
-            if (((target == "Team2") && (toMove == (Vector2)gv.garrison1.position || gv.team1 == 2)) || ((target == "Team1") && (toMove == (Vector2)gv.garrison2.position || gv.team2 == 2)))
+            if (((target == "Team2") && (toMove == (Vector2)gv.garrison1.position || gv.team1 == 2 || gv.team1 == 4)) || ((target == "Team1") && (toMove == (Vector2)gv.garrison2.position || gv.team2 == 2 || gv.team2 == 4)))
             {
                 isAttacking = false;
                 anim.Play("SwordswrathIdle");
@@ -78,7 +78,7 @@ public class Minion : MonoBehaviour
         }
 
 
-        if (Vector2.Distance(transform.position, toMove) < .7f && (((target == "Team2") && (toMove != (Vector2)gv.garrison1.position && gv.team1 != 2)) || ((target == "Team1") && (toMove != (Vector2)gv.garrison2.position && gv.team2 != 2))))
+        if (Vector2.Distance(transform.position, toMove) < .7f && (((target == "Team2") && (toMove != (Vector2)gv.garrison1.position && gv.team1 != 2 && gv.team1 != 4)) || ((target == "Team1") && (toMove != (Vector2)gv.garrison2.position && gv.team2 != 2 && gv.team2 != 4 ))))
         {
             if (!isAttacking)
             {

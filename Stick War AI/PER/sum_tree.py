@@ -1,81 +1,142 @@
-import numpy as np
+# -*- coding: utf-8 -*-
+"""Segment tree for Prioritized Replay Buffer."""
+
+import operator
+from typing import Callable
 
 
-class SumTree(object):
-    data_pointer = 0
-   
-    def __init__(self, capacity):
+class SegmentTree:
+    """ Create SegmentTree.
+
+    Taken from OpenAI baselines github repository:
+    https://github.com/openai/baselines/blob/master/baselines/common/segment_tree.py
+
+    Attributes:
+        capacity (int)
+        tree (list)
+        operation (function)
+
+    """
+
+    def __init__(self, capacity: int, operation: Callable, init_value: float):
+        """Initialization.
+
+        Args:
+            capacity (int)
+            operation (function)
+            init_value (float)
+
+        """
+        assert (
+            capacity > 0 and capacity & (capacity - 1) == 0
+        ), "capacity must be positive and a power of 2."
         self.capacity = capacity
-       
-        # Generate the tree with all nodes values = 0
-        # To understand this calculation (2 * capacity - 1) look at the schema below
-        # Remember we are in a binary node (each node has max 2 children) so 2x size of leaf (capacity) - 1 (root node)
-        # Parent nodes = capacity - 1
-        # Leaf nodes = capacity
-        self.tree = np.zeros(2 * capacity - 1)
-       
-        # Contains the experiences (so the size of data is capacity)
-        self.data = np.zeros(capacity, dtype=object)
+        self.tree = [init_value for _ in range(2 * capacity)]
+        self.operation = operation
+
+    def _operate_helper(
+        self, start: int, end: int, node: int, node_start: int, node_end: int
+    ) -> float:
+        """Returns result of operation in segment."""
+        if start == node_start and end == node_end:
+            return self.tree[node]
+        mid = (node_start + node_end) // 2
+        if end <= mid:
+            return self._operate_helper(start, end, 2 * node, node_start, mid)
+        else:
+            if mid + 1 <= start:
+                return self._operate_helper(start, end, 2 * node + 1, mid + 1, node_end)
+            else:
+                return self.operation(
+                    self._operate_helper(start, mid, 2 * node, node_start, mid),
+                    self._operate_helper(mid + 1, end, 2 * node + 1, mid + 1, node_end),
+                )
+
+    def operate(self, start: int = 0, end: int = 0) -> float:
+        """Returns result of applying `self.operation`."""
+        if end <= 0:
+            end += self.capacity
+        end -= 1
+
+        return self._operate_helper(start, end, 1, 0, self.capacity - 1)
+
+    def __setitem__(self, idx: int, val: float):
+        """Set value in tree."""
+        idx += self.capacity
+        self.tree[idx] = val
+
+        idx //= 2
+        while idx >= 1:
+            self.tree[idx] = self.operation(self.tree[2 * idx], self.tree[2 * idx + 1])
+            idx //= 2
+
+    def __getitem__(self, idx: int) -> float:
+        """Get real value in leaf node of tree."""
+        assert 0 <= idx < self.capacity
+
+        return self.tree[self.capacity + idx]
 
 
-    def add(self, priority, data):
-        tree_index = self.data_pointer + self.capacity - 1
-        self.data[self.data_pointer] = data
-        self.update (tree_index, priority)
+class SumSegmentTree(SegmentTree):
+    """ Create SumSegmentTree.
+
+    Taken from OpenAI baselines github repository:
+    https://github.com/openai/baselines/blob/master/baselines/common/segment_tree.py
+
+    """
+
+    def __init__(self, capacity: int):
+        """Initialization.
+
+        Args:
+            capacity (int)
+
+        """
+        super(SumSegmentTree, self).__init__(
+            capacity=capacity, operation=operator.add, init_value=0.0
+        )
+
+    def sum(self, start: int = 0, end: int = 0) -> float:
+        """Returns arr[start] + ... + arr[end]."""
+        return super(SumSegmentTree, self).operate(start, end)
+
+    def retrieve(self, upperbound: float) -> int:
+        """Find the highest index `i` about upper bound in the tree"""
+        # TODO: Check assert case and fix bug
+        assert 0 <= upperbound <= self.sum() + 1e-5, "upperbound: {}".format(upperbound)
+
+        idx = 1
+
+        while idx < self.capacity:  # while non-leaf
+            left = 2 * idx
+            right = left + 1
+            if self.tree[left] > upperbound:
+                idx = 2 * idx
+            else:
+                upperbound -= self.tree[left]
+                idx = right
+        return idx - self.capacity
 
 
-        # Add 1 to data_pointer
-        self.data_pointer += 1
+class MinSegmentTree(SegmentTree):
+    """ Create SegmentTree.
 
+    Taken from OpenAI baselines github repository:
+    https://github.com/openai/baselines/blob/master/baselines/common/segment_tree.py
 
-        if self.data_pointer >= self.capacity:  #overwitie son g from nxy the shield
-            self.data_pointer = 0
+    """
 
+    def __init__(self, capacity: int):
+        """Initialization.
 
+        Args:
+            capacity (int)
 
+        """
+        super(MinSegmentTree, self).__init__(
+            capacity=capacity, operation=min, init_value=float("inf")
+        )
 
-    def update(self, tree_index, priority):
-        # Change = new priority score - former priority score
-        change = priority - self.tree[tree_index]
-        self.tree[tree_index] = priority
-
-
-        # then propagate the change through tree
-        # this method is faster than the recursive loop
-        while tree_index != 0:
-            tree_index = (tree_index - 1) // 2
-            self.tree[tree_index] += change
-
-
-
-
-    def get_leaf(self, v):
-        parent_index = 0
-
-
-        while True:
-            left_child_index = 2 * parent_index + 1
-            right_child_index = left_child_index + 1
-
-
-            # If we reach bottom, end the search
-            if left_child_index >= len(self.tree):
-                leaf_index = parent_index
-                break
-            else: # downward search, always search for a higher priority node
-                if v <= self.tree[left_child_index]:
-                    parent_index = left_child_index
-                else:
-                    v -= self.tree[left_child_index]
-                    parent_index = right_child_index
-
-
-        data_index = leaf_index - self.capacity + 1
-
-
-        return leaf_index, self.tree[leaf_index], self.data[data_index]
-
-
-    @property
-    def total_priority(self):
-        return self.tree[0] # Returns the root node
+    def min(self, start: int = 0, end: int = 0) -> float:
+        """Returns min(arr[start], ...,  arr[end])."""
+        return super(MinSegmentTree, self).operate(start, end)

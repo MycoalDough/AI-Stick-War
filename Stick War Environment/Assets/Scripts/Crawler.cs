@@ -77,16 +77,16 @@ public class Crawler : MonoBehaviour
 
         if (packMentality.getNameNameInRange("Crawler") >= 5)
         {
-            damage = 0.6f;
+            damage = 1f;
         }
         else
         {
-            damage = 0.3f;
+            damage = 0.6f;
         }
 
         if (Vector2.Distance(transform.position, toMove) < 0.05f)
         {
-            if (((target == "Team2") && (toMove == (Vector2)gv.garrison1.position || gv.team1 == 2)) || ((target == "Team1") && (toMove == (Vector2)gv.garrison2.position || gv.team2 == 2)))
+            if ((target == "Team2" && (gv.team1 == 2 || gv.team1 == 4 || toMove == (Vector2)gv.garrison1.position)) || (target == "Team1" && (gv.team2 == 2 || gv.team2 == 4 || toMove == (Vector2)gv.garrison2.position)))
             {
                 isAttacking = false;
                 anim.Play("CrawlerIdle");
@@ -104,7 +104,7 @@ public class Crawler : MonoBehaviour
             isAttacking = false;
         }
 
-        if (Vector2.Distance(transform.position, toMove) < .3f && (((target == "Team2") && (toMove != (Vector2)gv.garrison1.position && gv.team1 != 2)) || ((target == "Team1") && (toMove != (Vector2)gv.garrison2.position && gv.team2 != 2))))
+        if (Vector2.Distance(transform.position, toMove) < .3f && (((target == "Team2") && (toMove != (Vector2)gv.garrison1.position && gv.team1 != 2 && gv.team1 != 4)) || ((target == "Team1") && (toMove != (Vector2)gv.garrison2.position && gv.team2 != 2 && gv.team2 != 4))))
         {
             if (!isAttacking)
             {

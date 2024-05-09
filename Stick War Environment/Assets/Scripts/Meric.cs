@@ -84,7 +84,7 @@ public class Meric : MonoBehaviour
 
         if (Vector2.Distance(transform.position, toMove) < 0.05f)
         {
-            if ((target == "Team2" && (gv.team1 == 2 || toMove == (Vector2)gv.garrison1.position)) || (target == "Team1" && (gv.team2 == 2 || toMove == (Vector2)gv.garrison2.position)))
+            if ((target == "Team2" && (gv.team1 == 2 || gv.team1 == 4 || toMove == (Vector2)gv.garrison1.position)) || (target == "Team1" && (gv.team2 == 2 || gv.team2 == 4 || toMove == (Vector2)gv.garrison2.position)))
             {
                 isAttacking = false;
                 anim.Play("MericWalk");
@@ -103,7 +103,7 @@ public class Meric : MonoBehaviour
         }
 
 
-        if (Vector2.Distance(transform.position, toMove) < 5f && (((gv.team1 != 2 && gv.team1 != 1 && target == "Team2") || (gv.team2 != 2 && gv.team2 != 1 && target == "Team1"))))
+        if (Vector2.Distance(transform.position, toMove) < 5f && (((gv.team1 != 2 && gv.team1 != 1 && gv.team1 != 4 && target == "Team2") || (gv.team2 != 2 && gv.team2 != 1 && gv.team2 != 4 && target == "Team1"))))
         {
             if (transform.position.x - toMove.x < 0)
             {
