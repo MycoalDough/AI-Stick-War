@@ -23,6 +23,10 @@ public class RLConnection : MonoBehaviour
     public UnityMainThreadDispatcher umtd;
     public int team = 1;
 
+    [Header("Test")]
+    public bool team1AI;
+    public bool team2AI;
+
     public Text gold1;
     public Text gold2;
     public Text crystal1;
@@ -35,12 +39,26 @@ public class RLConnection : MonoBehaviour
 
     [Header("Gameplay")]
     public GlobalVariables gv;
+    public GameObject team1controls;
+    public GameObject team2controls;
     public float time = 0;
     //AI PLANNING:
     //INPUTS:  1) num bullets | 2) num real | 3) num fake | 4) red lives | 5) blue lives | 6) red items (list) | 7) blue items (list) | 8) gun damage | 9) next bullet (-1 if not aviable, 0 for fake, 1 for real)
     //OUTPUTS: 1) shoot self | 2) shoot other | 3) drink | 4) mag. glass | 5) cig | 6) knife | 7) cuffs
     private void Awake()
     {
+        if (team2AI)
+        {
+            team1controls.SetActive(true);
+        }else if (team1AI)
+        {
+            team2controls.SetActive(true);
+        }
+        else
+        {
+            team1controls.SetActive(false);
+            team2controls.SetActive(false);
+        }
         Application.targetFrameRate = 50;
         Time.timeScale = 3;
         gv.ResetLevel();
@@ -64,6 +82,13 @@ public class RLConnection : MonoBehaviour
 
     public string playStep(string toPlay)
     {
+        if (team1AI)
+        {
+            team = 1;
+        }else if (team2AI)
+        {
+            team = 2;
+        }
         float reward = gv.playAction(int.Parse(toPlay), team);
         if(time > 1800)
         {
@@ -181,28 +206,75 @@ public class RLConnection : MonoBehaviour
                         // Enqueue the getItems call to be executed on the main thread
                         umtd.Enqueue(() => {
                             string toSend = "";
-                            if (team % 2  == 0) { toSend = sendInput(2); } else { toSend = sendInput(1); }
-                            byte[] dataToSend = Encoding.UTF8.GetBytes(toSend);
-                            stream.Write(dataToSend, 0, dataToSend.Length); 
+
+                            if (team1AI)
+                            {
+                                toSend = sendInput(1);
+                                byte[] dataToSend1 = Encoding.UTF8.GetBytes(toSend);
+                                stream.Write(dataToSend1, 0, dataToSend1.Length);
+                            }else if (team2AI)
+                            {
+                                toSend = sendInput(2);
+                                byte[] dataToSend1 = Encoding.UTF8.GetBytes(toSend);
+                                stream.Write(dataToSend1, 0, dataToSend1.Length);
+                            }
+                            else
+                            {
+                                if (team % 2 == 0) { toSend = sendInput(2); } else { toSend = sendInput(1); }
+                                byte[] dataToSend = Encoding.UTF8.GetBytes(toSend);
+                                stream.Write(dataToSend, 0, dataToSend.Length);
+                            }
                         });
                     }
                     else if (message.Contains("play_step"))
                     {
                         string[] step = message.Split(':');
                         umtd.Enqueue(() => {
-                            string s = "";
 
-                            //int playstep = (int.Parse(step[1]) + 1);
-                            s += playStep(step[1].ToString());
-                            s += ":";
-                            if (team % 2 == 0) { s += sendInput(2); } else { s += sendInput(1); }
-                            s += ":";
-                            s += speed.value.ToString();
-                            s += ":";
-                            s += gv.whichTeamDidIt(team);
-                            team++;
-                            byte[] dataToSend = Encoding.UTF8.GetBytes(s);
-                            stream.Write(dataToSend, 0, dataToSend.Length);
+                            if (team1AI)
+                            {
+                                team = 1;
+                                string a = "";
+                                a += playStep(step[1].ToString());
+                                a += ":";
+                                a += sendInput(1);
+                                a += ":";
+                                a += speed.value.ToString();
+                                a += ":";
+                                a += gv.whichTeamDidIt(team);
+                                byte[] dataToSend1 = Encoding.UTF8.GetBytes(a);
+                                stream.Write(dataToSend1, 0, dataToSend1.Length);
+                            }else if(team2AI)
+                            {
+                                team = 2;
+                                string a = "";
+                                a += playStep(step[1].ToString());
+                                Debug.Log(step[1]);
+                                a += ":";
+                                a += sendInput(2);
+                                a += ":";
+                                a += speed.value.ToString();
+                                a += ":";
+                                a += gv.whichTeamDidIt(team);
+                                byte[] dataToSend1 = Encoding.UTF8.GetBytes(a);
+                                stream.Write(dataToSend1, 0, dataToSend1.Length);
+                            }
+                            else
+                            {
+                                string s = "";
+
+                                //int playstep = (int.Parse(step[1]) + 1);
+                                s += playStep(step[1].ToString());
+                                s += ":";
+                                if (team % 2 == 0) { s += sendInput(2); } else { s += sendInput(1); }
+                                s += ":";
+                                s += speed.value.ToString();
+                                s += ":";
+                                s += gv.whichTeamDidIt(team);
+                                team++;
+                                byte[] dataToSend = Encoding.UTF8.GetBytes(s);
+                                stream.Write(dataToSend, 0, dataToSend.Length);
+                            }
                             
                         });
                     }
@@ -240,8 +312,8 @@ public class RLConnection : MonoBehaviour
             saved.Add(gv.gold1.ToString());
             saved.Add(gv.crystal1.ToString());
             saved.Add(gv.population1.ToString());
-            saved.Add(gv.statue1.currentHP.ToString());
-            saved.Add(gv.statue2.currentHP.ToString());
+            saved.Add(Math.Round(gv.statue1.currentHP).ToString());
+            saved.Add(Math.Round(gv.statue2.currentHP).ToString());
 
             saved.Add(Convert.ToInt32(gv.rageBUY).ToString());
             saved.Add(Convert.ToInt32(gv.canRage).ToString());
@@ -259,7 +331,7 @@ public class RLConnection : MonoBehaviour
             saved.Add(gv.giantUpgrade2.ToString());
 
             saved.Add(gv.tower.control.ToString());
-            saved.Add(gv.tower.ticksResources.ToString());
+            saved.Add(Math.Round(gv.tower.ticksResources).ToString());
 
             //17
 
@@ -269,8 +341,8 @@ public class RLConnection : MonoBehaviour
             saved.Add(gv.gold2.ToString());
             saved.Add(gv.crystal2.ToString());
             saved.Add(gv.population2.ToString());
-            saved.Add(gv.statue1.currentHP.ToString());
-            saved.Add(gv.statue2.currentHP.ToString());
+            saved.Add(Math.Round(gv.statue1.currentHP).ToString());
+            saved.Add(Math.Round(gv.statue2.currentHP).ToString());
 
             saved.Add(Convert.ToInt32(gv.rage).ToString());
             saved.Add(Convert.ToInt32(gv.shieldWall).ToString());
@@ -282,18 +354,18 @@ public class RLConnection : MonoBehaviour
             saved.Add(gv.giantUpgrade2.ToString());
 
             saved.Add(gv.tower.control.ToString());
-            saved.Add(gv.tower.ticksResources.ToString());
+            saved.Add(Math.Round(gv.tower.ticksResources).ToString());
 
             //13
         }
-        saved.Add(Math.Round(time, 2).ToString());
+        saved.Add(Math.Round(time).ToString());
         saved.Add(gv.team1miners.ToString());
         saved.Add(gv.team2miners.ToString());
         saved.Add(gv.team1.ToString());
         saved.Add(gv.team2.ToString());
 
 
-        for(int i =  0; i < 50; i++)
+        for(int i =  0; i < 30; i++)
         {
             //1) TYPE (1 MINER, 2 SWORD, 3 ARCHIDON, 4 SPEARTON, 5 MAGIKILL, 6 GIANT, 7 SHADOWRATH)
             //2) HEALTH
@@ -318,14 +390,14 @@ public class RLConnection : MonoBehaviour
             else
             {
                 saved.Add(unit);
-                saved.Add(gv.team1units[i].GetComponentInChildren<HPSystem>().currentHP.ToString());
+                saved.Add(Math.Round(gv.team1units[i].GetComponentInChildren<HPSystem>().currentHP).ToString());
                 saved.Add(Math.Round(gv.team1units[i].transform.position.x, 1).ToString());
                 saved.Add(gv.team1units[i].GetComponentInChildren<HPSystem>().poisonStacks.ToString());
                 saved.Add(gv.team1units[i].GetComponentInChildren<HPSystem>().fireStacks.ToString());
                 saved.Add("1");
             }
         }
-        for (int i = 0; i < 50; i++)
+        for (int i = 0; i < 30; i++)
         {
             //1) TYPE (1 MINER, 2 SWORD, 3 ARCHIDON, 4 SPEARTON, 5 MAGIKILL, 6 GIANT, 7 SHADOWRATH)
             //2) HEALTH
@@ -350,7 +422,7 @@ public class RLConnection : MonoBehaviour
             else
             {
                 saved.Add(unit);
-                saved.Add(gv.team2units[i].GetComponentInChildren<HPSystem>().currentHP.ToString());
+                saved.Add(Math.Round(gv.team2units[i].GetComponentInChildren<HPSystem>().currentHP).ToString());
                 saved.Add(Math.Round(gv.team2units[i].transform.position.x, 1).ToString());
                 saved.Add(gv.team2units[i].GetComponentInChildren<HPSystem>().poisonStacks.ToString());
                 saved.Add(gv.team2units[i].GetComponentInChildren<HPSystem>().fireStacks.ToString());

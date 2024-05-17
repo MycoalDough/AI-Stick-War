@@ -57,17 +57,11 @@ def convert_list(string):
     return l
 
 
-def normalize_reward(reward):
-    """
-    Normalize reward from a given range to [-1, 1].
-
-    Args:
-    reward (float): The reward value to be normalized.
-
-    Returns:
-    float: The normalized reward.
-    """
-    return 2 * ((reward + 1000) / (1300 + 1000)) - 1
+def normalize_reward(x):
+    if x >= 0:
+        return x / 1500
+    else:
+        return x / 800
 
 def play_step(step):
     try:

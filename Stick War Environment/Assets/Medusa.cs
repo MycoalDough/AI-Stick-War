@@ -169,11 +169,11 @@ public class Medusa : MonoBehaviour
         isAttacking = true;
         anim.Play("Medusa");
         yield return new WaitForSeconds(1.5f);
+        Instantiate(rocks, enemy.transform.parent.position, Quaternion.identity);
         if (enemy)
         {
             enemy.Damage(damage, true);
         }
-        Instantiate(rocks, enemy.transform.parent.position, Quaternion.identity);
         enemy.transform.parent.GetComponent<SpriteRenderer>().material = petrified;
         yield return new WaitForSeconds(2.5f);
         isAttacking = false;

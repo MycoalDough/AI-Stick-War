@@ -7,7 +7,7 @@ import os
 import PER.PER as PER
 from Noisy.noisy_layer import NoisyLinear
 from typing import Dict
-
+from torch.nn.utils import clip_grad_norm_
 
 class RAINBOW_Q_Network(nn.Module):
     def __init__(self, lr, input_dims, n_actions, checkpoint_dir, name, atom_size, support):
@@ -94,7 +94,7 @@ class Agent:
         self.learn_step_counter = 0
         self.action_space = [i for i in range(self.n_actions)]
         self.checkpoint_name = checkpoint_name
-        self.n_step = 50
+        self.n_step = 3
         self.alpha = 0.2
         self.beta = 0.6
         self.prior_eps = 1e-6
@@ -105,13 +105,13 @@ class Agent:
         self.support = T.linspace(
             self.v_min, self.v_max, self.atom_size
         ).to(self.device)
-        self.delta_z = (self.v_max - self.v_min) / (self.atom_size - 1)
 
         self.memory = PER.PrioritizedReplayBuffer(obs_dim=self.input_dims[0], size=self.mem_size, batch_size=self.batch_size, alpha=self.alpha)
         self.memory_n = PER.ReplayBuffer(self.input_dims[0], self.mem_size, self.batch_size, self.n_step, self.gamma)
         self.q_eval = RAINBOW_Q_Network(self.lr, input_dims=self.input_dims, n_actions=self.n_actions, checkpoint_dir=self.checkpoint_dir, name=self.checkpoint_name + "_eval", atom_size=self.atom_size, support=self.support)
         self.q_next = RAINBOW_Q_Network(self.lr, input_dims=self.input_dims, n_actions=self.n_actions, checkpoint_dir=self.checkpoint_dir, name=self.checkpoint_name + "_next", atom_size=self.atom_size, support=self.support)
 
+        self.optimizer = optim.Adam(self.q_eval.parameters())
         self.USE_EPSILON = False
 
     def choose_action(self, observation, current, iterations):
@@ -125,9 +125,9 @@ class Agent:
                 action = np.random.choice(self.action_space)
                 randomness = "Epsilon"
         else:
-            state = T.tensor(np.array(observation, dtype=np.float32), device=self.q_eval.device)
-            q_values = self.q_eval.forward(state)
-            action = T.argmax(q_values).item()
+            state = T.tensor(np.array(observation, dtype=np.float32), device=self.device)
+            with T.no_grad():
+                action = self.q_eval(state).argmax().item()
             randomness = "AI"
 
         fraction = min(current / iterations, 1.0)
@@ -161,28 +161,17 @@ class Agent:
         self.replace_target_network()
 
         sampled_data = self.memory.sample_batch(beta=self.beta)
-        state = T.tensor(sampled_data['obs'], dtype=T.float, device=self.q_eval.device)
-        state_ = T.tensor(sampled_data['next_obs'], dtype=T.float, device=self.q_eval.device)
-        action = T.tensor(sampled_data['acts'], dtype=T.long, device=self.q_eval.device).reshape(-1, 1)
-        reward = T.tensor(sampled_data['rews'], dtype=T.float, device=self.q_eval.device).reshape(-1, 1)
-        done = T.tensor(sampled_data['done'], dtype=T.float, device=self.q_eval.device).reshape(-1, 1)
-
         weights = T.FloatTensor(sampled_data["weights"].reshape(-1, 1)).to(self.q_eval.device)
         indices = sampled_data['indices']
 
         # Compute C51 loss
-        elementwise_loss = self._compute_c51_loss(state, state_, action, reward, done)
-
+        elementwise_loss = self._compute_dqn_loss(sampled_data, gamma=self.gamma)
+        loss = T.mean(elementwise_loss * weights)
+        
         # N-step returns
         gamma = self.gamma ** self.n_step
         samples_n_step = self.memory_n.sample_batch_from_idxs(indices)
-        state_n_step = T.tensor(samples_n_step['obs'], dtype=T.float, device=self.q_eval.device)
-        state__n_step = T.tensor(samples_n_step['next_obs'], dtype=T.float, device=self.q_eval.device)
-        action_n_step = T.tensor(samples_n_step['acts'], dtype=T.long, device=self.q_eval.device).reshape(-1, 1)
-        reward_n_step = T.tensor(samples_n_step['rews'], dtype=T.float, device=self.q_eval.device).reshape(-1, 1)
-        done_n_step = T.tensor(samples_n_step['done'], dtype=T.float, device=self.q_eval.device).reshape(-1, 1)
-
-        elementwise_loss_n_step = self._compute_c51_loss(state_n_step, state__n_step, action_n_step, reward_n_step, done_n_step, gamma)
+        elementwise_loss_n_step = self._compute_dqn_loss(samples_n_step, gamma)
         elementwise_loss += elementwise_loss_n_step
 
         loss = T.mean(elementwise_loss * weights)
@@ -190,7 +179,8 @@ class Agent:
         # Update network
         self.q_eval.optimizer.zero_grad()
         loss.backward()
-        self.q_eval.optimizer.step()
+        clip_grad_norm_(self.q_eval.parameters(), 10.0)
+        self.optimizer.step()
         self.learn_step_counter += 1
 
         # Update priorities in memory
@@ -204,56 +194,51 @@ class Agent:
 
         self.decrease_epsilon()
 
-    def _compute_c51_loss(self, states, states_, actions, rewards, dones, gamma=None):
-        batch_size = states.size(0)
-        delta_z = self.delta_z
+    def _compute_dqn_loss(self, samples: Dict[str, np.ndarray], gamma: float) -> T.Tensor:
+        """Return categorical dqn loss."""
+        device = self.q_eval.device  # for shortening the following lines
+        state = T.FloatTensor(samples["obs"]).to(device)
+        next_state = T.FloatTensor(samples["next_obs"]).to(device)
+        action = T.LongTensor(samples["acts"]).to(device)
+        reward = T.FloatTensor(samples["rews"].reshape(-1, 1)).to(device)
+        done = T.FloatTensor(samples["done"].reshape(-1, 1)).to(device)
+        
+        # Categorical DQN algorithm
+        delta_z = float(self.v_max - self.v_min) / (self.atom_size - 1)
 
-        # Get predicted probabilities from current Q network
-        log_probs = self.q_eval.dist(states)
-        actions = actions.view(-1, 1, 1).expand(-1, 1, self.atom_size)
-        log_probs = log_probs.gather(1, actions).squeeze(1)
+        with T.no_grad():
+            # Double DQN
+            next_action = self.q_eval(next_state).argmax(1)
+            next_dist = self.q_next.dist(next_state)
+            next_dist = next_dist[range(self.batch_size), next_action]
 
-        # Compute the target distribution
-        if gamma is None:
-            gamma = self.gamma
-        target_probs = self._get_target_distribution(states_, rewards, dones, gamma)
-        target_probs = target_probs.to(self.q_eval.device)
+            t_z = reward + (1 - done) * gamma * self.support
+            t_z = t_z.clamp(min=self.v_min, max=self.v_max)
+            b = (t_z - self.v_min) / delta_z
+            l = b.floor().long()
+            u = b.ceil().long()
 
-        # Loss calculation using cross-entropy
-        elementwise_loss = -(target_probs * log_probs).sum(dim=1)
+            offset = (
+                T.linspace(
+                    0, (self.batch_size - 1) * self.atom_size, self.batch_size
+                ).long()
+                .unsqueeze(1)
+                .expand(self.batch_size, self.atom_size)
+                .to(self.q_eval.device)
+            )
 
+            proj_dist = T.zeros(next_dist.size(), device=self.device)
+            proj_dist.view(-1).index_add_(
+                0, (l + offset).view(-1), (next_dist * (u.float() - b)).view(-1)
+            )
+            proj_dist.view(-1).index_add_(
+                0, (u + offset).view(-1), (next_dist * (b - l.float())).view(-1)
+            )
+
+        dist = self.q_eval.dist(state)
+        log_p = T.log(dist[range(self.batch_size), action])
+        elementwise_loss = -(proj_dist * log_p).sum(1)
+
+
+        print(elementwise_loss)
         return elementwise_loss
-
-    def _get_target_distribution(self, next_states, rewards, dones, gamma):
-        batch_size = next_states.size(0)
-        next_distr = self.q_next.dist(next_states).detach()
-
-        # Find best actions for next states using the online network
-        next_action_values = self.q_eval.dist(next_states).detach()
-        next_best_actions = next_action_values.sum(dim=2).argmax(dim=1, keepdim=True)
-        next_best_actions = next_best_actions.view(-1, 1, 1).expand(batch_size, 1, self.atom_size)
-        next_distr = next_distr.gather(1, next_best_actions).squeeze(1)
-
-        # Calculate projection of Bellman update
-        rewards = rewards.expand_as(next_distr)
-        dones = dones.expand_as(next_distr)
-
-        support = self.support.view(1, -1).expand(batch_size, -1)
-        target_support = rewards + (1 - dones) * gamma * support
-        target_support = target_support.clamp(min=self.v_min, max=self.v_max)
-
-        # Compute new probabilities
-        b = (target_support - self.v_min) / self.delta_z
-        l = b.floor().long()
-        u = b.ceil().long()
-
-        m = T.zeros(batch_size, self.atom_size).to(self.q_eval.device)
-
-        for j in range(self.atom_size):
-            l_idx = l[:, j].clamp(min=0, max=self.atom_size - 1)
-            u_idx = u[:, j].clamp(min=0, max=self.atom_size - 1)
-
-            m[range(batch_size), l_idx] += next_distr[:, j] * (u.float() - b)[:, j]
-            m[range(batch_size), u_idx] += next_distr[:, j] * (b - l.float())[:, j]
-
-        return m

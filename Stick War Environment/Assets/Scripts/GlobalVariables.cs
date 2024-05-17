@@ -5,6 +5,7 @@ using System.Data.Common;
 using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GlobalVariables : MonoBehaviour
 {
@@ -137,14 +138,28 @@ public class GlobalVariables : MonoBehaviour
 
     public Tower tower;
 
+
+    [Header("GAMEPLAY TEAM 1")]
+    public Text r_team1;
+    public Text fa_team1;
+    public Text bb_team1;
+    public Text sw_team1;
+    public Text g_text1;
+    public Text pi_text1;
+    public Text ca_text1;
+    public Text ts_text1;
+    public Text ac_r_team1;
+    public Text ac_fa_team1;
     //TOWER SPAWN
     public int buyTowerSpawn1()
     {
+        ts_text1.text = "G:600 C:200 TOWER SPAWN 1";
         if (gold1 >= 600 && crystal1 >= 200 && towerSpawn1 == 0)
         {
             TEAM1.text = "TOWER SPAWN";
             towerSpawn1 = 1;
             gold1 -= 600;
+            ts_text1.text = "G:2000 C:1000 TOWER SPAWN 2";
             crystal1 -= 200;
             return 0;
         }
@@ -152,6 +167,7 @@ public class GlobalVariables : MonoBehaviour
         {
             TEAM1.text = "TOWER SPAWN 2";
             towerSpawn1 = 2;
+            ts_text1.text = "TOWER SPAWN FINISHED";
             gold1 -= 2000;
             crystal1 -= 1000;
             return 0;
@@ -194,6 +210,7 @@ public class GlobalVariables : MonoBehaviour
         if (rageBUY && canRage)
         {
             TEAM1.text = "RAGE";
+            ac_r_team1.text = "RAGE CD";
             for (int i = 0; i < team2units.Count; i++)
             {
                 if (team2units[i].GetComponent<Swordswrath>())
@@ -211,6 +228,7 @@ public class GlobalVariables : MonoBehaviour
             rage = false;
             yield return new WaitForSeconds(12);
             canRage = true;
+            ac_r_team1.text = "RAGE";
         }
 
         yield return null;
@@ -223,6 +241,8 @@ public class GlobalVariables : MonoBehaviour
             canRage = true;
             gold1 -= 50;
             crystal1 -= 50;
+            r_team1.text = "SOLD";
+            ac_r_team1.text = "RAGE";
             return 0;
         }
         TEAM1.text = "CANNOT AFFORD RAGE";
@@ -238,6 +258,15 @@ public class GlobalVariables : MonoBehaviour
         if (canFireArrows) {
             TEAM1.text = "FIRE ARROWS";
             fireArrows = !fireArrows;
+
+            if(fireArrows)
+            {
+                ac_fa_team1.text = "FIRE ARROW ACTIVE";
+            }
+            else
+            {
+                ac_fa_team1.text = "FIRE ARROW NOT ACTIVE";
+            }
         }
         yield return null;
     }
@@ -246,6 +275,7 @@ public class GlobalVariables : MonoBehaviour
         if (gold1 >= 50 && crystal1 >= 100 && !canFireArrows)
         {
             TEAM1.text = "FIRE ARROW BUY";
+            fa_team1.text = "FIRE ARROW SOLD";
             canFireArrows = true;
             gold1 -= 50;
             crystal1 -= 100;
@@ -260,6 +290,15 @@ public class GlobalVariables : MonoBehaviour
     {
         TEAM1.text = "SHIELD WALL";
         shieldWall = !shieldWall;
+
+        if(shieldWall)
+        {
+            sw_team1.text = "SHIELD WALL ACTIVE";
+        }
+        else
+        {
+            sw_team1.text = "SHIELD WALL NOT ACTIVE";
+        }
         yield return null;
     }
 
@@ -271,6 +310,7 @@ public class GlobalVariables : MonoBehaviour
             TEAM1.text = "BLAZING BOLTS BUY";
             blazingBolts = true;
             gold1 -= 400;
+            bb_team1.text = "BLAZING BOLTS BOUGHT";
             return 0;
         }
 
@@ -281,16 +321,19 @@ public class GlobalVariables : MonoBehaviour
     //GIANT UPGRADE
     public int buyGiant_Upgrade1()
     {
+        g_text1.text = "G: 400 C:400 GIANT UP 1";
         if (gold1 >= 400 && crystal1 >= 400 && giantUpgrade1 == 1)
         {
             TEAM1.text = "GIANT 1";
             giantUpgrade1 = 1.3f;
             gold1 -= 400;
+            g_text1.text = "G: 600 C:600 GIANT UP 2";
             crystal1 -= 400;
             return 0;
         }else if(gold1 >= 600 && crystal1 >= 600 && giantUpgrade1 == 1.3f)
         {
             TEAM1.text = "GIANT 2";
+            g_text1.text = "GIANT UPGRADES FINISHED";
             giantUpgrade1 = 1.7f;
             gold1 -= 600;
             crystal1 -= 600;return 0;
@@ -329,17 +372,22 @@ public class GlobalVariables : MonoBehaviour
     {
         if(gold1 >= 150 && crystal1 >= 100 && passive1 != 15)
         {
-            if(passive1 == 5)
+            pi_text1.text = "G: 150 C:100 PASSIVE 1";
+            if (passive1 == 5)
             {
                 TEAM1.text = "PASSIVE 1";
                 passive1 = 10;
                 gold1 -= 150;
+                pi_text1.text = "G: 150 C:100 PASSIVE 2";
+
                 crystal1 -= 100;
                 return 0;
             }
             else
             {
                 TEAM1.text = "PASSIVE 2";
+                pi_text1.text = "PASSIVE INCOME FINISHED";
+
                 passive1 = 15;
                 gold1 -= 150;
                 crystal1 -= 100;
@@ -384,10 +432,12 @@ public class GlobalVariables : MonoBehaviour
     public int buyCastle_Archer1()
     {
         if (castle1ability == 3) { TEAM1.text = "CASTLE ARCHER FULL"; return -10; }
+        ca_text1.text = "G:300 CASTLE ARCHER 1";
         if (gold1 >= 300 && castle1ability == 0)
         {
             gold1 -= 300;
             castle1ability++;
+            ca_text1.text = "G:600 CASTLE ARCHER 2";
             TEAM1.text = "CASTLE ARCHER 1";
             return 0;
         }
@@ -395,6 +445,7 @@ public class GlobalVariables : MonoBehaviour
         {
             gold1 -= 600;
             castle1ability++;
+            ca_text1.text = "G:1000 CASTLE ARCHER 3";
             TEAM1.text = "CASTLE ARCHER 2";
             return 0;
         }
@@ -402,6 +453,7 @@ public class GlobalVariables : MonoBehaviour
         {
             gold1 -= 1000;
             castle1ability++;
+            ca_text1.text = "CASTLE ARCHER FINISHED";
             TEAM1.text = "CASTLE ARCHER 3";
             return 0;
         }
@@ -722,7 +774,7 @@ public class GlobalVariables : MonoBehaviour
     }
     public void setTeam2Miners(int to)
     {
-        team1miners = to;
+        team2miners = to;
     }
     void ArrangeStickmenTeam1(Transform point)
     {
@@ -1114,6 +1166,8 @@ public class GlobalVariables : MonoBehaviour
             {
                 setTeam1(3);
                 TEAM1.text = "ATTACK UNITS";
+                reward += 15;
+
             }
             else if (action == 3)
             {
@@ -1127,7 +1181,7 @@ public class GlobalVariables : MonoBehaviour
             }
             else if (action >= 5 && action <= 13)
             {
-                if(team1units.Count >= 50)
+                if(team1units.Count >= 30)
                 {
                     TEAM1.text = "MAX UNITS";
                     reward -= 100;
@@ -1349,6 +1403,7 @@ public class GlobalVariables : MonoBehaviour
             {
                 setTeam2(3);
                 TEAM2.text = "ATTACK UNITS";
+                reward += 15;
             }
             else if (action == 3)
             {
@@ -1362,7 +1417,7 @@ public class GlobalVariables : MonoBehaviour
             }
             else if (action >= 5 && action <= 13)
             {
-                if(team2units.Count >= 50)
+                if(team2units.Count >= 30)
                 {
                     reward -=100;
                     TEAM2.text = "MAX UNITS";
@@ -1587,7 +1642,7 @@ public class GlobalVariables : MonoBehaviour
             }
             if((team1 == 1 && team2 != 3) || (team1miners == 1 && team2 != 3))
             {
-                reward -= 100;
+                reward -= 200;
             }
 
             if(_gold1 < gold1)
@@ -1648,7 +1703,7 @@ public class GlobalVariables : MonoBehaviour
             }
             if ((team2 == 1 && team1 != 3) || (team2miners == 1 && team1 != 3))
             {
-                reward -= 100;
+                reward -= 200;
             }
             if (_gold2 < gold2)
             {
@@ -1785,4 +1840,257 @@ public class GlobalVariables : MonoBehaviour
 
     }
 
-}
+    public void playActionTEAM1(int action)
+    {
+        int reward = 0;
+        //0) ⬇️
+        //1) garrison troops
+        //2) defend
+        //3) attack
+        //4) miners garrison
+        //5) miners mine
+
+        //6) sword
+        //7) archidon
+        //8) spearton
+        //9) magikill
+        //10) giant
+        //11) shadow
+        TEAM1.text = "";
+        TEAM2.text = "";
+            if (action == 0)
+            {
+                TEAM1.text = "GARRISON UNITS";
+                setTeam1(1);
+            }
+            else if (action == 1)
+            {
+                setTeam1(2);
+                TEAM1.text = "DEFEND UNITS";
+            }
+            else if (action == 2)
+            {
+                setTeam1(3);
+                TEAM1.text = "ATTACK UNITS";
+                reward += 15;
+
+            }
+            else if (action == 3)
+            {
+                setTeam1Miners(1);
+                TEAM1.text = "GARRISON MINERS";
+            }
+            else if (action == 4)
+            {
+                setTeam1Miners(2);
+                TEAM1.text = "MINE";
+            }
+            else if (action >= 5 && action <= 13)
+            {
+                if (team1units.Count >= 30)
+                {
+                    TEAM1.text = "MAX UNITS";
+                    reward -= 100;
+                }
+                else
+                {
+
+                    if (action == 5)
+                    {
+                        if (gold1 >= 150)
+                        {
+                            TEAM1.text = "MINER SUMMON";
+                            gold1 -= 150;
+                            summonTroop1("MINER");
+                            reward += 20;
+                        }
+                        else
+                        {
+                            TEAM1.text = "CANNOT AFFORD MINER";
+                            reward -= 100;
+                        }
+
+                        int numMiners = 0;
+                        foreach (GameObject unit in team1units)
+                        {
+                            if (unit.GetComponent<Miner>() != null)
+                            {
+                                numMiners++;
+                            }
+                        }
+
+                        if (numMiners > 12)
+                        {
+                            reward -= 100;
+                        }
+                    }
+                    else if (action == 6)
+                    {
+                        if (gold1 >= 125)
+                        {
+                            gold1 -= 125;
+                            summonTroop1("SWORD");
+                            TEAM1.text = "SWORD SUMMON";
+                        }
+                        else
+                        {
+                            reward -= 100;
+                            TEAM1.text = "CANNOT AFFORD SWORD";
+                        }
+                    }
+                    else if (action == 7)
+                    {
+                        if (gold1 >= 300)
+                        {
+                            gold1 -= 300;
+                            TEAM1.text = "ARCHIDON SUMMON";
+                            summonTroop1("ARCHIDON");
+                        }
+                        else
+                        {
+                            reward -= 100;
+                            TEAM1.text = "CANNOT AFFORD ARCHIDON";
+                        }
+                    }
+                    else if (action == 8)
+                    {
+                        if (gold1 >= 450 && crystal1 >= 100)
+                        {
+                            gold1 -= 450;
+                            crystal1 -= 100;
+                            summonTroop1("SPEARTON");
+                            TEAM1.text = "SUMMON SPEARTON";
+                        }
+                        else
+                        {
+                            reward -= 100;
+                            TEAM1.text = "CANNOT AFFORD SPEARTON";
+                        }
+                    }
+                    else if (action == 9)
+                    {
+                        if (gold1 >= 400 && crystal1 >= 400)
+                        {
+                            gold1 -= 400;
+                            crystal1 -= 400;
+                            TEAM1.text = "MAGIKILL SUMMON";
+                            summonTroop1("MAGIKILL");
+                        }
+                        else
+                        {
+                            reward -= 10;
+                            TEAM1.text = "CANNOT AFFORD MAGIKILL";
+                        }
+                    }
+                    else if (action == 10)
+                    {
+                        if (gold1 >= 1500)
+                        {
+                            gold1 -= 1500;
+                            summonTroop1("GIANT");
+                            TEAM1.text = "GIANT SPAWN";
+                        }
+                        else
+                        {
+                            reward -= 100;
+                            TEAM1.text = "CANNOT AFFORD GIANT";
+                        }
+                    }
+                    else if (action == 11)
+                    {
+                        if (gold1 >= 450 && crystal1 >= 150)
+                        {
+                            gold1 -= 450;
+                            crystal1 -= 150;
+                            TEAM1.text = "SHADOWRATH SPAWN";
+                            summonTroop1("SHADOW");
+                        }
+                        else
+                        {
+                            reward -= 100;
+                            TEAM1.text = "CANNOT AFFORD SHADOW";
+                        }
+                    }
+                    else if (action == 12)
+                    {
+                        if (gold1 >= 450 && crystal1 >= 200)
+                        {
+                            gold1 -= 450;
+                            crystal1 -= 200;
+                            summonTroop1("ALBOWTROSS");
+                            TEAM1.text = "ALBOWTROSS SPAWN";
+                        }
+                        else
+                        {
+                            reward -= 100;
+                            TEAM1.text = "CANNOT AFFORD ALBOWTROSS";
+                        }
+                    }
+                    else if (action == 13)
+                    {
+                        if (gold1 >= 300 && crystal1 >= 200)
+                        {
+                            gold1 -= 300;
+                            crystal1 -= 200;
+                            TEAM1.text = "MERIC SUMMON";
+                            summonTroop1("MERIC");
+                        }
+                        else
+                        {
+                            reward -= 100;
+                            TEAM1.text = "CANNOT AFFORD MERIC";
+                        }
+                    }
+                }
+            }
+            else if (action == 14)
+            {
+                reward += buyRage();
+            }
+            else if (action == 15)
+            {
+                StartCoroutine(RAGE());
+            }
+            else if (action == 16)
+            {
+                reward += buyFire_Arrows();
+            }
+            else if (action == 17)
+            {
+                StartCoroutine(FIRE_ARROWS());
+            }
+            else if (action == 18)
+            {
+                StartCoroutine(SHIELD_WALL());
+            }
+            else if (action == 19)
+            {
+                reward += buyBlazing_Bolts();
+            }
+            else if (action == 20)
+            {
+                reward += buyGiant_Upgrade1();
+            }
+            else if (action == 21)
+            {
+                reward += buyPassive_Income1();
+            }
+            else if (action == 22)
+            {
+                reward += buyCastle_Archer1();
+            }
+            else if (action == 23)
+            {
+                setTeam1(4);
+                TEAM1.text = "UNITS TO TOWER";
+            }
+            else if (action == 24)
+            {
+                reward += buyTowerSpawn1();
+            }
+            else
+            {
+                reward -= 10;
+            }
+        }
+    }

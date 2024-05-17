@@ -6,6 +6,8 @@ import torch.nn.functional as F
 class NoisyLinear(nn.Module):
     """Noisy linear module for NoisyNet.
     
+    
+        
     Attributes:
         in_features (int): input size of linear module
         out_features (int): output size of linear module
@@ -17,13 +19,19 @@ class NoisyLinear(nn.Module):
         
     """
 
-    def __init__(self, in_features: int, out_features: int, std_init: float = 0.5):
+    def __init__(
+        self, 
+        in_features: int, 
+        out_features: int, 
+        std_init: float = 0.5,
+    ):
         """Initialization."""
         super(NoisyLinear, self).__init__()
         
         self.in_features = in_features
         self.out_features = out_features
         self.std_init = std_init
+        self.use_noise = True
 
         self.weight_mu = nn.Parameter(torch.Tensor(out_features, in_features))
         self.weight_sigma = nn.Parameter(
@@ -67,11 +75,29 @@ class NoisyLinear(nn.Module):
         We don't use separate statements on train / eval mode.
         It doesn't show remarkable difference of performance.
         """
-        return F.linear(
-            x,
-            self.weight_mu + self.weight_sigma * self.weight_epsilon,
-            self.bias_mu + self.bias_sigma * self.bias_epsilon,
-        )
+
+        if(self.use_noise):
+            return F.linear(
+                x,
+                self.weight_mu + self.weight_sigma * self.weight_epsilon,
+                self.bias_mu + self.bias_sigma * self.bias_epsilon,
+            )
+        else:
+            return F.linear(
+                x,
+                self.weight_mu,
+                self.bias_mu,
+            )
+        
+    def enable_noise(self):
+        """Enable noise for exploration."""
+        self.use_noise = True
+
+    def disable_noise(self):
+        """Disable noise for deterministic behavior."""
+        self.use_noise = False
+
+            
     
     @staticmethod
     def scale_noise(size: int) -> torch.Tensor:
