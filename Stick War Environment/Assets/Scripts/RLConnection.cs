@@ -8,6 +8,7 @@ using UnityEngine;
 using System.Threading;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Security.Cryptography;
 
 public class RLConnection : MonoBehaviour
 {
@@ -301,6 +302,11 @@ public class RLConnection : MonoBehaviour
     {
         return b ? 1 : 0;
     }
+
+    public float normalize(float value, float min, float max)
+    {
+        return (value - min) / (max - min);
+    }
     public string sendInput(int team) //724, 720
     {
 
@@ -309,11 +315,11 @@ public class RLConnection : MonoBehaviour
 
         if(team == 1)
         {
-            saved.Add(gv.gold1.ToString());
-            saved.Add(gv.crystal1.ToString());
-            saved.Add(gv.population1.ToString());
-            saved.Add(Math.Round(gv.statue1.currentHP).ToString());
-            saved.Add(Math.Round(gv.statue2.currentHP).ToString());
+            saved.Add((gv.gold1 / 5000).ToString());
+            saved.Add((gv.crystal1 / 7000).ToString());
+            saved.Add((gv.population2 / 30).ToString());
+            saved.Add(((gv.statue1.currentHP / 600)).ToString());
+            saved.Add(((gv.statue2.currentHP / 600)).ToString());
 
             saved.Add(Convert.ToInt32(gv.rageBUY).ToString());
             saved.Add(Convert.ToInt32(gv.canRage).ToString());
@@ -325,45 +331,52 @@ public class RLConnection : MonoBehaviour
             saved.Add(Convert.ToInt32(gv.shieldWall).ToString());
             saved.Add(Convert.ToInt32(gv.blazingBolts).ToString());
             saved.Add(Convert.ToInt32(gv.fireArrows).ToString());
-            saved.Add(gv.giantUpgrade1.ToString());
-            saved.Add(gv.castle1ability.ToString());
-            saved.Add(gv.castle2ability.ToString());
-            saved.Add(gv.giantUpgrade2.ToString());
+            saved.Add((gv.giantUpgrade1/1.7).ToString());
+            saved.Add((gv.numberOfCastles1 / 6).ToString());
+            saved.Add((gv.numberOfCastles2 / 6).ToString());
+            saved.Add((gv.giantUpgrade2 / 1.7).ToString());
 
-            saved.Add(gv.tower.control.ToString());
-            saved.Add(Math.Round(gv.tower.ticksResources).ToString());
+            saved.Add(normalize(gv.tower.control, -100, 100).ToString());
+            saved.Add(Math.Round((gv.tower.ticksResources/20), 2).ToString());
+            saved.Add((gv.cdteam1 / gv.maxCooldown).ToString());
 
             //17
 
         }
         else
         {
-            saved.Add(gv.gold2.ToString());
-            saved.Add(gv.crystal2.ToString());
-            saved.Add(gv.population2.ToString());
-            saved.Add(Math.Round(gv.statue1.currentHP).ToString());
-            saved.Add(Math.Round(gv.statue2.currentHP).ToString());
+            saved.Add((gv.gold2 / 5000).ToString());
+            saved.Add((gv.crystal2 / 7000).ToString());
+            saved.Add((gv.population2 / 30).ToString());
+            saved.Add(((gv.statue1.currentHP / 600)).ToString());
+            saved.Add(((gv.statue2.currentHP / 600)).ToString());
 
             saved.Add(Convert.ToInt32(gv.rage).ToString());
             saved.Add(Convert.ToInt32(gv.shieldWall).ToString());
             saved.Add(Convert.ToInt32(gv.blazingBolts).ToString());
             saved.Add(Convert.ToInt32(gv.fireArrows).ToString());
-            saved.Add(gv.giantUpgrade1.ToString());
-            saved.Add(gv.castle1ability.ToString());
-            saved.Add(gv.castle2ability.ToString());
-            saved.Add(gv.giantUpgrade2.ToString());
+            saved.Add((gv.giantUpgrade1 / 1.7).ToString());
+            saved.Add((gv.numberOfCastles1 / 6).ToString());
+            saved.Add((gv.numberOfCastles2 / 6).ToString());
+            saved.Add((gv.giantUpgrade2 / 1.7).ToString());
 
-            saved.Add(gv.tower.control.ToString());
-            saved.Add(Math.Round(gv.tower.ticksResources).ToString());
+            saved.Add(normalize(gv.tower.control, -100, 100).ToString());
+            saved.Add(Math.Round((gv.tower.ticksResources / 20), 2).ToString());
+            saved.Add((gv.cdteam2 / gv.maxCooldown).ToString());
+
 
             //13
         }
-        saved.Add(Math.Round(time).ToString());
-        saved.Add(gv.team1miners.ToString());
-        saved.Add(gv.team2miners.ToString());
-        saved.Add(gv.team1.ToString());
-        saved.Add(gv.team2.ToString());
+        saved.Add(Math.Min(time / 1800, 1).ToString());
+        saved.Add((gv.team1miners/2).ToString());
+        saved.Add((gv.team2miners/2).ToString());
+        saved.Add((gv.team1 / 4).ToString());
+        saved.Add((gv.team2 / 4).ToString());
 
+        for(int i = 0; i < gv.mines.Count; i++)
+        {
+            saved.Add((gv.mines[i].durability/150).ToString());
+        }
 
         for(int i =  0; i < 30; i++)
         {
@@ -380,21 +393,21 @@ public class RLConnection : MonoBehaviour
             if (gv.team1units.Count > i) { unit = returnUnitType(gv.team1units[i]); }
             if (unit == "null" || gv.team1units.Count <= i)
             {
-                saved.Add("-2");
-                saved.Add("-2");
-                saved.Add("-2");
-                saved.Add("-2");
-                saved.Add("-2");
-                saved.Add("1");
+                saved.Add("0");
+                saved.Add("0");
+                saved.Add("0");
+                saved.Add("0");
+                saved.Add("0");
+                saved.Add("0.5");
             }
             else
             {
-                saved.Add(unit);
-                saved.Add(Math.Round(gv.team1units[i].GetComponentInChildren<HPSystem>().currentHP).ToString());
-                saved.Add(Math.Round(gv.team1units[i].transform.position.x, 1).ToString());
-                saved.Add(gv.team1units[i].GetComponentInChildren<HPSystem>().poisonStacks.ToString());
-                saved.Add(gv.team1units[i].GetComponentInChildren<HPSystem>().fireStacks.ToString());
-                saved.Add("1");
+                saved.Add((float.Parse(unit) / 17).ToString());
+                saved.Add((gv.team1units[i].GetComponentInChildren<HPSystem>().currentHP / 214.2f).ToString());
+                saved.Add(normalize(gv.team1units[i].transform.position.x, -44, 55).ToString());
+                saved.Add((gv.team1units[i].GetComponentInChildren<HPSystem>().poisonStacks > 0) ? "1" : "0");
+                saved.Add((gv.team1units[i].GetComponentInChildren<HPSystem>().fireStacks > 0) ? "1" : "0");
+                saved.Add("0.5");
             }
         }
         for (int i = 0; i < 30; i++)
@@ -412,26 +425,26 @@ public class RLConnection : MonoBehaviour
             if (gv.team2units.Count > i) { unit = returnUnitType(gv.team2units[i]); }
             if (unit == "null" || gv.team2units.Count <= i)
             {
-                saved.Add("-2");
-                saved.Add("-2");
-                saved.Add("-2");
-                saved.Add("-2");
-                saved.Add("-2");
-                saved.Add("2");
+                saved.Add("0");
+                saved.Add("0");
+                saved.Add("0");
+                saved.Add("0");
+                saved.Add("0");
+                saved.Add("1");
             }
             else
             {
-                saved.Add(unit);
-                saved.Add(Math.Round(gv.team2units[i].GetComponentInChildren<HPSystem>().currentHP).ToString());
-                saved.Add(Math.Round(gv.team2units[i].transform.position.x, 1).ToString());
-                saved.Add(gv.team2units[i].GetComponentInChildren<HPSystem>().poisonStacks.ToString());
-                saved.Add(gv.team2units[i].GetComponentInChildren<HPSystem>().fireStacks.ToString());
-                saved.Add("2");
+                saved.Add((float.Parse(unit) / 17).ToString());
+                saved.Add((gv.team2units[i].GetComponentInChildren<HPSystem>().currentHP/ 214.2f).ToString());
+                saved.Add(normalize(gv.team2units[i].transform.position.x, -44, 55).ToString());
+                saved.Add((gv.team2units[i].GetComponentInChildren<HPSystem>().poisonStacks > 0) ? "1" : "0");
+                saved.Add((gv.team2units[i].GetComponentInChildren<HPSystem>().fireStacks > 0) ? "1" : "0");
+                saved.Add("1");
             }
         }
 
-        saved.Add(gv.castle1.Count.ToString());
-        saved.Add(gv.castle2.Count.ToString());
+        saved.Add((gv.castle1.Count / 7).ToString());
+        saved.Add((gv.castle2.Count / 7).ToString());
 
 
         for (int i = 0; i < saved.Count - 1; i++)
@@ -442,7 +455,78 @@ public class RLConnection : MonoBehaviour
         return connected;
     } 
 
+    public float returnUnitHP(string unit)
+    {
+        if(unit == "1")
+        {
+            return 18;
+        }
+        else if(unit == "2")
+        {
+            return 18; 
+        }else if(unit == "3")
+        {
+            return 9;
+        }
+        else if (unit == "4")
+        {
+            return 54;
+        }
+        else if (unit == "5")
+        {
+            return 27;
+        }
+        else if (unit == "6")
+        {
+            return 126 * 1.7f;
+        }
+        else if (unit == "7")
+        {
+            return 36;
+        }
+        else if (unit == "8")
+        {
+            return 27;
+        }
+        else if (unit == "9")
+        {
+            return 5;
+        }
+        else if (unit == "10")
+        {
+            return 18;
+        }
+        else if (unit == "11")
+        {
+            return 9;
+        }
+        else if (unit == "12")
+        {
+            return 9;
+        }
+        else if (unit == "13")
+        {
+            return 9;
+        }
+        else if (unit == "14")
+        {
+            return 9;
+        }
+        else if (unit == "15")
+        {
+            return 9;
+        }
+        else if (unit == "16")
+        {
+            return 9;
+        }
+        else if (unit == "17")
+        {
+            return 9;
+        }
 
+        return 0;
+    }
      
     public string returnUnitType(GameObject unit)
     {
@@ -514,6 +598,9 @@ public class RLConnection : MonoBehaviour
         if (unit.GetComponent<EnslavedGiant>())
         {
             return "17";
+        }
+        if(unit.GetComponent<Minion>()) {
+            return "0.5";
         }
         return "null";
     }

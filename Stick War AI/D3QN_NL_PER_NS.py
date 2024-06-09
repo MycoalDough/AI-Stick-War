@@ -77,7 +77,7 @@ class RAINBOW_Q_Network(nn.Module):
         self.value_layer.disable_noise()
 
 class Agent:
-    def __init__(self, gamma, epsilon, lr, n_actions, input_dims, mem_size, batch_size, checkpoint_name, eps_min=0.01, eps_dec=5e-7, replace=1000, checkpoint_dir='Agents', v_min=-1, v_max=1, atom_size=51):
+    def __init__(self, gamma, epsilon, lr, n_actions, input_dims, mem_size, batch_size, checkpoint_name, eps_min=0.01, eps_dec=3e-6, replace=1000, checkpoint_dir='Agents', v_min=-1, v_max=1, atom_size=51):
         self.device = T.device("cuda" if T.cuda.is_available() else "cpu")
         self.gamma = gamma
         self.epsilon = epsilon
@@ -93,7 +93,7 @@ class Agent:
         self.learn_step_counter = 0
         self.action_space = [i for i in range(self.n_actions)]
         self.checkpoint_name = checkpoint_name
-        self.n_step = 3
+        self.n_step = 7
         self.alpha = 0.2
         self.beta = 0.6
         self.prior_eps = 1e-6
@@ -104,7 +104,7 @@ class Agent:
         self.q_next = RAINBOW_Q_Network(self.lr, input_dims=self.input_dims, n_actions=self.n_actions, checkpoint_dir=self.checkpoint_dir, name=self.checkpoint_name + "_next")
         self.q_next.eval()
         self.optimizer = optim.Adam(self.q_eval.parameters())
-        self.USE_EPSILON = False
+        self.USE_EPSILON = True
 
     def choose_action(self, observation, current, iterations, training):
         if self.USE_EPSILON:

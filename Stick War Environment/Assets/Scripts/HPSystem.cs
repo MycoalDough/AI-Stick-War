@@ -356,6 +356,10 @@ public class HPSystem : MonoBehaviour
 
     IEnumerator DazeWait()
     {
+        if (!daze.gameObject)
+        {
+            yield return null;
+        }
         daze.gameObject.SetActive(true);
         dazed = true;
 

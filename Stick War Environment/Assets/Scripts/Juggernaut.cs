@@ -150,7 +150,7 @@ public class Juggernaut : MonoBehaviour
         for(int i = 0; i < 10; i++)
         {
             yield return new WaitForSeconds(0.15f);
-            if (Attack(damage * 0.3f)) enemy.Daze();
+            if (Attack(damage * 0.6f)) enemy.Daze();
         }
         yield return new WaitForSeconds(0.7f);
         rushing = false;

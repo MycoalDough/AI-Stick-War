@@ -77,11 +77,11 @@ public class Crawler : MonoBehaviour
 
         if (packMentality.getNameNameInRange("Crawler") >= 5)
         {
-            damage = 1f;
+            damage = 1.5f;
         }
         else
         {
-            damage = 0.6f;
+            damage = 1f;
         }
 
         if (Vector2.Distance(transform.position, toMove) < 0.05f)

@@ -194,14 +194,14 @@ public class Magikill : MonoBehaviour
     IEnumerator ReloadAttack()
     {
         isAttackingReloading = true;
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(8);
         isAttackingReloading = false;
     }
 
     IEnumerator ReloadSummon()
     {
         isSummoningReloading = true;
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(20);
         isSummoningReloading = false;
     }
     // Update is called once per frame

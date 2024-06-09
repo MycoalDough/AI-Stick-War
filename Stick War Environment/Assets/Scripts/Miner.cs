@@ -314,7 +314,7 @@ public class Miner : MonoBehaviour
     {
         anim.Play("MinerMine");
         isMining = true;
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(5);
         if(myMine) myMine.GetComponent<Resource>().durability--;
 
         isMining = false;

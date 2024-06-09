@@ -175,7 +175,7 @@ MonoBehaviour:
     m_Bits: 0
   Etag: 
   target: 
-  damage: 1.3
+  damage: 0.6
   moveSpeed: 1.5
 --- !u!95 &6754210721412074367
 Animator:

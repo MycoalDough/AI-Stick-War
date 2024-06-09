@@ -78,7 +78,7 @@ class RAINBOW_Q_Network(nn.Module):
 
 
 class Agent:
-    def __init__(self, gamma, epsilon, lr, n_actions, input_dims, mem_size, batch_size, checkpoint_name, eps_min=0.01, eps_dec=5e-7, replace=1000, checkpoint_dir='Agents', v_min=-1, v_max=1, atom_size=51):
+    def __init__(self, gamma, epsilon, lr, n_actions, input_dims, mem_size, batch_size, checkpoint_name, eps_min=0.05, eps_dec=2e-6, replace=1000, checkpoint_dir='Agents', v_min=-1, v_max=1, atom_size=51):
         self.device = T.device("cuda" if T.cuda.is_available() else "cpu")
         self.gamma = gamma
         self.epsilon = epsilon
@@ -112,14 +112,14 @@ class Agent:
         self.q_next = RAINBOW_Q_Network(self.lr, input_dims=self.input_dims, n_actions=self.n_actions, checkpoint_dir=self.checkpoint_dir, name=self.checkpoint_name + "_next", atom_size=self.atom_size, support=self.support)
 
         self.optimizer = optim.Adam(self.q_eval.parameters())
-        self.USE_EPSILON = False
+        self.USE_EPSILON = True
 
     def choose_action(self, observation, current, iterations):
         if self.USE_EPSILON:
             if np.random.random() > self.epsilon:
-                state = T.tensor(np.array(observation, dtype=np.float32), device=self.q_eval.device)
-                q_values = self.q_eval.forward(state)
-                action = T.argmax(q_values).item()
+                state = T.tensor(np.array(observation, dtype=np.float32), device=self.device)
+                with T.no_grad():
+                    action = self.q_eval(state).argmax().item()
                 randomness = "AI"
             else:
                 action = np.random.choice(self.action_space)

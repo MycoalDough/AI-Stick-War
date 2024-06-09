@@ -11,11 +11,11 @@ if(__name__ == "__main__"):
     load_checkpoint = True
     AI_team1 = False
     AI_team2 = False
-    load_graph = True
+    load_graph = False
 
 
-    agent1 = Model.Agent(gamma=0.99,epsilon=1,lr=4e-4, input_dims=[386],n_actions=25, mem_size=300_000, eps_min=0.01, batch_size=32, checkpoint_name="team1",eps_dec=2e-6,replace=100)
-    agent2 = Model.Agent(gamma=0.99,epsilon=1,lr=4e-4, input_dims=[382],n_actions=19, mem_size=300_000, eps_min=0.01, batch_size=32,checkpoint_name="team2",eps_dec=2e-6,replace=100)
+    agent1 = Model.Agent(gamma=0.99,epsilon=0.05,lr=1e-4, input_dims=[399],n_actions=25, mem_size=400_000, eps_min=0.01, batch_size=32, checkpoint_name="team1",eps_dec=2e-6,replace=100)
+    agent2 = Model.Agent(gamma=0.99,epsilon=0.05,lr=1e-4, input_dims=[395],n_actions=19, mem_size=400_000, eps_min=0.01, batch_size=32,checkpoint_name="team2",eps_dec=2e-6,replace=100)
 
 
     if load_checkpoint:
@@ -24,7 +24,7 @@ if(__name__ == "__main__"):
 
 
     filename = 'StickWar-DDDQN-Adam-lr4e-4-replace100-1.png'
-    num_games = 10000
+    num_games = 100000
 
 
     def on_connection_established(client_socket):
@@ -121,8 +121,8 @@ if(__name__ == "__main__"):
                     observation = data.get_state()
                     action, was_random = agent2.choose_action(observation=observation, current=i, iterations=num_games, training=False)
                     reward, done2,observation_, speed, who = data.play_step(action)
-                    agent2.q_next.disable_noise()
-                    agent2.q_eval.disable_noise()
+                    agent2.q_next.reset_noise()
+                    agent2.q_eval.reset_noise()
 
                         
                 data.reset()

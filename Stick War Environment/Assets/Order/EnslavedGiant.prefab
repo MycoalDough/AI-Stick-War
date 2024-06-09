@@ -212,7 +212,7 @@ PrefabInstance:
         type: 3}
       propertyPath: daze
       value: 
-      objectReference: {fileID: 969634133560974013}
+      objectReference: {fileID: 0}
     - target: {fileID: 2226930118870025953, guid: 4eb51063549e5434cb2ef8870ac2184a,
         type: 3}
       propertyPath: HPBar
@@ -222,6 +222,11 @@ PrefabInstance:
         type: 3}
       propertyPath: maxHP
       value: 99
+      objectReference: {fileID: 0}
+    - target: {fileID: 2226930118870025953, guid: 4eb51063549e5434cb2ef8870ac2184a,
+        type: 3}
+      propertyPath: defense
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 2226930118870025953, guid: 4eb51063549e5434cb2ef8870ac2184a,
         type: 3}
@@ -242,7 +247,7 @@ PrefabInstance:
         type: 3}
       propertyPath: deathSprite
       value: 
-      objectReference: {fileID: -3125773833962686323, guid: 50fb36d89529da743afeab69bab3eab8,
+      objectReference: {fileID: 1788013848902647895, guid: b65bf417a0a87764e82190f1b917664b,
         type: 3}
     - target: {fileID: 2226930118870025953, guid: 4eb51063549e5434cb2ef8870ac2184a,
         type: 3}
@@ -370,12 +375,6 @@ Transform:
 --- !u!4 &969634131859933838 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2226930117281132498, guid: 4eb51063549e5434cb2ef8870ac2184a,
-    type: 3}
-  m_PrefabInstance: {fileID: 1410594526660273500}
-  m_PrefabAsset: {fileID: 0}
---- !u!212 &969634133560974013 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 2226930119078641633, guid: 4eb51063549e5434cb2ef8870ac2184a,
     type: 3}
   m_PrefabInstance: {fileID: 1410594526660273500}
   m_PrefabAsset: {fileID: 0}

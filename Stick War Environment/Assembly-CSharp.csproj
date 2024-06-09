@@ -97,6 +97,7 @@
     <Compile Include="Assets\Scripts\Swordswrath.cs" />
     <Compile Include="Assets\Scripts\UnityMainThreadDispatcher.cs" />
     <Compile Include="Assets\Tower.cs" />
+    <Compile Include="Assets\Watcher.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
