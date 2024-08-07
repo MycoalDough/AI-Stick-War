@@ -194,12 +194,21 @@ public class Swordswrath : MonoBehaviour
         if (GetComponent<SpriteRenderer>().flipX && left.IsTargetWithinRange(enemy.gameObject))
         {
             enemy.Damage(dmg);
+            if(enemy.isArmoured)
+            {
+                enemy.Damage(6);
+            }
             return true;
         }
         else if (!GetComponent<SpriteRenderer>().flipX && right.IsTargetWithinRange(enemy.gameObject))
         {
             enemy.Damage(dmg);
+            if (enemy.isArmoured)
+            {
+                enemy.Damage(6);
+            }
             return true;
+
         }
         return false;
     }

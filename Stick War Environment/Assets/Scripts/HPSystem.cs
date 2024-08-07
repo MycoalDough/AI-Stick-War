@@ -12,6 +12,10 @@ public class HPSystem : MonoBehaviour
 
     public GlobalVariables gv;
 
+    public bool isArmoured;
+    public float damage;
+    public float extraDamageArmor;
+    public float extraDamageLight;
 
     public List<Component> toRemove = new List<Component>();
 
@@ -58,7 +62,8 @@ public class HPSystem : MonoBehaviour
     public void Awake()
     {
         gv = GameObject.FindObjectOfType<GlobalVariables>().GetComponent<GlobalVariables>();
-        poisonMaxTime = 4;
+        poisonMaxTime = 2;
+        fireMaxTime = 3;
     }
 
 
@@ -88,7 +93,7 @@ public class HPSystem : MonoBehaviour
             if (poisonTime > poisonMaxTime)
             {
                 poisonTime = 0;
-                Damage(0.2f);
+                Damage(2f);
                 poisonStacks--;
             }
             poisonShow.SetActive(true);
@@ -107,7 +112,7 @@ public class HPSystem : MonoBehaviour
             if (fireTime > fireMaxTime)
             {
                 fireTime = 0;
-                Damage(0.5f);
+                Damage(4f);
                 fireStacks--;
             }
 

@@ -98,7 +98,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   detector: {fileID: 5128350030950539041}
   Etag: 
-  damage: 3.5
+  damage: 40
 --- !u!114 &5128350030950539041
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -140,7 +140,7 @@ public class Miner : MonoBehaviour
                 }
                 else
                 {
-                    gv.gold1 += maxStorage * 20;
+                    gv.gold1 += maxStorage * 15;
                     maxStorage = 0;
                 }
             }
@@ -156,7 +156,7 @@ public class Miner : MonoBehaviour
                 }
                 else
                 {
-                    gv.gold2 += maxStorage * 20;
+                    gv.gold2 += maxStorage * 15;
                     maxStorage = 0;
                 }
             }

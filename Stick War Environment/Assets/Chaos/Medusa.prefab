@@ -297,7 +297,7 @@ MonoBehaviour:
   Etag: 
   target: 
   damage: 5000
-  moveSpeed: 1.4
+  moveSpeed: 3
 --- !u!95 &3024316892000268244
 Animator:
   serializedVersion: 3
@@ -341,17 +341,22 @@ PrefabInstance:
     - target: {fileID: 2226930118870025953, guid: 4eb51063549e5434cb2ef8870ac2184a,
         type: 3}
       propertyPath: maxHP
-      value: 36
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 2226930118870025953, guid: 4eb51063549e5434cb2ef8870ac2184a,
+        type: 3}
+      propertyPath: damage
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 2226930118870025953, guid: 4eb51063549e5434cb2ef8870ac2184a,
         type: 3}
       propertyPath: defense
-      value: 1.2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2226930118870025953, guid: 4eb51063549e5434cb2ef8870ac2184a,
         type: 3}
       propertyPath: currentHP
-      value: 36
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 2226930118870025953, guid: 4eb51063549e5434cb2ef8870ac2184a,
         type: 3}

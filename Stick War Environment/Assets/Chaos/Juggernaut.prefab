@@ -130,9 +130,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HPBar: {fileID: 514556243036305515}
-  maxHP: 54
-  currentHP: 54
+  maxHP: 400
+  currentHP: 400
   gv: {fileID: 0}
+  isArmoured: 1
+  damage: 10
+  extraDamageArmor: 5
+  extraDamageLight: 0
   toRemove: []
   defense: 1.3
   spriteRenderer: {fileID: 7810561471584727038}
@@ -794,7 +798,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   target: 
-  damage: 1.7
+  damage: 10
   moveSpeed: 2.5
   left: {fileID: 1856528723254949195}
   right: {fileID: 1856528723055503980}

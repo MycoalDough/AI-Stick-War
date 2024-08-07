@@ -90,6 +90,7 @@ public class GlobalVariables : MonoBehaviour
     public Transform castleSpawn2;
 
     public GameObject castleArchidon;
+    public GameObject castleDead;
 
     public int _team1;
     public int _team2;
@@ -157,6 +158,14 @@ public class GlobalVariables : MonoBehaviour
     public Text ts_text1;
     public Text ac_r_team1;
     public Text ac_fa_team1;
+
+    [Header("WALLS")]
+    public Transform wallSpawn1;
+    public Transform wallSpawn2;
+    public GameObject wall1;
+    public GameObject wall2;
+    public EnemyDetector insideteam1;
+    public EnemyDetector insideteam2;
     //TOWER SPAWN
     public int buyTowerSpawn1()
     {
@@ -240,6 +249,15 @@ public class GlobalVariables : MonoBehaviour
 
         yield return null;
     }
+
+    public int rageCheck()
+    {
+        if ((rageBUY && canRage))
+        {
+            return 100;  
+        }
+        return -100;
+    }
     public int buyRage()
     {
         if(gold1 >= 50 && crystal1 >= 50 && !rageBUY) {
@@ -259,7 +277,7 @@ public class GlobalVariables : MonoBehaviour
 
 
     // FIRE ARROWS
-    public IEnumerator FIRE_ARROWS()
+    public float FIRE_ARROWS()
     {
         TEAM1.text = "ATTEMPTED FIRE ARROWS";
         if (canFireArrows) {
@@ -274,8 +292,9 @@ public class GlobalVariables : MonoBehaviour
             {
                 ac_fa_team1.text = "FIRE ARROW NOT ACTIVE";
             }
+            return 0;
         }
-        yield return null;
+        return -100;
     }
     public int buyFire_Arrows()
     {
@@ -293,7 +312,7 @@ public class GlobalVariables : MonoBehaviour
     }
 
     //SHIELD WALL
-    public IEnumerator SHIELD_WALL()
+    public int SHIELD_WALL()
     {
         TEAM1.text = "SHIELD WALL";
         shieldWall = !shieldWall;
@@ -306,7 +325,15 @@ public class GlobalVariables : MonoBehaviour
         {
             sw_team1.text = "SHIELD WALL NOT ACTIVE";
         }
-        yield return null;
+        
+        if(team2 == 3)
+        {
+            return 0;
+        }
+        else
+        {
+            return -100;
+        }
     }
 
     //BLAZING BOLTS
@@ -370,7 +397,7 @@ public class GlobalVariables : MonoBehaviour
         }
 
         TEAM2.text = "GIANT UPGRADE TOO EXPESNIVE";
-        return -10;
+        return -100;
     }
 
 
@@ -430,7 +457,7 @@ public class GlobalVariables : MonoBehaviour
             }
         }
         TEAM2.text = "PASSIVE TOO EXPENSIVE";
-        return -10;
+        return -100;
 
 
     }
@@ -438,7 +465,7 @@ public class GlobalVariables : MonoBehaviour
     //CASTLE ARCHERS
     public int buyCastle_Archer1()
     {
-        if (castle1ability == 3) { TEAM1.text = "CASTLE ARCHER FULL"; return -10; }
+        if (castle1ability == 3) { TEAM1.text = "CASTLE ARCHER FULL"; return -100; }
         ca_text1.text = "G:300 CASTLE ARCHER 1";
         if (gold1 >= 300 && castle1ability == 0)
         {
@@ -469,7 +496,7 @@ public class GlobalVariables : MonoBehaviour
     }
     public int buyCastle_Archer2()
     {
-        if (castle2ability == 3) { TEAM2.text = "CASTLE ARCHER FULL"; return -10; }
+        if (castle2ability == 3) { TEAM2.text = "CASTLE ARCHER FULL"; return -100; }
         if (gold2 >= 300 && castle2ability == 0)
         {
             gold2 -= 300;
@@ -557,6 +584,24 @@ public class GlobalVariables : MonoBehaviour
             crystal2 += passive2;
             passive = 0;
         }
+
+        if (team1miners == 1)
+        {
+            for(int i = 0; i < 6; i++)
+            {
+                mines[i].queue.Clear();
+                mines[i].RemoveNullItems();
+            }
+        }
+
+        if (team2miners == 1)
+        {
+            for (int i = 6; i < mines.Count; i++)
+            {
+                mines[i].queue.Clear();
+                mines[i].RemoveNullItems();
+            }
+        }
     }
     public void findGarrisonedUnits1()
     {
@@ -583,7 +628,7 @@ public class GlobalVariables : MonoBehaviour
         }
 
         numberOfCastles1 = castle1ability + Math.Min((int)Mathf.Floor(s / 3),2);
-        if (s > 1) { numberOfCastles1++; }
+        if (s >= 1) { numberOfCastles1++; }
         numberOfCastles1 = Math.Min(numberOfCastles1, 6);
 
         if (RLConnection.time > 1800)
@@ -633,7 +678,7 @@ public class GlobalVariables : MonoBehaviour
 
         int numberOfCastles2 = castle2ability + Math.Min((int)Mathf.Floor(s / 3), 2);
 
-        if (s > 1) { numberOfCastles2++; }
+        if (s >= 1) { numberOfCastles2++; }
 
         numberOfCastles2 = Math.Min(numberOfCastles2, 6);
 
@@ -646,7 +691,7 @@ public class GlobalVariables : MonoBehaviour
         {
             if (numberOfCastles2 > castle2.Count)
             {
-                CastleArchidon ca = Instantiate(castleArchidon.gameObject, new Vector2(castleSpawn2.position.x, castleSpawn2.position.y + UnityEngine.Random.Range(-1f, 1f)), quaternion.identity).GetComponent<CastleArchidon>();
+                CastleArchidon ca = Instantiate(castleDead.gameObject, new Vector2(castleSpawn2.position.x, castleSpawn2.position.y + UnityEngine.Random.Range(-1f, 1f)), quaternion.identity).GetComponent<CastleArchidon>();
                 ca.tag = "Team2";
                 castle2.Add(ca);
             }
@@ -722,6 +767,13 @@ public class GlobalVariables : MonoBehaviour
             team1miners = 2;
             team2 = 2;
             team2miners = 2;
+            foreach (Resource resouce in mines)
+            {
+                resouce.durability = 500;
+                resouce.queue.Clear();
+                resouce.RemoveNullItems();
+            }
+
             GameObject one = Instantiate(miner, garrison1.transform.position, Quaternion.identity);
             one.tag = "Team1";
             GameObject two = Instantiate(miner, garrison1.transform.position, Quaternion.identity);
@@ -735,14 +787,20 @@ public class GlobalVariables : MonoBehaviour
             GameObject six = Instantiate(miner, garrison2.transform.position, Quaternion.identity);
             six.tag = "Team2";
 
+            GameObject w1 = Instantiate(wall1, wallSpawn1.position, Quaternion.identity);
+            GameObject w2 = Instantiate(wall2, wallSpawn2.position, Quaternion.identity);
+
             //ADD STARTING UNITS IF AN AGENT STARTS TO FAIL MORE THAN THE OTHER CONSISTANTLY!
 
             //GameObject arc = Instantiate(archidon, garrison1.transform.position, Quaternion.identity);
             //arc.tag = "Team1";
+            //GameObject arc3 = Instantiate(spearton, garrison1.transform.position, Quaternion.identity);
+            //arc3.tag = "Team1";
 
             //GameObject arc1 = Instantiate(juggernaut, garrison2.transform.position, Quaternion.identity);
             //arc1.tag = "Team2";
-
+            //GameObject arc4 = Instantiate(dead, garrison2.transform.position, Quaternion.identity);
+            //arc4.tag = "Team2";
             gold1 = 300;
             gold2 = 300;
             crystal1 = 0;
@@ -761,16 +819,13 @@ public class GlobalVariables : MonoBehaviour
             tower.ticks = 0;
             tower.ticksResources = 0;
 
-            foreach (Resource resouce in mines)
-            {
-                resouce.durability = 200;
-                resouce.queue.Clear();
-            }
+
 
             passive = 0;
 
         });
     }
+
     void detection()
     {
         if (team1detection.IsTagWithinRange("Team2") && team1 == 2)
@@ -1178,12 +1233,17 @@ public class GlobalVariables : MonoBehaviour
             if(action == 0)
             {
                 TEAM1.text = "GARRISON UNITS";
+
+                if(team1 == 1)
+                {
+                    reward -= 50;
+                }
                 setTeam1(1);
 
                 int numUnits = 0;
                 foreach (GameObject unit in team1units)
                 {
-                    if (unit.GetComponent<Miner>() == null)
+                    if (unit.GetComponent<Miner>() == null && !unit.name.Contains("Statue") && !unit.name.Contains("Wall"))
                     {
                         numUnits++;
                     }
@@ -1196,12 +1256,16 @@ public class GlobalVariables : MonoBehaviour
             }
             else if (action == 1)
             {
+                if (team1 == 2)
+                {
+                    reward -= 50;
+                }
                 setTeam1(2);
                 TEAM1.text = "DEFEND UNITS";
                 int numUnits = 0;
                 foreach (GameObject unit in team1units)
                 {
-                    if (unit.GetComponent<Miner>() == null)
+                    if (unit.GetComponent<Miner>() == null && !unit.name.Contains("Statue") && !unit.name.Contains("Wall"))
                     {
                         numUnits++;
                     }
@@ -1214,13 +1278,17 @@ public class GlobalVariables : MonoBehaviour
             }
             else if (action == 2)
             {
+                if (team1 == 3)
+                {
+                    reward -= 50;
+                }
                 setTeam1(3);
                 TEAM1.text = "ATTACK UNITS";
-                reward += 15;
+                reward += 30;
                 int numUnits = 0;
                 foreach (GameObject unit in team1units)
                 {
-                    if (unit.GetComponent<Miner>() == null)
+                    if (unit.GetComponent<Miner>() == null && !unit.name.Contains("Statue") && !unit.name.Contains("Wall"))
                     {
                         numUnits++;
                     }
@@ -1234,12 +1302,16 @@ public class GlobalVariables : MonoBehaviour
             }
             else if (action == 3)
             {
+                if (team1miners == 1)
+                {
+                    reward -= 50;
+                }
                 setTeam1Miners(1);
                 TEAM1.text = "GARRISON MINERS";
                 int numUnits = 0;
                 foreach (GameObject unit in team1units)
                 {
-                    if (unit.GetComponent<Miner>() != null)
+                    if (unit.GetComponent<Miner>() != null && !unit.name.Contains("Statue") && !unit.name.Contains("Wall"))
                     {
                         numUnits++;
                     }
@@ -1249,15 +1321,26 @@ public class GlobalVariables : MonoBehaviour
                 {
                     reward -= 300;
                 }
+                else
+                {
+                    if(insideteam1.IsTagWithinRange("Team2") != null || insideteam1.IsTagWithinRange("Team2Flying") != null)
+                    {
+                        reward += 50;
+                    }
+                }
             }
             else if (action == 4)
             {
+                if (team1miners == 2)
+                {
+                    reward -= 50;
+                }
                 setTeam1Miners(2);
                 TEAM1.text = "MINE";
                 int numUnits = 0;
                 foreach (GameObject unit in team1units)
                 {
-                    if (unit.GetComponent<Miner>() != null)
+                    if (unit.GetComponent<Miner>() != null && !unit.name.Contains("Statue") && !unit.name.Contains("Wall"))
                     {
                         numUnits++;
                     }
@@ -1289,7 +1372,7 @@ public class GlobalVariables : MonoBehaviour
                             TEAM1.text = "MINER SUMMON";
                             gold1 -= 150;
                             summonTroop1("MINER");
-                            reward += 20;
+                            reward += 400;
                         }
                         else
                         {
@@ -1308,14 +1391,15 @@ public class GlobalVariables : MonoBehaviour
 
                         if (numMiners > 12)
                         {
-                            reward -= 100;
+                            reward -= 500;
                         }
                     }
                     else if (action == 6)
                     {
-                        if (gold1 >= 125)
+                        if (gold1 >= 150)
                         {
-                            gold1 -= 125;
+                            reward += 150;
+                            gold1 -= 150;
                             summonTroop1("SWORD");
                             TEAM1.text = "SWORD SUMMON";
                         }
@@ -1329,6 +1413,7 @@ public class GlobalVariables : MonoBehaviour
                     {
                         if (gold1 >= 300)
                         {
+                            reward += 300;
                             gold1 -= 300;
                             TEAM1.text = "ARCHIDON SUMMON";
                             summonTroop1("ARCHIDON");
@@ -1343,6 +1428,7 @@ public class GlobalVariables : MonoBehaviour
                     {
                         if (gold1 >= 450 && crystal1 >= 100)
                         {
+                            reward += 450;
                             gold1 -= 450;
                             crystal1 -= 100;
                             summonTroop1("SPEARTON");
@@ -1358,6 +1444,7 @@ public class GlobalVariables : MonoBehaviour
                     {
                         if (gold1 >= 400 && crystal1 >= 400)
                         {
+                            reward += 450;
                             gold1 -= 400;
                             crystal1 -= 400;
                             TEAM1.text = "MAGIKILL SUMMON";
@@ -1373,6 +1460,7 @@ public class GlobalVariables : MonoBehaviour
                     {
                         if (gold1 >= 1500)
                         {
+                            reward += 500;
                             gold1 -= 1500;
                             summonTroop1("GIANT");
                             TEAM1.text = "GIANT SPAWN";
@@ -1387,6 +1475,7 @@ public class GlobalVariables : MonoBehaviour
                     {
                         if (gold1 >= 450 && crystal1 >= 150)
                         {
+                            reward += 450;
                             gold1 -= 450;
                             crystal1 -= 150;
                             TEAM1.text = "SHADOWRATH SPAWN";
@@ -1402,6 +1491,7 @@ public class GlobalVariables : MonoBehaviour
                     {
                         if (gold1 >= 450 && crystal1 >= 200)
                         {
+                            reward += 450;
                             gold1 -= 450;
                             crystal1 -= 200;
                             summonTroop1("ALBOWTROSS");
@@ -1417,6 +1507,7 @@ public class GlobalVariables : MonoBehaviour
                     {
                         if (gold1 >= 300 && crystal1 >= 200)
                         {
+                            reward += 400;
                             gold1 -= 300;
                             crystal1 -= 200;
                             TEAM1.text = "MERIC SUMMON";
@@ -1436,6 +1527,7 @@ public class GlobalVariables : MonoBehaviour
             }
             else if (action == 15)
             {
+                reward += rageCheck();
                 StartCoroutine(RAGE());
             }
             else if (action == 16)
@@ -1444,11 +1536,11 @@ public class GlobalVariables : MonoBehaviour
             }
             else if (action == 17)
             {
-                StartCoroutine(FIRE_ARROWS());
+                reward += (int)FIRE_ARROWS();
             }
             else if (action == 18)
             {
-                StartCoroutine(SHIELD_WALL());
+                reward += (int)SHIELD_WALL();
             }
             else if (action == 19)
             {
@@ -1468,12 +1560,16 @@ public class GlobalVariables : MonoBehaviour
             }
             else if (action == 23)
             {
+                if (team1 == 4)
+                {
+                    reward -= 50;
+                }
                 setTeam1(4);
                 TEAM1.text = "UNITS TO TOWER";
                 int numUnits = 0;
                 foreach (GameObject unit in team1units)
                 {
-                    if (unit.GetComponent<Miner>() == null)
+                    if (unit.GetComponent<Miner>() == null && !unit.name.Contains("Statue") && !unit.name.Contains("Wall"))
                     {
                         numUnits++;
                     }
@@ -1497,12 +1593,16 @@ public class GlobalVariables : MonoBehaviour
         {
             if (action == 0)
             {
+                if (team2 == 1)
+                {
+                    reward -= 50;
+                }
                 setTeam2(1);
                 TEAM2.text = "GARRISON UNITS";
                 int numUnits = 0;
                 foreach (GameObject unit in team2units)
                 {
-                    if (unit.GetComponent<Miner>() == null)
+                    if (unit.GetComponent<Miner>() == null && !unit.name.Contains("Statue") && !unit.name.Contains("Wall"))
                     {
                         numUnits++;
                     }
@@ -1515,12 +1615,16 @@ public class GlobalVariables : MonoBehaviour
             }
             else if (action == 1)
             {
+                if (team2 == 2)
+                {
+                    reward -= 50;
+                }
                 setTeam2(2);
                 TEAM2.text = "DEFEND UNITS";
                 int numUnits = 0;
                 foreach (GameObject unit in team2units)
                 {
-                    if (unit.GetComponent<Miner>() == null)
+                    if (unit.GetComponent<Miner>() == null && !unit.name.Contains("Statue") && !unit.name.Contains("Wall"))
                     {
                         numUnits++;
                     }
@@ -1534,13 +1638,17 @@ public class GlobalVariables : MonoBehaviour
             }
             else if (action == 2)
             {
+                if (team2 == 3)
+                {
+                    reward -= 50;
+                }
                 setTeam2(3);
                 TEAM2.text = "ATTACK UNITS";
                 reward += 15;
                 int numUnits = 0;
                 foreach (GameObject unit in team2units)
                 {
-                    if (unit.GetComponent<Miner>() == null)
+                    if (unit.GetComponent<Miner>() == null && !unit.name.Contains("Statue") && !unit.name.Contains("Wall"))
                     {
                         numUnits++;
                     }
@@ -1554,12 +1662,16 @@ public class GlobalVariables : MonoBehaviour
             }
             else if (action == 3)
             {
+                if (team2miners == 1)
+                {
+                    reward -= 50;
+                }
                 setTeam2Miners(1);
                 TEAM2.text = "MINERS GARRISON";
                 int numUnits = 0;
                 foreach (GameObject unit in team2units)
                 {
-                    if (unit.GetComponent<Miner>() != null)
+                    if (unit.GetComponent<Miner>() != null && !unit.name.Contains("Statue") && !unit.name.Contains("Wall"))
                     {
                         numUnits++;
                     }
@@ -1569,16 +1681,27 @@ public class GlobalVariables : MonoBehaviour
                 {
                     reward -= 300;
                 }
+                else
+                {
+                    if (insideteam2.IsTagWithinRange("Team1") != null || insideteam2.IsTagWithinRange("Team1Flying") != null)
+                    {
+                        reward += 50;
+                    }
+                }
 
             }
             else if (action == 4)
             {
+                if (team2miners == 2)
+                {
+                    reward -= 50;
+                }
                 setTeam2Miners(2);
                 TEAM2.text = "MINERS MINE";
                 int numUnits = 0;
                 foreach (GameObject unit in team2units)
                 {
-                    if (unit.GetComponent<Miner>() != null)
+                    if (unit.GetComponent<Miner>() != null && !unit.name.Contains("Statue") && !unit.name.Contains("Wall"))
                     {
                         numUnits++;
                     }
@@ -1610,7 +1733,7 @@ public class GlobalVariables : MonoBehaviour
                         {
                             gold2 -= 150;
                             summonTroop2("MINER");
-                            reward += 20;
+                            reward += 400;
                         }
                         else
                         {
@@ -1629,14 +1752,15 @@ public class GlobalVariables : MonoBehaviour
 
                         if (numMiners > 12)
                         {
-                            reward -= 100;
+                            reward -= 500;
                         }
                     }
                     if (action == 6)
                     {
-                        if (gold2 >= 75)
+                        if (gold2 >= 100)
                         {
-                            gold2 -= 75;
+                            gold2 -= 100;
+                            reward += 40;
                             summonTroop2("CRAWLER");
                             TEAM2.text = "CRAWLER SUMMON";
                         }
@@ -1648,9 +1772,10 @@ public class GlobalVariables : MonoBehaviour
                     }
                     if (action == 7)
                     {
-                        if (gold2 >= 200)
+                        if (gold2 >= 75)
                         {
-                            gold2 -= 200;
+                            gold2 -= 75;
+                            reward += 10;
                             summonTroop2("BOMBER");
                             TEAM2.text = "BOMBER SPAWN";
                         }
@@ -1664,6 +1789,7 @@ public class GlobalVariables : MonoBehaviour
                     {
                         if (gold2 >= 450 && crystal2 >= 50)
                         {
+                            reward += 450;
                             gold2 -= 450;
                             crystal2 -= 50;
                             summonTroop2("JUGGERNAUT");
@@ -1679,6 +1805,7 @@ public class GlobalVariables : MonoBehaviour
                     {
                         if (gold2 >= 300 && crystal2 >= 100)
                         {
+                            reward += 300;
                             gold2 -= 300;
                             crystal2 -= 100;
                             summonTroop2("DEAD");
@@ -1694,6 +1821,7 @@ public class GlobalVariables : MonoBehaviour
                     {
                         if (gold2 >= 1500)
                         {
+                            reward += 500;
                             gold2 -= 1500;
                             TEAM2.text = "GIANT SPAWN";
                             summonTroop2("GIANT");
@@ -1708,6 +1836,7 @@ public class GlobalVariables : MonoBehaviour
                     {
                         if (gold2 >= 400 && crystal2 >= 100)
                         {
+                            reward += 450;
                             gold2 -= 400;
                             crystal2 -= 100;
                             summonTroop2("ECLIPSOR");
@@ -1723,6 +1852,7 @@ public class GlobalVariables : MonoBehaviour
                     {
                         if (gold2 >= 400 && crystal2 >= 400)
                         {
+                            reward += 450;
                             gold2 -= 400;
                             crystal2 -= 400;
                             summonTroop2("MARROWKAI");
@@ -1738,6 +1868,7 @@ public class GlobalVariables : MonoBehaviour
                     {
                         if (gold2 >= 500 && crystal2 >= 400)
                         {
+                            reward += 500;
                             gold2 -= 500;
                             crystal2 -= 400;
                             summonTroop2("MEDUSA");
@@ -1764,12 +1895,16 @@ public class GlobalVariables : MonoBehaviour
             }
             else if (action == 17)
             {
+                if (team2 == 4)
+                {
+                    reward -= 50;
+                }
                 setTeam2(4);
                 TEAM2.text = "UNITS TO TOWER";
                 int numUnits = 0;
                 foreach (GameObject unit in team2units)
                 {
-                    if (unit.GetComponent<Miner>() == null)
+                    if (unit.GetComponent<Miner>() == null && !unit.name.Contains("Statue") && !unit.name.Contains("Wall"))
                     {
                         numUnits++;
                     }
@@ -1978,8 +2113,16 @@ public class GlobalVariables : MonoBehaviour
         if (team1 == "GIANT")
         {
             inst = Instantiate(enslaved_giant, garrison1.transform.position, Quaternion.identity);
-            inst.GetComponentInChildren<HPSystem>().currentHP = inst.GetComponentInChildren<HPSystem>().currentHP * giantUpgrade1;
-            inst.GetComponentInChildren<HPSystem>().maxHP = inst.GetComponentInChildren<HPSystem>().maxHP * giantUpgrade1;
+            if(giantUpgrade1 == 1.3f)
+            {
+                inst.GetComponentInChildren<HPSystem>().currentHP = 1000;
+                inst.GetComponentInChildren<HPSystem>().maxHP = 1000;
+            }
+            if (giantUpgrade1 == 1.7f)
+            {
+                inst.GetComponentInChildren<HPSystem>().currentHP = 1300;
+                inst.GetComponentInChildren<HPSystem>().maxHP = 1300;
+            }
             inst.transform.localScale = new Vector3(inst.transform.localScale.x * giantUpgrade1 / 1.2f, inst.transform.localScale.y * giantUpgrade1 / 1.2f);
         }
         if (team1 == "SHADOW")
@@ -2032,8 +2175,16 @@ public class GlobalVariables : MonoBehaviour
         if (team1 == "GIANT")
         {
             inst = Instantiate(giant, garrison2.transform.position, Quaternion.identity);
-            inst.GetComponentInChildren<HPSystem>().currentHP = inst.GetComponentInChildren<HPSystem>().currentHP * giantUpgrade2;
-            inst.GetComponentInChildren<HPSystem>().maxHP = inst.GetComponentInChildren<HPSystem>().maxHP * giantUpgrade2;
+            if (giantUpgrade1 == 1.3f)
+            {
+                inst.GetComponentInChildren<HPSystem>().currentHP = 1300;
+                inst.GetComponentInChildren<HPSystem>().maxHP = 1300;
+            }
+            if (giantUpgrade1 == 1.7f)
+            {
+                inst.GetComponentInChildren<HPSystem>().currentHP = 1800;
+                inst.GetComponentInChildren<HPSystem>().maxHP = 1800;
+            }
             inst.transform.localScale = new Vector3(inst.transform.localScale.x * giantUpgrade2 / 1.2f, inst.transform.localScale.y * giantUpgrade2 / 1.2f);
         }
         if (team1 == "MARROWKAI")
@@ -2136,7 +2287,7 @@ public class GlobalVariables : MonoBehaviour
 
                         if (numMiners > 12)
                         {
-                            reward -= 100;
+                            reward -= 300;
                         }
                     }
                     else if (action == 6)
@@ -2272,11 +2423,11 @@ public class GlobalVariables : MonoBehaviour
             }
             else if (action == 17)
             {
-                StartCoroutine(FIRE_ARROWS());
+                reward += (int)FIRE_ARROWS();
             }
             else if (action == 18)
             {
-                StartCoroutine(SHIELD_WALL());
+                reward += (int)SHIELD_WALL();
             }
             else if (action == 19)
             {

@@ -39,6 +39,11 @@ public class BomberExplosion : MonoBehaviour
                         enemies[i].GetComponent<HPSystem>().Daze();
                         enemies[i].GetComponent<HPSystem>().Damage(damage);
 
+                        if (enemies[i].GetComponent<HPSystem>().isArmoured)
+                        {
+                            enemies[i].GetComponent<HPSystem>().Damage(5);
+                        }
+
                         // Add the enemy to the uniqueEnemies HashSet
                         uniqueEnemies.Add(enemies[i]);
                     }

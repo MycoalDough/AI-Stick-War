@@ -102,12 +102,14 @@ MonoBehaviour:
   detector: {fileID: 5085722207892002901}
   yValue: 0
   Etag: 
-  damage: 1.7
+  damage: 13
   moveTo: {x: 0, y: 0}
   speed: 5
   rb: {fileID: 2221675545501505755}
   canFire: 0
   fireParticle: {fileID: 0}
+  bonusLight: 5
+  bonusArmored: 0
   canPoison: 1
   gv: {fileID: 0}
 --- !u!50 &2221675545501505755

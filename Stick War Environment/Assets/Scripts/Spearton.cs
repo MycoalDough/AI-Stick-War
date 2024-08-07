@@ -101,7 +101,7 @@ public class Spearton : MonoBehaviour
         {
             anim.Play("SpeartonShield");
             defence = true;
-            gameObject.GetComponentInChildren<HPSystem>().defense = 1.3f;
+            gameObject.GetComponentInChildren<HPSystem>().defense = 1.2f;
         }
         else if(Vector2.Distance(transform.position, toMove) > 5f)
         {
@@ -113,7 +113,7 @@ public class Spearton : MonoBehaviour
         {
             defence = true;
             anim.Play("SpeartonShield");
-            gameObject.GetComponentInChildren<HPSystem>().defense = 1.4f;
+            gameObject.GetComponentInChildren<HPSystem>().defense = 1.2f;
         }
 
 
@@ -188,11 +188,19 @@ public class Spearton : MonoBehaviour
         if (GetComponent<SpriteRenderer>().flipX && left.IsTargetWithinRange(enemy.gameObject))
         {
             enemy.Damage(dmg);
+            if (!enemy.isArmoured)
+            {
+                enemy.Damage(5);
+            }
             return true;
         }
         else if (!GetComponent<SpriteRenderer>().flipX && right.IsTargetWithinRange(enemy.gameObject))
         {
             enemy.Damage(dmg);
+            if (!enemy.isArmoured)
+            {
+                enemy.Damage(5);
+            }
             return true;
         }
         return false;

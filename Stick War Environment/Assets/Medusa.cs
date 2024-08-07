@@ -183,7 +183,7 @@ public class Medusa : MonoBehaviour
     IEnumerator Reload()
     {
         isReloading = true;
-        yield return new WaitForSeconds(30);
+        yield return new WaitForSeconds(50);
         isReloading = false;
     }
 
@@ -242,12 +242,15 @@ public class Medusa : MonoBehaviour
                 if (gv.team1units[i] && (gv.team1units[i].gameObject.tag == target) && !gv.garrisonDetector1.IsTargetWithinRange(gv.team1units[i].GetComponentInChildren<HPSystem>().gameObject)
                     && gv.team1units[i].GetComponentInChildren<HPSystem>().maxHP < 500)
                 {
-                    if (closestDistance > Mathf.Abs(Vector2.Distance(gameObject.transform.position, gv.team1units[i].transform.position)))
+                    if (!(gv.team1units[i].GetComponent<Giant>() && gv.team1units[i].GetComponent<EnslavedGiant>() && gv.GetComponent<Spearton>()))
                     {
-                        closestDistance = Mathf.Abs(Vector2.Distance(gameObject.transform.position, gv.team1units[i].transform.position));
-                        saved = gv.team1units[i].transform.position;
-                        hp = gv.team1units[i].gameObject.GetComponentInChildren<HPSystem>();
-                        index = i;
+                        if (closestDistance > Mathf.Abs(Vector2.Distance(gameObject.transform.position, gv.team1units[i].transform.position)))
+                        {
+                            closestDistance = Mathf.Abs(Vector2.Distance(gameObject.transform.position, gv.team1units[i].transform.position));
+                            saved = gv.team1units[i].transform.position;
+                            hp = gv.team1units[i].gameObject.GetComponentInChildren<HPSystem>();
+                            index = i;
+                        }
                     }
                 }
             }
@@ -259,12 +262,15 @@ public class Medusa : MonoBehaviour
                 if (gv.team2units[i] && (gv.team2units[i].gameObject.tag == target) && !gv.garrisonDetector2.IsTargetWithinRange(gv.team2units[i].GetComponentInChildren<HPSystem>().gameObject)
                     && gv.team2units[i].GetComponentInChildren<HPSystem>().maxHP < 500)
                 {
-                    if (closestDistance > Mathf.Abs(Vector2.Distance(gameObject.transform.position, gv.team2units[i].transform.position)))
+                    if (!(gv.team2units[i].GetComponent<Giant>() || gv.team2units[i].GetComponent<EnslavedGiant>() && gv.GetComponent<Spearton>()))
                     {
-                        closestDistance = Mathf.Abs(Vector2.Distance(gameObject.transform.position, gv.team2units[i].transform.position));
-                        saved = gv.team2units[i].transform.position;
-                        hp = gv.team2units[i].gameObject.GetComponentInChildren<HPSystem>();
-                        index = i;
+                        if (closestDistance > Mathf.Abs(Vector2.Distance(gameObject.transform.position, gv.team2units[i].transform.position)))
+                        {
+                            closestDistance = Mathf.Abs(Vector2.Distance(gameObject.transform.position, gv.team2units[i].transform.position));
+                            saved = gv.team2units[i].transform.position;
+                            hp = gv.team2units[i].gameObject.GetComponentInChildren<HPSystem>();
+                            index = i;
+                        }
                     }
                 }
             }

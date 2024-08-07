@@ -160,6 +160,10 @@ public class Giant : MonoBehaviour
             {
                 e.GetComponent<HPSystem>().Damage(dmg);
                 e.GetComponent<HPSystem>().Daze();
+                if (enemy.isArmoured)
+                {
+                    enemy.Damage(25);
+                }
             }
             return true;
 
@@ -173,7 +177,10 @@ public class Giant : MonoBehaviour
             {
                 e.GetComponent<HPSystem>().Damage(dmg);
                 e.GetComponent<HPSystem>().Daze();
-                
+                if (enemy.isArmoured)
+                {
+                    enemy.Damage(25);
+                }
             }
             return true;
         }

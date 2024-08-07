@@ -10,6 +10,9 @@ public class EnslavedGiantBoulder : MonoBehaviour
     public Vector2 moveTo;
 
     public float speed;
+
+    public float bonusArmored;
+
     public Rigidbody2D rb;
     private void Awake()
     {
@@ -30,6 +33,11 @@ public class EnslavedGiantBoulder : MonoBehaviour
             {
                 go.GetComponentInChildren<HPSystem>().Damage(damage);
                 go.GetComponentInChildren<HPSystem>().Daze();
+
+                if (bonusArmored > 0 && go.GetComponentInChildren<HPSystem>().isArmoured)
+                {
+                    go.GetComponentInChildren<HPSystem>().Damage(bonusArmored);
+                }
             }
             Destroy(gameObject);
         }
@@ -42,7 +50,10 @@ public class EnslavedGiantBoulder : MonoBehaviour
             {
                 go.GetComponentInChildren<HPSystem>().Damage(damage);
                 go.GetComponentInChildren<HPSystem>().poisonStacks = (go.GetComponentInChildren<HPSystem>().isChaos) ? 5 : 999;
-
+                if (bonusArmored > 0 && go.GetComponentInChildren<HPSystem>().isArmoured)
+                {
+                    go.GetComponentInChildren<HPSystem>().Damage(bonusArmored);
+                }
             }
             Destroy(gameObject);
         }

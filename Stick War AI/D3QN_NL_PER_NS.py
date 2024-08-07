@@ -93,7 +93,7 @@ class Agent:
         self.learn_step_counter = 0
         self.action_space = [i for i in range(self.n_actions)]
         self.checkpoint_name = checkpoint_name
-        self.n_step = 7
+        self.n_step = 10
         self.alpha = 0.2
         self.beta = 0.6
         self.prior_eps = 1e-6

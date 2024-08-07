@@ -27,6 +27,7 @@ public class MagikillSpell : MonoBehaviour
             {
                 e.GetComponent<HPSystem>().Damage(damage);
                 e.GetComponent<HPSystem>().Daze();
+                e.GetComponent<HPSystem>().fireStacks += 8;
             }
         Destroy(detector);
     }

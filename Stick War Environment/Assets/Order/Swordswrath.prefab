@@ -4997,8 +4997,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   target: Team2
-  damage: 1.85
-  moveSpeed: 3.45
+  damage: 9
+  moveSpeed: 2.7
   left: {fileID: 3590580708711030962}
   right: {fileID: 3590580709077860245}
   jumpAttacking: 0
@@ -5055,12 +5055,17 @@ PrefabInstance:
     - target: {fileID: 2226930118870025953, guid: 4eb51063549e5434cb2ef8870ac2184a,
         type: 3}
       propertyPath: maxHP
-      value: 18
+      value: 85
+      objectReference: {fileID: 0}
+    - target: {fileID: 2226930118870025953, guid: 4eb51063549e5434cb2ef8870ac2184a,
+        type: 3}
+      propertyPath: damage
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2226930118870025953, guid: 4eb51063549e5434cb2ef8870ac2184a,
         type: 3}
       propertyPath: currentHP
-      value: 18
+      value: 85
       objectReference: {fileID: 0}
     - target: {fileID: 2226930118870025953, guid: 4eb51063549e5434cb2ef8870ac2184a,
         type: 3}
@@ -5073,6 +5078,11 @@ PrefabInstance:
       propertyPath: spriteRenderer
       value: 
       objectReference: {fileID: 4932366756427872775}
+    - target: {fileID: 2226930118870025953, guid: 4eb51063549e5434cb2ef8870ac2184a,
+        type: 3}
+      propertyPath: extraDamageArmor
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 2226930118870025953, guid: 4eb51063549e5434cb2ef8870ac2184a,
         type: 3}
       propertyPath: toRemove.Array.size

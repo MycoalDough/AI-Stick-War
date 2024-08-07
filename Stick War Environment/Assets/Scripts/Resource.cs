@@ -38,6 +38,14 @@ public class Resource : MonoBehaviour
         }
     }
 
+    public void RemoveNullItems()
+    {
+        for(int i = 0; i < queue.Count; i++)
+        {
+            queue.RemoveAt(i);
+        }
+    }
+
     public bool flip(string _team)
     {
         if (team == 1)

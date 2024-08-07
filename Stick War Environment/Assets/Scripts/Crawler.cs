@@ -77,11 +77,11 @@ public class Crawler : MonoBehaviour
 
         if (packMentality.getNameNameInRange("Crawler") >= 5)
         {
-            damage = 1.5f;
+            damage = 10f;
         }
         else
         {
-            damage = 1f;
+            damage = 4f;
         }
 
         if (Vector2.Distance(transform.position, toMove) < 0.05f)
@@ -174,11 +174,19 @@ public class Crawler : MonoBehaviour
         if (GetComponent<SpriteRenderer>().flipX && left.IsTargetWithinRange(enemy.gameObject))
         {
             enemy.Damage(dmg);
+            if (!enemy.isArmoured)
+            {
+                enemy.Damage(2);
+            }
             return true;
         }
         else if (!GetComponent<SpriteRenderer>().flipX && right.IsTargetWithinRange(enemy.gameObject))
         {
             enemy.Damage(dmg);
+            if (!enemy.isArmoured)
+            {
+                enemy.Damage(2);
+            }
             return true;
         }
         return false;

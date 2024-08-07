@@ -43,6 +43,7 @@ public class RLConnection : MonoBehaviour
     public GameObject team1controls;
     public GameObject team2controls;
     public float time = 0;
+    public bool forcedAttack = false;
     //AI PLANNING:
     //INPUTS:  1) num bullets | 2) num real | 3) num fake | 4) red lives | 5) blue lives | 6) red items (list) | 7) blue items (list) | 8) gun damage | 9) next bullet (-1 if not aviable, 0 for fake, 1 for real)
     //OUTPUTS: 1) shoot self | 2) shoot other | 3) drink | 4) mag. glass | 5) cig | 6) knife | 7) cuffs
@@ -91,10 +92,16 @@ public class RLConnection : MonoBehaviour
             team = 2;
         }
         float reward = gv.playAction(int.Parse(toPlay), team);
+
         if(time > 1800)
         {
             gv.team2 = 3;
             gv.team1 = 3;
+            forcedAttack = true;
+        }
+        else
+        {
+            forcedAttack = false;
         }
 
         if(time > 2000)
@@ -113,12 +120,12 @@ public class RLConnection : MonoBehaviour
 
         if(team % 2 == 0)
         {
-            if(gv.statue1.currentHP <= 300)
+            if(gv.statue1.currentHP <= 1000)
             {
                 float timeReward = (time < 1000) ? (1000 - time) : 0;
                 reward += 500 + timeReward;
                 done = "True";
-            }else if(gv.statue2.currentHP <= 300)
+            }else if(gv.statue2.currentHP <= 1000)
             {
                 reward -= 500;
                 done = "True";
@@ -127,13 +134,13 @@ public class RLConnection : MonoBehaviour
         }
         else
         {
-            if (gv.statue1.currentHP < 300)
+            if (gv.statue1.currentHP < 1000)
             {
                 reward -= 500;
                 done = "True";
 
             }
-            else if (gv.statue2.currentHP < 300)
+            else if (gv.statue2.currentHP < 1000)
             {
                 float timeReward = (time < 1000) ? (1000 - time) : 0;
                 reward += 500 + timeReward;
@@ -265,13 +272,21 @@ public class RLConnection : MonoBehaviour
                                 string s = "";
 
                                 //int playstep = (int.Parse(step[1]) + 1);
-                                s += playStep(step[1].ToString());
+
+                                if (forcedAttack)
+                                {
+                                    s += playStep("2");
+                                }
+                                else
+                                {
+                                    s += playStep(step[1].ToString());
+                                }
                                 s += ":";
                                 if (team % 2 == 0) { s += sendInput(2); } else { s += sendInput(1); }
                                 s += ":";
                                 s += speed.value.ToString();
                                 s += ":";
-                                s += gv.whichTeamDidIt(team);
+                                s += forcedAttack ? "True" : "False";
                                 team++;
                                 byte[] dataToSend = Encoding.UTF8.GetBytes(s);
                                 stream.Write(dataToSend, 0, dataToSend.Length);
@@ -318,8 +333,8 @@ public class RLConnection : MonoBehaviour
             saved.Add((gv.gold1 / 5000).ToString());
             saved.Add((gv.crystal1 / 7000).ToString());
             saved.Add((gv.population2 / 30).ToString());
-            saved.Add(((gv.statue1.currentHP / 600)).ToString());
-            saved.Add(((gv.statue2.currentHP / 600)).ToString());
+            saved.Add((((gv.statue1.currentHP-1000) / 1600)).ToString());
+            saved.Add((((gv.statue2.currentHP-1000) / 1600)).ToString());
 
             saved.Add(Convert.ToInt32(gv.rageBUY).ToString());
             saved.Add(Convert.ToInt32(gv.canRage).ToString());
@@ -375,10 +390,10 @@ public class RLConnection : MonoBehaviour
 
         for(int i = 0; i < gv.mines.Count; i++)
         {
-            saved.Add((gv.mines[i].durability/150).ToString());
+            saved.Add((gv.mines[i].durability/500).ToString());
         }
 
-        for(int i =  0; i < 30; i++)
+        for(int i =  1; i < 30; i++)
         {
             //1) TYPE (1 MINER, 2 SWORD, 3 ARCHIDON, 4 SPEARTON, 5 MAGIKILL, 6 GIANT, 7 SHADOWRATH)
             //2) HEALTH
@@ -398,19 +413,27 @@ public class RLConnection : MonoBehaviour
                 saved.Add("0");
                 saved.Add("0");
                 saved.Add("0");
+                saved.Add("0");
+
+                saved.Add("0");
+                saved.Add("0");
                 saved.Add("0.5");
             }
             else
             {
                 saved.Add((float.Parse(unit) / 17).ToString());
-                saved.Add((gv.team1units[i].GetComponentInChildren<HPSystem>().currentHP / 214.2f).ToString());
+                saved.Add((gv.team1units[i].GetComponentInChildren<HPSystem>().currentHP / 1800f).ToString());
+                saved.Add((gv.team1units[i].GetComponentInChildren<HPSystem>().damage / 50f).ToString());
+                saved.Add((gv.team1units[i].GetComponentInChildren<HPSystem>().extraDamageLight / 5f).ToString());
+                saved.Add((gv.team1units[i].GetComponentInChildren<HPSystem>().extraDamageArmor / 25f).ToString());
+
                 saved.Add(normalize(gv.team1units[i].transform.position.x, -44, 55).ToString());
                 saved.Add((gv.team1units[i].GetComponentInChildren<HPSystem>().poisonStacks > 0) ? "1" : "0");
                 saved.Add((gv.team1units[i].GetComponentInChildren<HPSystem>().fireStacks > 0) ? "1" : "0");
                 saved.Add("0.5");
             }
         }
-        for (int i = 0; i < 30; i++)
+        for (int i = 1; i < 30; i++)
         {
             //1) TYPE (1 MINER, 2 SWORD, 3 ARCHIDON, 4 SPEARTON, 5 MAGIKILL, 6 GIANT, 7 SHADOWRATH)
             //2) HEALTH
@@ -430,12 +453,20 @@ public class RLConnection : MonoBehaviour
                 saved.Add("0");
                 saved.Add("0");
                 saved.Add("0");
+                saved.Add("0");
+                saved.Add("0");
+
+                saved.Add("0");
                 saved.Add("1");
             }
             else
             {
                 saved.Add((float.Parse(unit) / 17).ToString());
-                saved.Add((gv.team2units[i].GetComponentInChildren<HPSystem>().currentHP/ 214.2f).ToString());
+                saved.Add((gv.team2units[i].GetComponentInChildren<HPSystem>().currentHP/ 1800f).ToString());
+                saved.Add((gv.team2units[i].GetComponentInChildren<HPSystem>().damage / 50f).ToString());
+                saved.Add((gv.team2units[i].GetComponentInChildren<HPSystem>().extraDamageLight / 5f).ToString());
+                saved.Add((gv.team2units[i].GetComponentInChildren<HPSystem>().extraDamageArmor / 25f).ToString());
+
                 saved.Add(normalize(gv.team2units[i].transform.position.x, -44, 55).ToString());
                 saved.Add((gv.team2units[i].GetComponentInChildren<HPSystem>().poisonStacks > 0) ? "1" : "0");
                 saved.Add((gv.team2units[i].GetComponentInChildren<HPSystem>().fireStacks > 0) ? "1" : "0");
@@ -601,6 +632,10 @@ public class RLConnection : MonoBehaviour
         }
         if(unit.GetComponent<Minion>()) {
             return "0.5";
+        }
+        if (unit.name.Contains("Wall"))
+        {
+            return "1.5";
         }
         return "null";
     }

@@ -181,7 +181,7 @@ MonoBehaviour:
     m_Bits: 0
   Etag: Team2
   target: Team2
-  damage: 10
+  damage: 8
   moveSpeed: 2.2
 --- !u!114 &2505449126992038906
 MonoBehaviour:
@@ -222,12 +222,17 @@ PrefabInstance:
     - target: {fileID: 2226930118870025953, guid: 4eb51063549e5434cb2ef8870ac2184a,
         type: 3}
       propertyPath: maxHP
-      value: 9
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 2226930118870025953, guid: 4eb51063549e5434cb2ef8870ac2184a,
+        type: 3}
+      propertyPath: damage
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2226930118870025953, guid: 4eb51063549e5434cb2ef8870ac2184a,
         type: 3}
       propertyPath: currentHP
-      value: 9
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 2226930118870025953, guid: 4eb51063549e5434cb2ef8870ac2184a,
         type: 3}
@@ -240,6 +245,11 @@ PrefabInstance:
       propertyPath: spriteRenderer
       value: 
       objectReference: {fileID: 2505449126992038908}
+    - target: {fileID: 2226930118870025953, guid: 4eb51063549e5434cb2ef8870ac2184a,
+        type: 3}
+      propertyPath: extraDamageLight
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2226930118870025953, guid: 4eb51063549e5434cb2ef8870ac2184a,
         type: 3}
       propertyPath: toRemove.Array.size

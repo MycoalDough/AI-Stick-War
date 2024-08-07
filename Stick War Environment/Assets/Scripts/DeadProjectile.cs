@@ -30,6 +30,10 @@ public class DeadProjectile : MonoBehaviour
             {
                 go.GetComponentInChildren<HPSystem>().Damage(damage);
                 go.GetComponentInChildren<HPSystem>().poisonStacks = (go.GetComponentInChildren<HPSystem>().isChaos) ? 5 : 999;
+                if (go.GetComponentInChildren<HPSystem>().isArmoured)
+                {
+                    go.GetComponentInChildren<HPSystem>().Damage(5);
+                }
 
             }
             Destroy(gameObject);
@@ -42,6 +46,10 @@ public class DeadProjectile : MonoBehaviour
             {
                 go.GetComponentInChildren<HPSystem>().Damage(damage);
                 go.GetComponentInChildren<HPSystem>().poisonStacks = (go.GetComponentInChildren<HPSystem>().isChaos) ? 5 : 999;
+                if (go.GetComponentInChildren<HPSystem>().isArmoured)
+                {
+                    go.GetComponentInChildren<HPSystem>().Damage(5);
+                }
 
             }
             Destroy(gameObject);

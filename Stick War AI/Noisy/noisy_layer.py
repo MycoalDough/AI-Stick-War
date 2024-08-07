@@ -76,18 +76,13 @@ class NoisyLinear(nn.Module):
         It doesn't show remarkable difference of performance.
         """
 
-        if(self.use_noise):
-            return F.linear(
-                x,
-                self.weight_mu + self.weight_sigma * self.weight_epsilon,
-                self.bias_mu + self.bias_sigma * self.bias_epsilon,
-            )
-        else:
-            return F.linear(
-                x,
-                self.weight_mu,
-                self.bias_mu,
-            )
+
+        return F.linear(
+            x,
+            self.weight_mu + self.weight_sigma * self.weight_epsilon,
+            self.bias_mu + self.bias_sigma * self.bias_epsilon,
+        )
+
         
     def enable_noise(self):
         """Enable noise for exploration."""

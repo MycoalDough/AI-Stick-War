@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6739888948434412768}
   - component: {fileID: 5707083691940363797}
   - component: {fileID: 8880999347580513017}
+  - component: {fileID: 7306071798681391820}
   m_Layer: 0
   m_Name: Boulder
   m_TagString: Untagged
@@ -113,9 +114,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   detector: {fileID: 6739888948434412768}
   Etag: 
-  damage: 6.6
+  damage: 30
   moveTo: {x: 0, y: 0}
   speed: 3
+  bonusArmored: 25
   rb: {fileID: 8880999347580513017}
 --- !u!50 &8880999347580513017
 Rigidbody2D:
@@ -138,3 +140,15 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &7306071798681391820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7092470158376348464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1db1c1684546f5343b3ba13925ad9c95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

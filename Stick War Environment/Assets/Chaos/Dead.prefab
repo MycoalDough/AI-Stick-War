@@ -519,11 +519,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HPBar: {fileID: 4318244526572147100}
-  maxHP: 20
-  currentHP: 20
+  maxHP: 175
+  currentHP: 175
   gv: {fileID: 0}
+  isArmoured: 1
+  damage: 6
+  extraDamageArmor: 5
+  extraDamageLight: 0
   toRemove: []
-  defense: 1.2
+  defense: 1
   spriteRenderer: {fileID: 2669185012260507741}
   deathSprite: {fileID: 3984169545275281919, guid: 735969f925fe6bb4cb7c2a676e4ffdd1,
     type: 3}

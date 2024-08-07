@@ -194,7 +194,7 @@ public class Magikill : MonoBehaviour
     IEnumerator ReloadAttack()
     {
         isAttackingReloading = true;
-        yield return new WaitForSeconds(8);
+        yield return new WaitForSeconds(13.3f);
         isAttackingReloading = false;
     }
 

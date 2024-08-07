@@ -14497,5 +14497,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ed: {fileID: 4618970726890557878}
   enemyTag: 
-  damage: 7
+  damage: 20
   ps: {fileID: 4618970725550500334}

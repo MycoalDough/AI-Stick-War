@@ -8,18 +8,21 @@ from reward_plot import RewardPlotter
 
 
 if(__name__ == "__main__"):
-    load_checkpoint = True
+    load_checkpoint_1 = True
+    load_checkpoint_2 = True
     AI_team1 = False
     AI_team2 = False
-    load_graph = False
+    load_graph = True
 
 
-    agent1 = Model.Agent(gamma=0.99,epsilon=0.05,lr=1e-4, input_dims=[399],n_actions=25, mem_size=400_000, eps_min=0.01, batch_size=32, checkpoint_name="team1",eps_dec=2e-6,replace=100)
-    agent2 = Model.Agent(gamma=0.99,epsilon=0.05,lr=1e-4, input_dims=[395],n_actions=19, mem_size=400_000, eps_min=0.01, batch_size=32,checkpoint_name="team2",eps_dec=2e-6,replace=100)
+    agent1 = Model.Agent(gamma=0.3,epsilon=0.2,lr=1e-4, input_dims=[561],n_actions=25, mem_size=400_000, eps_min=0.01, batch_size=32, checkpoint_name="team1",eps_dec=2e-6,replace=100)
+    agent2 = Model.Agent(gamma=0.3,epsilon=1,lr=1e-4, input_dims=[557],n_actions=19, mem_size=400_000, eps_min=0.01, batch_size=32,checkpoint_name="team2",eps_dec=2e-6,replace=100)
 
 
-    if load_checkpoint:
+    if load_checkpoint_1:
         agent1.load_models()
+    
+    if load_checkpoint_2:
         agent2.load_models()
 
 
@@ -51,6 +54,9 @@ if(__name__ == "__main__"):
                     action, was_random = agent1.choose_action(observation=observation, current=i, iterations=num_games, training=True)
                     reward, done1,observation_, speed, who = data.play_step(action)
 
+                    if(who == "True"):
+                        action = 2;
+
                     if load_graph:
                         reward1plot.update(data.normalize_reward(reward))
 
@@ -65,6 +71,9 @@ if(__name__ == "__main__"):
                     observation = data.get_state()
                     action, was_random = agent2.choose_action(observation=observation, current=i, iterations=num_games, training=True)
                     reward, done2,observation_, speed, who = data.play_step(action)
+
+                    if(who == "True"):
+                        action = 2;
 
                     if load_graph:
                         reward2plot.update(data.normalize_reward(reward))

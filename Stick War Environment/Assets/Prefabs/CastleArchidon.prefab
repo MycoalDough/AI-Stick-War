@@ -141,6 +141,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arrow: {fileID: 4691655747562357014, guid: 3be97f15a2a985f4487ace731413ef05, type: 3}
   launchForce: 40
+  gv: {fileID: 0}
 --- !u!114 &-8627726032683050256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,3 +184,4 @@ MonoBehaviour:
   target: 
   damage: 30
   moveSpeed: 1.5
+  isDead: 0

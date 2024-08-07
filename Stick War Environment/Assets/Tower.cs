@@ -52,6 +52,18 @@ public class Tower : MonoBehaviour
                 {
                     gv.gold1 += 20;
                     ticksResources = 0;
+
+                    if (!spawn && gv.team1units.Count < 30)
+                    {
+                        if (gv.towerSpawn1 == 1)
+                        {
+                            spawn = Instantiate(spearton, transform.position, Quaternion.identity);
+                        }
+                        else if (gv.towerSpawn1 == 2)
+                        {
+                            spawn = Instantiate(enslaved_giant, transform.position, Quaternion.identity);
+                        }
+                    }
                 }
                 
 
@@ -64,17 +76,6 @@ public class Tower : MonoBehaviour
                         Destroy(spawn);
                     }
                 }
-
-                if (!spawn && gv.team1units.Count < 50)
-                {
-                    if(gv.towerSpawn1 == 1)
-                    {
-                        spawn = Instantiate(spearton, transform.position, Quaternion.identity);
-                    }else if(gv.towerSpawn1 == 2) {
-                        spawn = Instantiate(enslaved_giant, transform.position, Quaternion.identity);
-                    }
-                }
-
             }
             else if (control <= -100)
             {
@@ -84,6 +85,19 @@ public class Tower : MonoBehaviour
                 {
                     gv.gold2 += 20;
                     ticksResources = 0;
+
+
+                    if (!spawn && gv.team2units.Count < 30)
+                    {
+                        if (gv.towerSpawn2 == 1)
+                        {
+                            spawn = Instantiate(juggernaut, transform.position, Quaternion.identity);
+                        }
+                        else if (gv.towerSpawn2 == 2)
+                        {
+                            spawn = Instantiate(giant, transform.position, Quaternion.identity);
+                        }
+                    }
                 }
                 
                 if (contesting != "team2")
@@ -96,17 +110,6 @@ public class Tower : MonoBehaviour
                     }
                 }
 
-                if (!spawn && gv.team2units.Count < 50)
-                {
-                    if (gv.towerSpawn2 == 1)
-                    {
-                        spawn = Instantiate(juggernaut, transform.position, Quaternion.identity);
-                    }
-                    else if (gv.towerSpawn2 == 2)
-                    {
-                        spawn = Instantiate(giant, transform.position, Quaternion.identity);
-                    }
-                }
 
             }
             else

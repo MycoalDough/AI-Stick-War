@@ -82,7 +82,7 @@ def play_step(step):
                     result_list.append(element.lower() == 'true')
                 else:
                     result_list.append(element)
-            return result_list[0], result_list[1], np.array(convert_list(elements[2]), dtype=float), result_list[3], result_list[4]
+            return result_list[0], result_list[1], np.array(convert_list(elements[2]), dtype=float), result_list[3], elements[4]
     except Exception as e:
         print("Error in get_state:", e)
         return None

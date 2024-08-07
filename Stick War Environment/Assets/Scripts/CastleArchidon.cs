@@ -23,6 +23,8 @@ public class CastleArchidon : MonoBehaviour
     public float damage;
 
     public float moveSpeed;
+
+    public bool isDead;
     // Start is called before the first frame update
     void Start()
     {
@@ -61,7 +63,14 @@ public class CastleArchidon : MonoBehaviour
 
         if (gameObject.GetComponentInChildren<HPSystem>() && gameObject.GetComponentInChildren<HPSystem>().dazed)
         {
-            anim.Play("ArchidonIdle");
+            if (isDead)
+            {
+                anim.Play("DeadIdle");
+            }
+            else
+            {
+                anim.Play("ArchidonIdle");
+            }
             isReloading = false;
             isAttacking = false;
             StopAllCoroutines();
@@ -119,11 +128,18 @@ public class CastleArchidon : MonoBehaviour
     IEnumerator AttackAnimation()
     {
         isAttacking = true;
-        anim.Play("ArchidonShoot");
+        if (isDead)
+        {
+            anim.Play("DeadAttack");
+        }
+        else
+        {
+            anim.Play("ArchidonShoot");
+        }
         yield return new WaitForSeconds(1);
         string facing = GetComponent<SpriteRenderer>().flipX ? "left" : "right";
         bow.Shoot(Etag, toMove, "Castle");
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(8f);
         isAttacking = false;
         StartCoroutine(Reload());
     }
@@ -131,7 +147,10 @@ public class CastleArchidon : MonoBehaviour
     IEnumerator Reload()
     {
         isReloading = true;
-        anim.Play("ArchidonReload");
+        if (!isDead)
+        {
+            anim.Play("ArchidonReload");
+        }
         yield return new WaitForSeconds(1);
         isReloading = false;
     }
