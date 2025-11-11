@@ -1,6 +1,6 @@
-# 🤖 AI Stick War
+# 🤖 AI Stick War 2
 
-**The classic Stick War—played by Reinforcement Learning AIs!**
+**Stick War 2—played by Reinforcement Learning AIs!**
 
 <p align="center">
   <img src="https://img.shields.io/github/stars/MycoalDough/AI-Stick-War?style=social" alt="GitHub stars">
@@ -58,19 +58,6 @@ Agents learn to play both sides—ORDER and CHAOS—using advanced Deep Reinforc
 
 ---
 
-## 📸 Screenshots
-
-<p align="center">
-  <img src="https://i.imgur.com/n4W7F1b.png" alt="Stick War AI agents fighting">
-</p>
-<p align="center">
-  <img src="https://i.imgur.com/Wp8pPZ4.png" alt="Unity project with agent controls">
-</p>
-
-<sub>*(Replace the image links with actual screenshots from your project for more awesomeness!)*</sub>
-
----
-
 ## 🏗️ Tech Stack
 
 - **Unity** (C#): Simulation and environment editor
@@ -87,7 +74,7 @@ MIT License — use, fork, remix!
 
 ## 🙏 Credits
 
-- **Stick War** (original): Max Games  
+- **Stick War 2** (original): Max Games  
   (This is a non-commercial fan project)
 - **Deep RL research:** open-source RL community + papers
 
